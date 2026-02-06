@@ -521,15 +521,52 @@ input:focus, textarea:focus{
   .menu.open{display:flex;}
 
 }
-/* ================= HERO IMAGE ================= */
-.hero-img {
+/* ===== HERO IMAGE FIX ===== */
+.hero-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image-card {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background: #f4fbff;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.hero-image-card img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 18px;
+  border-radius: 14px;
+  object-fit: contain;
 }
 
-/* Optional: keep hero card clean */
-.illustration {
-  overflow: hidden;
+/* Tag */
+.hero-image-card .tag {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  background: #e7f0ff;
+  color: #2457e6;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
 }
+
+/* Responsive fix */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-right {
+    margin-top: 32px;
+  }
+}
+
