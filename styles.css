@@ -22,14 +22,13 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 
-/* Smooth scroll + offset for fixed navbar (kept, even though we now hide sections) */
 #home, #services, #about, #about-team, #contact{
   scroll-margin-top: 90px;
 }
 
 body{
   margin:0;
-  padding-top: 76px; /* IMPORTANT: space for fixed nav */
+  padding-top: 76px;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
   color:var(--text);
   background: var(--bg);
@@ -53,16 +52,9 @@ a{color:inherit}
   max-width:70ch;
   line-height:1.7;
 }
-.alt{
-  background:var(--soft);
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-}
 
 /* ================= PAGE TABS (SHOW ONLY ONE SECTION) ================= */
-.page-section[hidden]{
-  display:none !important;
-}
+.page-section[hidden]{display:none !important;}
 
 /* ================= NAV ================= */
 .nav{
@@ -199,6 +191,61 @@ a{color:inherit}
   to{ transform: translateX(0); opacity:1; }
 }
 
+/* ================= STATEMENT / QUOTE BAND (scroll section) ================= */
+.statement-band{
+  background: #d9e9f0;
+  padding: 90px 0;
+}
+.statement-inner{
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.statement-text{
+  font-size: 20px;
+  line-height: 1.7;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+.statement-author{
+  margin-top: 18px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #1d4ed8;
+  font-size: 13px;
+}
+
+/* ================= HOME FOOTER BAND ================= */
+.home-footer-band{
+  background:#0f2a3d;
+  padding:60px 0;
+  color:#ffffff;
+}
+.home-footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.home-footer-brand{
+  font-weight:900;
+  font-size:22px;
+  letter-spacing:1px;
+}
+.home-footer-brand span{
+  font-size:12px;
+  opacity:.8;
+  letter-spacing:2px;
+}
+.home-footer-contact{
+  text-align:right;
+  font-weight:700;
+  font-size:14px;
+  opacity:.9;
+}
+
 /* ================= CARDS ================= */
 .cards{
   display:grid;
@@ -262,11 +309,8 @@ a{color:inherit}
 }
 .service-item ul li:first-child{border-top:0;}
 
-/* ================= TEAM folding (Meet The Team) ================= */
-.team-item summary{
-  list-style:none;
-  cursor:pointer;
-}
+/* ================= TEAM folding ================= */
+.team-item summary{list-style:none; cursor:pointer;}
 .team-item summary::-webkit-details-marker{display:none;}
 .team-item summary{
   display:flex;
@@ -371,7 +415,7 @@ input:focus, textarea:focus{
     display:none;
     position:absolute;
     right:4%;
-    top:76px; /* sits under nav */
+    top:76px;
     background:rgba(240,246,244,.98);
     border:1px solid var(--nav-border);
     border-radius:16px;
@@ -471,17 +515,4 @@ input:focus, textarea:focus{
 }
 @media (max-width: 950px){
   .section.services .cards{grid-template-columns: 1fr;}
-}
-
-/* Team title (optional if you use it) */
-.team-title {
-  background: var(--primary);
-  color: #ffffff;
-  text-align: center;
-  padding: 3rem 1rem;
-  margin-bottom: 3rem;
-  font-size: 3rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  border-radius: 12px;
 }
