@@ -13,11 +13,18 @@ function toggleMenu() {
   menu.classList.toggle("open");
 }
 
+// Close menu when clicking a link (mobile UX)
+document.querySelectorAll("#menu a").forEach((a) => {
+  a.addEventListener("click", () => {
+    document.getElementById("menu")?.classList.remove("open");
+  });
+});
+
 // =========================
 // TAB NAVIGATION (show only ONE section)
 // =========================
 const sections = Array.from(document.querySelectorAll(".page-section"));
-const navLinks = Array.from(document.querySelectorAll("#menu .nav-link"));
+const navLinks = Array.from(document.querySelectorAll(".nav-link"));
 
 function setActiveLink(hash) {
   navLinks.forEach((a) => a.classList.remove("active"));
@@ -29,34 +36,29 @@ function showSectionByHash(hash) {
   if (!hash || hash === "#") hash = "#home";
   const id = hash.replace("#", "");
 
-  // Special case: if URL is #about-team, show About page first
+  // if URL is #about-team, show About page first
   const showId = id === "about-team" ? "about" : id;
 
-  // If section doesn't exist, fallback to home
-  const exists = sections.some((s) => s.id === showId);
-  const finalId = exists ? showId : "home";
-
   sections.forEach((sec) => {
-    sec.hidden = sec.id !== finalId;
+    sec.hidden = sec.id !== showId;
   });
 
-  setActiveLink(finalId === "home" ? "#home" : `#${finalId}`);
+  setActiveLink(id === "about-team" ? "#about" : hash);
 
-  // Close mobile menu
+  // close mobile menu
   document.getElementById("menu")?.classList.remove("open");
 
-  // Go top when switching "pages"
+  // go to top for tab changes
   window.scrollTo({ top: 0, behavior: "auto" });
 
-  // If #about-team, scroll inside About section after showing it
+  // if about-team, scroll inside About page after it becomes visible
   if (id === "about-team") {
     setTimeout(() => {
       document.getElementById("about-team")?.scrollIntoView({ behavior: "smooth" });
-    }, 120);
+    }, 100);
   }
 }
 
-// Run on load + when hash changes
 window.addEventListener("hashchange", () => showSectionByHash(location.hash));
 document.addEventListener("DOMContentLoaded", () => showSectionByHash(location.hash));
 
