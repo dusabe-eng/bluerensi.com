@@ -24,11 +24,19 @@ document.querySelectorAll("#menu a").forEach((a) => {
 // TAB NAVIGATION (show only ONE section)
 // =========================
 const sections = Array.from(document.querySelectorAll(".page-section"));
-const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+
+// IMPORTANT: your links do NOT have ".nav-link" class
+// so we select links that should switch pages:
+const tabLinks = Array.from(
+  document.querySelectorAll('#menu a[href^="#"], .footer-links a[href^="#"], a.brand[href^="#"], a.btn[href^="#"]')
+);
 
 function setActiveLink(hash) {
-  navLinks.forEach((a) => a.classList.remove("active"));
-  const active = navLinks.find((a) => a.getAttribute("href") === hash);
+  // highlight only the top menu links (not footer)
+  const menuLinks = Array.from(document.querySelectorAll('#menu a[href^="#"]'));
+  menuLinks.forEach((a) => a.classList.remove("active"));
+
+  const active = menuLinks.find((a) => a.getAttribute("href") === hash);
   if (active) active.classList.add("active");
 }
 
@@ -39,32 +47,41 @@ function showSectionByHash(hash) {
   // If URL is #about-team, show About page first
   const showId = id === "about-team" ? "about" : id;
 
+  // Show only the selected section
   sections.forEach((sec) => {
     sec.hidden = sec.id !== showId;
   });
 
+  // Active menu highlight
   setActiveLink(id === "about-team" ? "#about" : hash);
 
-  // always go to top when switching pages
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  // Close mobile menu
+  document.getElementById("menu")?.classList.remove("open");
 
-  // if about-team, scroll inside after show
+  // Jump to top when switching tabs
+  window.scrollTo({ top: 0, behavior: "auto" });
+
+  // If user requested #about-team, scroll to it inside About page
   if (id === "about-team") {
     setTimeout(() => {
       document.getElementById("about-team")?.scrollIntoView({ behavior: "smooth" });
-    }, 150);
+    }, 100);
   }
-
-  // close mobile menu
-  document.getElementById("menu")?.classList.remove("open");
 }
 
+// When user clicks links, let hash change happen then render correct section
+tabLinks.forEach((a) => {
+  a.addEventListener("click", () => {
+    // hashchange event will handle it
+  });
+});
+
+// Handle back/forward + direct URL load like /#contact
 window.addEventListener("hashchange", () => showSectionByHash(location.hash));
 document.addEventListener("DOMContentLoaded", () => showSectionByHash(location.hash));
 
 // =========================
 // Services reveal on scroll
-// (still works when Services is opened)
 // =========================
 (function initServicesReveal() {
   const cards = document.querySelectorAll("#services .card");
