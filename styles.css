@@ -58,6 +58,11 @@ a{color:inherit}
   border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
 }
+/* =========================
+   SPA-style page switching
+   ========================= */
+.page-section{ display:none; }
+.page-section.active{ display:block; }
 
 /* ================= NAV ================= */
 .nav{
@@ -479,3 +484,4 @@ input:focus, textarea:focus{
   letter-spacing: 0.5px;
   border-radius: 12px;
 }
+
