@@ -49,94 +49,26 @@ a{color:inherit}
   top: 0;
   z-index: 50;
 
-  /* Softer + more premium than pure white */
-  background: linear-gradient(
-    to right,
-    rgba(247, 249, 252, .94),
-    rgba(238, 243, 250, .94)
-  );
-
+  /* soft blue-grey instead of white */
+  background: rgba(242, 246, 251, 0.95);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
 
-  /* Subtle depth */
+  border-bottom: 1px solid #e2e8f0;
   box-shadow: 0 2px 10px rgba(0,0,0,.04);
 }
 
-.nav-inner{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 14px 0;
-}
-
-.brand{
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-}
-
-.logo-img{
-  height: 44px;
-  width: auto;
-  display: block;
-}
-
-.brand-text{
-  line-height: 1.05;
-}
-
-.brand-name{
-  font-weight: 900;
-  letter-spacing: .6px;
-  color: var(--text);
-}
-
-.brand-sub{
-  font-size: 12px;
-  color: var(--muted);
-  letter-spacing: 1px;
-}
-
-.menu{
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
 .menu a{
-  text-decoration: none;
-  color: var(--muted);
+  color: #475569; /* muted blue-grey */
   font-weight: 800;
   padding: 10px 12px;
   border-radius: 12px;
   transition: background .15s ease, color .15s ease;
 }
 
-.menu a:hover{
-  color: var(--primary);
-  background: var(--soft);
-}
-
+.menu a:hover,
 .menu a.active{
   color: var(--primary);
-  background: var(--soft);
-  font-weight: 900;
-}
-
-.nav-toggle{
-  display: none;
-  border: 1px solid var(--border);
-
-  /* Match the new nav tone */
-  background: rgba(247, 249, 252, .90);
-
-  padding: 10px 12px;
-  border-radius: 12px;
-  font-size: 16px;
-  cursor: pointer;
+  background: rgba(30, 64, 175, 0.08); /* subtle blue tint */
 }
 
 /* ================= BUTTONS ================= */
@@ -575,4 +507,5 @@ input:focus, textarea:focus{
   letter-spacing: 0.5px;
   border-radius: 12px;
 }
+
 
