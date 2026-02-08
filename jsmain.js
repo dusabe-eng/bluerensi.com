@@ -12,7 +12,6 @@ function toggleMenu() {
   if (!menu) return;
   menu.classList.toggle("open");
 }
-window.toggleMenu = toggleMenu;
 
 // Close menu when clicking a link (mobile UX)
 document.querySelectorAll("#menu a").forEach((a) => {
@@ -22,87 +21,74 @@ document.querySelectorAll("#menu a").forEach((a) => {
 });
 
 // =========================
-// SPA-style section switching
+// TAB NAVIGATION (HOME ONLY shows hero)
 // =========================
-const SECTION_IDS = ["home", "services", "about", "contact"];
+const sections = Array.from(document.querySelectorAll(".page-section"));
+const navLinks = Array.from(document.querySelectorAll(".nav-link"));
 
-function setActiveNav(targetId) {
-  document.querySelectorAll('.menu a[href^="#"]').forEach((a) => {
-    const id = a.getAttribute("href").replace("#", "");
-    a.classList.toggle("active", id === targetId);
-  });
+function setActiveLink(hash) {
+  navLinks.forEach((a) => a.classList.remove("active"));
+  const active = navLinks.find((a) => a.getAttribute("href") === hash);
+  if (active) active.classList.add("active");
 }
 
-function showSection(targetId) {
-  const id = SECTION_IDS.includes(targetId) ? targetId : "home";
+function showSectionByHash(hash) {
+  // default
+  if (!hash || hash === "#") hash = "#home";
 
-  // Hide all main sections
-  document.querySelectorAll(".page-section").forEach((sec) => {
-    sec.classList.remove("active");
-    sec.hidden = true;
-  });
+  // If user goes to #about-team, we must show About page first
+  let targetSectionId = hash.replace("#", "");
+  let sectionToShow = targetSectionId;
 
-  // Show target section
-  const target = document.getElementById(id);
-  if (target) {
-    target.hidden = false;
-    target.classList.add("active");
+  if (targetSectionId === "about-team") {
+    sectionToShow = "about";
   }
 
-  // Update nav state + URL hash
-  setActiveNav(id);
-  history.replaceState(null, "", `#${id}`);
+  // Show only one page-section
+  sections.forEach((sec) => {
+    const isActive = sec.id === sectionToShow;
+    sec.hidden = !isActive;
+  });
+
+  // Update active tab (Home/Services/About/Contact)
+  // #about-team should highlight About
+  const activeHash = targetSectionId === "about-team" ? "#about" : hash;
+  setActiveLink(activeHash);
+
+  // Scroll to top of the page section
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  // If #about-team, after showing About, scroll to team section inside it
+  if (targetSectionId === "about-team") {
+    setTimeout(() => {
+      document.getElementById("about-team")?.scrollIntoView({ behavior: "smooth" });
+    }, 150);
+  }
 
   // Close mobile menu
   document.getElementById("menu")?.classList.remove("open");
-
-  // Always go to top (since we are "switching pages")
-  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-
-  // Trigger services reveal animation when Services opens
-  if (id === "services") {
-    const cards = document.querySelectorAll("#services .card");
-    cards.forEach((c, i) => {
-      c.classList.remove("in-view");
-      setTimeout(() => c.classList.add("in-view"), 60 + i * 60);
-    });
-  }
 }
 
-// Intercept clicks on ANY link that points to #home/#services/#about/#contact
-document.addEventListener("click", (e) => {
-  const link = e.target.closest('a[href^="#"]');
-  if (!link) return;
-
-  const targetId = link.getAttribute("href").slice(1);
-
-  // If it targets our main sections, switch instead of scrolling
-  if (SECTION_IDS.includes(targetId)) {
-    e.preventDefault();
-    showSection(targetId);
-  }
-
-  // If it targets #about-team, we switch to About page (team is inside About)
-  if (targetId === "about-team") {
-    e.preventDefault();
-    showSection("about");
-    // optional: open team area by scrolling inside About
-    const team = document.getElementById("about-team");
-    team?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-});
-
-// On first load: open section from URL hash if valid
-window.addEventListener("DOMContentLoaded", () => {
-  const hash = (location.hash || "#home").replace("#", "");
-  showSection(hash);
-});
+// Run on first load + back/forward navigation
+window.addEventListener("hashchange", () => showSectionByHash(location.hash));
+document.addEventListener("DOMContentLoaded", () => showSectionByHash(location.hash));
 
 // =========================
-// ESC closes menu
+// Services reveal on scroll (works when Services page is opened)
 // =========================
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    document.getElementById("menu")?.classList.remove("open");
-  }
-});
+function initServicesReveal() {
+  const cards = document.querySelectorAll("#services .card");
+  if (!cards.length) return;
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("in-view");
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  cards.forEach((card) => io.observe(card));
+}
+initServicesReveal();
