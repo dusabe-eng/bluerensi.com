@@ -12,6 +12,7 @@ function toggleMenu() {
   if (!menu) return;
   menu.classList.toggle("open");
 }
+window.toggleMenu = toggleMenu;
 
 // Close menu when clicking a link (mobile UX)
 document.querySelectorAll("#menu a").forEach((a) => {
@@ -20,142 +21,88 @@ document.querySelectorAll("#menu a").forEach((a) => {
   });
 });
 
-// Close mobile menu if clicking outside (very important UX)
-document.addEventListener("click", (e) => {
-  const menu = document.getElementById("menu");
-  const toggle = document.querySelector(".nav-toggle");
-  if (!menu || !toggle) return;
-
-  const clickedInsideMenu = menu.contains(e.target);
-  const clickedToggle = toggle.contains(e.target);
-
-  if (!clickedInsideMenu && !clickedToggle) {
-    menu.classList.remove("open");
-  }
-});
-
 // =========================
-// Services reveal on scroll
+// SPA-style section switching
 // =========================
-(function initServicesReveal() {
-  const cards = document.querySelectorAll("#services .card");
-  if (!cards.length) return;
+const SECTION_IDS = ["home", "services", "about", "contact"];
 
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("in-view");
-      });
-    },
-    { threshold: 0.12 }
-  );
-
-  cards.forEach((card) => io.observe(card));
-})();
-
-// =========================
-// Simple site search (improved)
-// =========================
-const data = [
-  { title: "Civil & Structural", keywords: "civil structural infrastructure design site assessment feasibility construction supervision", target: "#services" },
-  { title: "Hydrology & Hydraulics", keywords: "hydrology hydraulics flood risk drainage river modelling idf frequency", target: "#services" },
-  { title: "Environmental & Climate", keywords: "environmental climate impact resilience monitoring reporting", target: "#services" },
-  { title: "Water Supply & WASH", keywords: "water supply wash system design operation maintenance", target: "#services" },
-  { title: "Modelling & GIS", keywords: "modelling gis spatial mapping dashboards visualization catchment", target: "#services" },
-  { title: "Advisory & Review", keywords: "advisory review technical reviews project advisory training capacity building", target: "#services" },
-  { title: "About Us", keywords: "about company experience sectors", target: "#about" },
-  { title: "Our Team", keywords: "team managing director technical director operations director", target: "#about-team" },
-  { title: "Contact", keywords: "contact email phone consultation", target: "#contact" },
-];
-
-const input = document.getElementById("siteSearch");
-const resultsBox = document.getElementById("searchResults");
-
-function closeResults() {
-  if (!resultsBox) return;
-  resultsBox.hidden = true;
-  resultsBox.innerHTML = "";
-}
-
-function renderResults(items) {
-  if (!resultsBox) return;
-
-  if (!items.length) {
-    resultsBox.innerHTML = `<span class="search-item">No results found</span>`;
-    resultsBox.hidden = false;
-    return;
-  }
-
-  resultsBox.innerHTML = items
-    .map(
-      (i) => `
-      <a class="search-item" href="${i.target}">
-        ${i.title}
-        <span class="search-muted">${i.preview}</span>
-      </a>
-    `
-    )
-    .join("");
-
-  resultsBox.hidden = false;
-
-  // Close dropdown when clicking a result
-  resultsBox.querySelectorAll("a.search-item").forEach((a) => {
-    a.addEventListener("click", () => closeResults());
+function setActiveNav(targetId) {
+  document.querySelectorAll('.menu a[href^="#"]').forEach((a) => {
+    const id = a.getAttribute("href").replace("#", "");
+    a.classList.toggle("active", id === targetId);
   });
 }
 
-// Basic scoring
-function scoreItem(queryWords, item) {
-  const hay = (item.title + " " + item.keywords).toLowerCase();
-  let score = 0;
+function showSection(targetId) {
+  const id = SECTION_IDS.includes(targetId) ? targetId : "home";
 
-  queryWords.forEach((w) => {
-    if (!w) return;
-    if (item.title.toLowerCase().includes(w)) score += 4;
-    if (hay.includes(w)) score += 2;
+  // Hide all main sections
+  document.querySelectorAll(".page-section").forEach((sec) => {
+    sec.classList.remove("active");
+    sec.hidden = true;
   });
 
-  const phrase = queryWords.join(" ").trim();
-  if (phrase && hay.includes(phrase)) score += 3;
-
-  return score;
-}
-
-input?.addEventListener("input", () => {
-  const q = input.value.trim().toLowerCase();
-  if (!q) {
-    closeResults();
-    return;
+  // Show target section
+  const target = document.getElementById(id);
+  if (target) {
+    target.hidden = false;
+    target.classList.add("active");
   }
 
-  const queryWords = q.split(/\s+/).filter(Boolean);
+  // Update nav state + URL hash
+  setActiveNav(id);
+  history.replaceState(null, "", `#${id}`);
 
-  const matches = data
-    .map((item) => {
-      const s = scoreItem(queryWords, item);
-      if (s <= 0) return null;
+  // Close mobile menu
+  document.getElementById("menu")?.classList.remove("open");
 
-      const preview = item.keywords.split(" ").slice(0, 7).join(" ") + "...";
-      return { ...item, score: s, preview };
-    })
-    .filter(Boolean)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 6);
+  // Always go to top (since we are "switching pages")
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 
-  renderResults(matches);
-});
+  // Trigger services reveal animation when Services opens
+  if (id === "services") {
+    const cards = document.querySelectorAll("#services .card");
+    cards.forEach((c, i) => {
+      c.classList.remove("in-view");
+      setTimeout(() => c.classList.add("in-view"), 60 + i * 60);
+    });
+  }
+}
 
-// Close when clicking outside (search)
+// Intercept clicks on ANY link that points to #home/#services/#about/#contact
 document.addEventListener("click", (e) => {
-  if (!resultsBox || !input) return;
-  if (!resultsBox.contains(e.target) && e.target !== input) closeResults();
+  const link = e.target.closest('a[href^="#"]');
+  if (!link) return;
+
+  const targetId = link.getAttribute("href").slice(1);
+
+  // If it targets our main sections, switch instead of scrolling
+  if (SECTION_IDS.includes(targetId)) {
+    e.preventDefault();
+    showSection(targetId);
+  }
+
+  // If it targets #about-team, we switch to About page (team is inside About)
+  if (targetId === "about-team") {
+    e.preventDefault();
+    showSection("about");
+    // optional: open team area by scrolling inside About
+    const team = document.getElementById("about-team");
+    team?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 });
 
-// Close on ESC + close menu on ESC
+// On first load: open section from URL hash if valid
+window.addEventListener("DOMContentLoaded", () => {
+  const hash = (location.hash || "#home").replace("#", "");
+  showSection(hash);
+});
+
+// =========================
+// ESC closes menu
+// =========================
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
-    closeResults();
     document.getElementById("menu")?.classList.remove("open");
   }
 });
