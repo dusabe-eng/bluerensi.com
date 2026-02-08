@@ -129,10 +129,13 @@ a{color:inherit}
    ========================= */
 .hero{padding:54px 0 22px;}
 .hero-grid{
-  display:grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap:40px;
-  align-items:center;
+  display:flex;
+  justify-content:center;
+  text-align:center;
+}
+.hero-left{
+  max-width: 760px;
+  margin: 0 auto;
 }
 
 h1{
@@ -562,4 +565,5 @@ input:focus, textarea:focus{
     margin-top: 32px;
   }
 }
+
 
