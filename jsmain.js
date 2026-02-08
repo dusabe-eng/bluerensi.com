@@ -13,71 +13,71 @@ function toggleMenu() {
   menu.classList.toggle("open");
 }
 
-// Close menu when clicking a link (mobile UX)
-document.querySelectorAll("#menu a").forEach((a) => {
-  a.addEventListener("click", () => {
-    document.getElementById("menu")?.classList.remove("open");
-  });
-});
-
 // =========================
 // TAB NAVIGATION (show only ONE section)
 // =========================
 const sections = Array.from(document.querySelectorAll(".page-section"));
-
-// IMPORTANT: your links do NOT have ".nav-link" class
-// so we select links that should switch pages:
-const tabLinks = Array.from(
-  document.querySelectorAll('#menu a[href^="#"], .footer-links a[href^="#"], a.brand[href^="#"], a.btn[href^="#"]')
-);
+const menuLinks = Array.from(document.querySelectorAll('#menu a[href^="#"]'));
 
 function setActiveLink(hash) {
-  // highlight only the top menu links (not footer)
-  const menuLinks = Array.from(document.querySelectorAll('#menu a[href^="#"]'));
   menuLinks.forEach((a) => a.classList.remove("active"));
-
   const active = menuLinks.find((a) => a.getAttribute("href") === hash);
   if (active) active.classList.add("active");
 }
 
 function showSectionByHash(hash) {
   if (!hash || hash === "#") hash = "#home";
-  const id = hash.replace("#", "");
 
-  // If URL is #about-team, show About page first
-  const showId = id === "about-team" ? "about" : id;
+  const rawId = hash.replace("#", "");
+  const showId = rawId === "about-team" ? "about" : rawId;
 
-  // Show only the selected section
+  // if the section doesn't exist, fallback to home
+  const exists = sections.some((s) => s.id === showId);
+  const finalId = exists ? showId : "home";
+
   sections.forEach((sec) => {
-    sec.hidden = sec.id !== showId;
+    sec.hidden = sec.id !== finalId;
   });
 
-  // Active menu highlight
-  setActiveLink(id === "about-team" ? "#about" : hash);
+  setActiveLink(rawId === "about-team" ? "#about" : `#${finalId}`);
 
-  // Close mobile menu
+  // close mobile menu
   document.getElementById("menu")?.classList.remove("open");
 
-  // Jump to top when switching tabs
+  // go top when switching "pages"
   window.scrollTo({ top: 0, behavior: "auto" });
 
-  // If user requested #about-team, scroll to it inside About page
-  if (id === "about-team") {
+  // special case: jump to about-team inside About
+  if (rawId === "about-team") {
     setTimeout(() => {
       document.getElementById("about-team")?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   }
 }
 
-// When user clicks links, let hash change happen then render correct section
-tabLinks.forEach((a) => {
-  a.addEventListener("click", () => {
-    // hashchange event will handle it
-  });
-});
+// Click handling (IMPORTANT)
+function onNavClick(e) {
+  const a = e.currentTarget;
+  const hash = a.getAttribute("href");
+  if (!hash || !hash.startsWith("#")) return;
 
-// Handle back/forward + direct URL load like /#contact
-window.addEventListener("hashchange", () => showSectionByHash(location.hash));
+  e.preventDefault(); // prevent browser trying to scroll to a hidden section
+  history.pushState(null, "", hash);
+  showSectionByHash(hash);
+}
+
+// Attach click events to top menu links
+menuLinks.forEach((a) => a.addEventListener("click", onNavClick));
+
+// Also attach to footer links + brand + button (optional but nice)
+document
+  .querySelectorAll('.footer-links a[href^="#"], a.brand[href^="#"], a.btn[href^="#"]')
+  .forEach((a) => a.addEventListener("click", onNavClick));
+
+// Back/Forward button support
+window.addEventListener("popstate", () => showSectionByHash(location.hash));
+
+// Initial load (supports direct /#services)
 document.addEventListener("DOMContentLoaded", () => showSectionByHash(location.hash));
 
 // =========================
