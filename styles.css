@@ -22,7 +22,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 
-/* Smooth scroll + offset for fixed navbar */
+/* Smooth scroll + offset for fixed navbar (kept, even though we now hide sections) */
 #home, #services, #about, #about-team, #contact{
   scroll-margin-top: 90px;
 }
@@ -58,11 +58,11 @@ a{color:inherit}
   border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
 }
-/* =========================
-   SPA-style page switching
-   ========================= */
-.page-section{ display:none; }
-.page-section.active{ display:block; }
+
+/* ================= PAGE TABS (SHOW ONLY ONE SECTION) ================= */
+.page-section[hidden]{
+  display:none !important;
+}
 
 /* ================= NAV ================= */
 .nav{
@@ -236,6 +236,7 @@ a{color:inherit}
   flex:0 0 auto;
 }
 .card h3{margin:0; font-size:17px; letter-spacing:-0.2px;}
+.muted{color:var(--muted); margin:10px 0 0; line-height:1.7;}
 
 /* ================= SERVICES details ================= */
 .service-item{display:block;}
@@ -484,4 +485,3 @@ input:focus, textarea:focus{
   letter-spacing: 0.5px;
   border-radius: 12px;
 }
-
