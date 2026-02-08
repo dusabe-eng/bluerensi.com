@@ -20,6 +20,20 @@ document.querySelectorAll("#menu a").forEach((a) => {
   });
 });
 
+// Close mobile menu if clicking outside (very important UX)
+document.addEventListener("click", (e) => {
+  const menu = document.getElementById("menu");
+  const toggle = document.querySelector(".nav-toggle");
+  if (!menu || !toggle) return;
+
+  const clickedInsideMenu = menu.contains(e.target);
+  const clickedToggle = toggle.contains(e.target);
+
+  if (!clickedInsideMenu && !clickedToggle) {
+    menu.classList.remove("open");
+  }
+});
+
 // =========================
 // Services reveal on scroll
 // =========================
@@ -50,7 +64,7 @@ const data = [
   { title: "Modelling & GIS", keywords: "modelling gis spatial mapping dashboards visualization catchment", target: "#services" },
   { title: "Advisory & Review", keywords: "advisory review technical reviews project advisory training capacity building", target: "#services" },
   { title: "About Us", keywords: "about company experience sectors", target: "#about" },
-  { title: "Sectors", keywords: "who we work with governments municipalities ngos utilities developers contractors", target: "#sectors" },
+  { title: "Our Team", keywords: "team managing director technical director operations director", target: "#about-team" },
   { title: "Contact", keywords: "contact email phone consultation", target: "#contact" },
 ];
 
@@ -91,7 +105,7 @@ function renderResults(items) {
   });
 }
 
-// Basic scoring: exact title match > keyword match; more matched words = higher score
+// Basic scoring
 function scoreItem(queryWords, item) {
   const hay = (item.title + " " + item.keywords).toLowerCase();
   let score = 0;
@@ -102,7 +116,6 @@ function scoreItem(queryWords, item) {
     if (hay.includes(w)) score += 2;
   });
 
-  // bonus for full phrase in hay
   const phrase = queryWords.join(" ").trim();
   if (phrase && hay.includes(phrase)) score += 3;
 
@@ -123,9 +136,7 @@ input?.addEventListener("input", () => {
       const s = scoreItem(queryWords, item);
       if (s <= 0) return null;
 
-      // short preview from keywords
       const preview = item.keywords.split(" ").slice(0, 7).join(" ") + "...";
-
       return { ...item, score: s, preview };
     })
     .filter(Boolean)
@@ -135,7 +146,7 @@ input?.addEventListener("input", () => {
   renderResults(matches);
 });
 
-// Close when clicking outside
+// Close when clicking outside (search)
 document.addEventListener("click", (e) => {
   if (!resultsBox || !input) return;
   if (!resultsBox.contains(e.target) && e.target !== input) closeResults();
