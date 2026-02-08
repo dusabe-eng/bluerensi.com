@@ -49,29 +49,91 @@ a{color:inherit}
   top: 0;
   z-index: 50;
 
-  /* soft blue-grey instead of white */
-  background: rgba(242, 246, 251, 0.95);
+  /* subtle blue-green / sage background */
+  background: rgba(240, 246, 244, 0.95);
   backdrop-filter: blur(10px);
 
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #dde6e3;
   box-shadow: 0 2px 10px rgba(0,0,0,.04);
 }
 
+.nav-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+}
+
+/* ---------- Brand ---------- */
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo-img{
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+.brand-text{
+  line-height: 1.05;
+}
+
+.brand-name{
+  font-weight: 900;
+  letter-spacing: .6px;
+  color: #0f172a;
+}
+
+.brand-sub{
+  font-size: 12px;
+  color: #64748b;
+  letter-spacing: 1px;
+}
+
+/* ---------- Menu ---------- */
+.menu{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .menu a{
-  color: #475569; /* muted blue-grey */
+  text-decoration: none;
+  color: #475569; /* blue-grey */
   font-weight: 800;
   padding: 10px 12px;
   border-radius: 12px;
   transition: background .15s ease, color .15s ease;
 }
 
-.menu a:hover,
-.menu a.active{
+.menu a:hover{
   color: var(--primary);
-  background: rgba(30, 64, 175, 0.08); /* subtle blue tint */
+  background: rgba(34, 139, 124, 0.10); /* soft sage */
 }
 
-/* ================= BUTTONS ================= */
+.menu a.active{
+  color: var(--primary);
+  background: rgba(34, 139, 124, 0.14);
+  font-weight: 900;
+}
+
+/* ---------- Mobile toggle ---------- */
+.nav-toggle{
+  display: none;
+  border: 1px solid #dde6e3;
+  background: rgba(240, 246, 244, 0.9);
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* ---------- Buttons ---------- */
 .btn{
   display: inline-flex;
   align-items: center;
@@ -91,7 +153,7 @@ a{color:inherit}
 }
 
 .btn-primary{
-  background: var(--primary);
+  background: var(--primary); /* keep blue */
   color: #fff;
   box-shadow: 0 12px 18px rgba(29,78,216,.16);
   transition: filter .15s ease, transform .15s ease;
@@ -507,5 +569,6 @@ input:focus, textarea:focus{
   letter-spacing: 0.5px;
   border-radius: 12px;
 }
+
 
 
