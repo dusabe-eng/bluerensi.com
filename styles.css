@@ -218,7 +218,7 @@ a{color:inherit}
 
 /* ================= HOME FOOTER BAND ================= */
 .home-footer-band{
-  background:#1e3a5f;
+  background:#0f766e;
   padding:60px 0;
   color:#ffffff;
 }
@@ -516,4 +516,5 @@ input:focus, textarea:focus{
 @media (max-width: 950px){
   .section.services .cards{grid-template-columns: 1fr;}
 }
+
 
