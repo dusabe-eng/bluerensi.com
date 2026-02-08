@@ -504,3 +504,14 @@ input:focus, textarea:focus{
     grid-template-columns: 1fr;
   }
 }
+.team-title {
+  background: #0b8cff;          /* strong blue like your image */
+  color: #ffffff;
+  text-align: center;
+  padding: 3rem 1rem;
+  margin-bottom: 3rem;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: 12px;
+}
