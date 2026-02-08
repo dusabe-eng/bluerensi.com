@@ -565,5 +565,49 @@ input:focus, textarea:focus{
     margin-top: 32px;
   }
 }
+/* ===== HERO FULL WIDTH + MOTION ===== */
+.hero-full{
+  display:block;          /* stop grid layout */
+}
+
+.hero-left{
+  max-width: 100%;        /* allow full width */
+}
+
+/* Make the big title stretch more across */
+.hero-left h1{
+  width: 100%;
+  max-width: 1100px;      /* same as container width */
+  animation: slideInLeft 1.0s ease-out both;
+}
+
+/* Animate the paragraph & buttons slightly after */
+.hero-left .lead{
+  animation: slideInLeft 1.2s ease-out both;
+  animation-delay: .12s;
+}
+
+.hero-left .hero-actions{
+  animation: slideInLeft 1.25s ease-out both;
+  animation-delay: .18s;
+}
+
+.hero-left .pill-row{
+  animation: slideInLeft 1.35s ease-out both;
+  animation-delay: .24s;
+}
+
+/* Keyframes */
+@keyframes slideInLeft{
+  from{
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 
 
