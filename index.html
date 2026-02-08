@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -40,9 +39,8 @@
   </div>
 </header>
 
-<!-- ================= HOME ================= -->
+<!-- ================= HOME (SCROLLABLE) ================= -->
 <section id="home" class="page-section">
-
   <!-- HERO -->
   <div class="hero hero-banner">
     <div class="hero-overlay"></div>
@@ -58,36 +56,57 @@
         Partner with us to deliver sustainable and resilient outcomes.
       </p>
 
-      <a class="btn btn-primary" href="#services" style="margin-top:18px;">Explore our services</a>
+      <a class="btn btn-primary" href="#services">Explore our services</a>
     </div>
   </div>
 
-  <!-- MISSION / QUOTE BAND (scrollable, like your reference) -->
-  <section class="home-mission">
-    <div class="container mission-inner">
-      <blockquote class="mission-quote">
+  <!-- MISSION STRIP (NO WHITE BLOCK) -->
+  <section class="mission-strip">
+    <div class="container mission-strip-inner">
+      <p class="mission-text">
         “We support resilient infrastructure and water systems by combining sound engineering,
         hydrologic science, and context-aware decision making.”
-      </blockquote>
-      <div class="mission-sign">— <strong>BLUERENSI</strong> Consult</div>
+      </p>
+      <span class="mission-author">— BLUERENSI Consult</span>
     </div>
   </section>
 
-  <!-- GREEN BRAND BAND -->
-  <section class="brand-footer">
-    <div class="container brand-footer-inner">
-      <div class="brand-left">
-        <div class="bf-title">BLUERENSI</div>
-        <div class="bf-sub">CONSULT</div>
-      </div>
+  <!-- OPTIONAL: small home section so it feels more complete -->
+  <section class="section home-extra">
+    <div class="container">
+      <h2 class="section-title">What we do</h2>
+      <p class="section-subtitle">
+        We help clients plan, design, and deliver reliable infrastructure, water resources solutions,
+        and climate-resilient systems with practical engineering and clear decision support.
+      </p>
 
-      <div class="brand-right">
-        <div>Kigali, Rwanda</div>
-        <div>info@bluerensi.com</div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-head">
+            <div class="icon">✅</div>
+            <h3>Practical engineering</h3>
+          </div>
+          <p class="muted">Designs and recommendations that work on real projects, real budgets, real timelines.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div class="icon">📍</div>
+            <h3>Local context</h3>
+          </div>
+          <p class="muted">Solutions aligned with terrain, data availability, regulations, and operational capacity.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div class="icon">📈</div>
+            <h3>Decision support</h3>
+          </div>
+          <p class="muted">Hydrology + modelling + GIS outputs that guide planning and reduce risk.</p>
+        </div>
       </div>
     </div>
   </section>
-
 </section>
 
 <!-- ================= SERVICES ================= -->
@@ -97,7 +116,7 @@
 
     <div class="cards">
 
-      <details class="card service-item">
+      <details class="card service-item reveal">
         <summary class="card-head">
           <div class="icon">🏗️</div>
           <h3>Civil &amp; Structural</h3>
@@ -109,7 +128,7 @@
         </ul>
       </details>
 
-      <details class="card service-item">
+      <details class="card service-item reveal">
         <summary class="card-head">
           <div class="icon">💧</div>
           <h3>Hydrology &amp; Hydraulics</h3>
@@ -121,7 +140,7 @@
         </ul>
       </details>
 
-      <details class="card service-item">
+      <details class="card service-item reveal">
         <summary class="card-head">
           <div class="icon">🌿</div>
           <h3>Environmental &amp; Climate</h3>
@@ -133,7 +152,7 @@
         </ul>
       </details>
 
-      <details class="card service-item">
+      <details class="card service-item reveal">
         <summary class="card-head">
           <div class="icon">🚰</div>
           <h3>Water Supply &amp; WASH</h3>
@@ -145,7 +164,7 @@
         </ul>
       </details>
 
-      <details class="card service-item">
+      <details class="card service-item reveal">
         <summary class="card-head">
           <div class="icon">🗺️</div>
           <h3>Modelling &amp; GIS</h3>
@@ -157,7 +176,7 @@
         </ul>
       </details>
 
-      <details class="card service-item">
+      <details class="card service-item reveal">
         <summary class="card-head">
           <div class="icon">🧾</div>
           <h3>Advisory &amp; Review</h3>
@@ -280,7 +299,7 @@
   </div>
 </section>
 
-<!-- ================= GLOBAL FOOTER (ONLY ONCE) ================= -->
+<!-- ================= FOOTER (ONLY ONE) ================= -->
 <footer class="footer">
   <div class="container footer-inner">
     <div>© <span id="year"></span> BLUERENSI Consult. All rights reserved.</div>
