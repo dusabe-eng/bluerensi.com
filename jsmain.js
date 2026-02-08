@@ -21,7 +21,7 @@ document.querySelectorAll("#menu a").forEach((a) => {
 });
 
 // =========================
-// TAB NAVIGATION (HOME ONLY shows hero)
+// TAB NAVIGATION (show only ONE section)
 // =========================
 const sections = Array.from(document.querySelectorAll(".page-section"));
 const navLinks = Array.from(document.querySelectorAll(".nav-link"));
@@ -33,50 +33,40 @@ function setActiveLink(hash) {
 }
 
 function showSectionByHash(hash) {
-  // default
   if (!hash || hash === "#") hash = "#home";
+  const id = hash.replace("#", "");
 
-  // If user goes to #about-team, we must show About page first
-  let targetSectionId = hash.replace("#", "");
-  let sectionToShow = targetSectionId;
+  // If URL is #about-team, show About page first
+  const showId = id === "about-team" ? "about" : id;
 
-  if (targetSectionId === "about-team") {
-    sectionToShow = "about";
-  }
-
-  // Show only one page-section
   sections.forEach((sec) => {
-    const isActive = sec.id === sectionToShow;
-    sec.hidden = !isActive;
+    sec.hidden = sec.id !== showId;
   });
 
-  // Update active tab (Home/Services/About/Contact)
-  // #about-team should highlight About
-  const activeHash = targetSectionId === "about-team" ? "#about" : hash;
-  setActiveLink(activeHash);
+  setActiveLink(id === "about-team" ? "#about" : hash);
 
-  // Scroll to top of the page section
+  // always go to top when switching pages
   window.scrollTo({ top: 0, behavior: "smooth" });
 
-  // If #about-team, after showing About, scroll to team section inside it
-  if (targetSectionId === "about-team") {
+  // if about-team, scroll inside after show
+  if (id === "about-team") {
     setTimeout(() => {
       document.getElementById("about-team")?.scrollIntoView({ behavior: "smooth" });
     }, 150);
   }
 
-  // Close mobile menu
+  // close mobile menu
   document.getElementById("menu")?.classList.remove("open");
 }
 
-// Run on first load + back/forward navigation
 window.addEventListener("hashchange", () => showSectionByHash(location.hash));
 document.addEventListener("DOMContentLoaded", () => showSectionByHash(location.hash));
 
 // =========================
-// Services reveal on scroll (works when Services page is opened)
+// Services reveal on scroll
+// (still works when Services is opened)
 // =========================
-function initServicesReveal() {
+(function initServicesReveal() {
   const cards = document.querySelectorAll("#services .card");
   if (!cards.length) return;
 
@@ -90,5 +80,4 @@ function initServicesReveal() {
   );
 
   cards.forEach((card) => io.observe(card));
-}
-initServicesReveal();
+})();
