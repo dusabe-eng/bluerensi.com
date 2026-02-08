@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -39,7 +40,7 @@
   </div>
 </header>
 
-<!-- ================= HOME (SCROLLABLE) ================= -->
+<!-- ================= HOME ================= -->
 <section id="home" class="page-section">
 
   <!-- HERO -->
@@ -57,42 +58,46 @@
         Partner with us to deliver sustainable and resilient outcomes.
       </p>
 
-      <div style="margin-top:18px;">
-        <a class="btn btn-primary" href="#services">Explore our services</a>
+      <a class="btn btn-primary" href="#services" style="margin-top:18px;">Explore our services</a>
+    </div>
+  </div>
+
+  <!-- MISSION / QUOTE BAND (scrollable, like your reference) -->
+  <section class="home-mission">
+    <div class="container mission-inner">
+      <blockquote class="mission-quote">
+        “We support resilient infrastructure and water systems by combining sound engineering,
+        hydrologic science, and context-aware decision making.”
+      </blockquote>
+      <div class="mission-sign">— <strong>BLUERENSI</strong> Consult</div>
+    </div>
+  </section>
+
+  <!-- GREEN BRAND BAND -->
+  <section class="brand-footer">
+    <div class="container brand-footer-inner">
+      <div class="brand-left">
+        <div class="bf-title">BLUERENSI</div>
+        <div class="bf-sub">CONSULT</div>
+      </div>
+
+      <div class="brand-right">
+        <div>Kigali, Rwanda</div>
+        <div>info@bluerensi.com</div>
       </div>
     </div>
-  </div>
+  </section>
 
- <!-- Brand footer band (green) -->
-<section class="brand-footer">
-  <div class="container brand-footer-inner">
-    <div class="brand-left">
-      <strong>BLUERENSI</strong><br>
-      CONSULT
-    </div>
+</section>
 
-    <div class="brand-right">
-      Kigali, Rwanda<br>
-      info@bluerensi.com
-    </div>
-  </div>
-    <div class="footer-links">
-      <a href="#services">Services</a>
-      <a href="#about">Our Team</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </div>
-</footer>
-  
- <!-- ================= SERVICES ================= -->
+<!-- ================= SERVICES ================= -->
 <section id="services" class="page-section section services" hidden>
   <div class="container">
     <h2 class="section-title">Our Services</h2>
 
     <div class="cards">
 
-      <details class="card service-item reveal">
+      <details class="card service-item">
         <summary class="card-head">
           <div class="icon">🏗️</div>
           <h3>Civil &amp; Structural</h3>
@@ -104,7 +109,7 @@
         </ul>
       </details>
 
-      <details class="card service-item reveal">
+      <details class="card service-item">
         <summary class="card-head">
           <div class="icon">💧</div>
           <h3>Hydrology &amp; Hydraulics</h3>
@@ -116,7 +121,7 @@
         </ul>
       </details>
 
-      <details class="card service-item reveal">
+      <details class="card service-item">
         <summary class="card-head">
           <div class="icon">🌿</div>
           <h3>Environmental &amp; Climate</h3>
@@ -128,7 +133,7 @@
         </ul>
       </details>
 
-      <details class="card service-item reveal">
+      <details class="card service-item">
         <summary class="card-head">
           <div class="icon">🚰</div>
           <h3>Water Supply &amp; WASH</h3>
@@ -140,7 +145,7 @@
         </ul>
       </details>
 
-      <details class="card service-item reveal">
+      <details class="card service-item">
         <summary class="card-head">
           <div class="icon">🗺️</div>
           <h3>Modelling &amp; GIS</h3>
@@ -152,7 +157,7 @@
         </ul>
       </details>
 
-      <details class="card service-item reveal">
+      <details class="card service-item">
         <summary class="card-head">
           <div class="icon">🧾</div>
           <h3>Advisory &amp; Review</h3>
@@ -209,7 +214,8 @@
           </summary>
           <p class="lead">Jean D'Amour Dusabimana</p>
           <p class="muted">
-                      </p>
+            Leads strategy, client engagement, and technical oversight for civil and water engineering services.
+          </p>
         </details>
 
         <details class="card team-item">
@@ -219,7 +225,8 @@
           </summary>
           <p class="lead">xxxxxxxx</p>
           <p class="muted">
-                    </p>
+            Oversees technical delivery, modelling/GIS workflows, and engineering reviews to ensure high-quality results.
+          </p>
         </details>
 
         <details class="card team-item">
@@ -229,7 +236,7 @@
           </summary>
           <p class="lead">xxxxxxxxxx</p>
           <p class="muted">
-        
+            Manages operations, scheduling, coordination, and reporting to keep projects running smoothly.
           </p>
         </details>
 
@@ -273,7 +280,7 @@
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- ================= GLOBAL FOOTER (ONLY ONCE) ================= -->
 <footer class="footer">
   <div class="container footer-inner">
     <div>© <span id="year"></span> BLUERENSI Consult. All rights reserved.</div>
@@ -290,10 +297,3 @@
 <script src="jsmain.js" defer></script>
 </body>
 </html>
-
-
-
-
-
-
-
