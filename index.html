@@ -20,9 +20,7 @@
   <div class="container nav-inner">
 
     <a class="brand" href="#home">
-      <!-- ✅ EXACT LOGO (root-level) -->
       <img src="logo.png" alt="Bluerensi Consult logo" class="logo-img" />
-
       <div class="brand-text">
         <div class="brand-name">BLUERENSI</div>
         <div class="brand-sub">CONSULT</div>
@@ -34,6 +32,7 @@
     <nav class="menu" id="menu">
       <a href="#home" class="active">Home</a>
       <a href="#services">Services</a>
+      <a href="#team">Our Team</a>
       <a href="#about">About</a>
       <a href="#sectors">Sectors</a>
       <a href="#contact">Contact</a>
@@ -67,98 +66,158 @@
       </div>
     </section>
 
-<aside class="hero-right">
-  <div class="hero-image-card">
-    <span class="tag">Civil • Hydrology • Environment</span>
-    <img src="hero.png" alt="Hydrology and infrastructure illustration">
-  </div>
-</aside>
+    <aside class="hero-right">
+      <div class="hero-image-card">
+        <span class="tag">Civil • Hydrology • Environment</span>
+        <img src="hero.png" alt="Hydrology and infrastructure illustration">
+      </div>
+    </aside>
 
-<!-- ================= SERVICES ================= -->
+  </div>
+</main>
+
+<!-- ================= SERVICES (Titles + subcontent) ================= -->
 <section id="services" class="section">
   <div class="container">
     <h2 class="section-title">Our Services</h2>
 
     <div class="cards">
 
-      <article class="card">
-        <div class="card-head">
+      <details class="card service-item">
+        <summary class="card-head">
           <div class="icon">🏗️</div>
           <h3>Civil &amp; Structural</h3>
-        </div>
+        </summary>
         <ul>
           <li>Civil infrastructure design</li>
           <li>Site assessment &amp; feasibility</li>
           <li>Construction supervision</li>
         </ul>
-      </article>
+      </details>
 
-      <article class="card">
-        <div class="card-head">
+      <details class="card service-item">
+        <summary class="card-head">
           <div class="icon">💧</div>
           <h3>Hydrology &amp; Hydraulics</h3>
-        </div>
+        </summary>
         <ul>
           <li>Flood risk assessment</li>
           <li>Drainage &amp; river modelling</li>
           <li>Hydrologic analysis</li>
         </ul>
-      </article>
+      </details>
 
-      <article class="card">
-        <div class="card-head">
+      <details class="card service-item">
+        <summary class="card-head">
           <div class="icon">🌿</div>
           <h3>Environmental &amp; Climate</h3>
-        </div>
+        </summary>
         <ul>
           <li>Environmental impact support</li>
           <li>Climate resilience planning</li>
           <li>Monitoring &amp; reporting</li>
         </ul>
-      </article>
+      </details>
 
-      <article class="card">
-        <div class="card-head">
+      <details class="card service-item">
+        <summary class="card-head">
           <div class="icon">🚰</div>
           <h3>Water Supply &amp; WASH</h3>
-        </div>
+        </summary>
         <ul>
           <li>Water system design</li>
           <li>WASH program support</li>
           <li>Operation &amp; maintenance planning</li>
         </ul>
-      </article>
+      </details>
 
-      <article class="card">
-        <div class="card-head">
+      <details class="card service-item">
+        <summary class="card-head">
           <div class="icon">🗺️</div>
           <h3>Modelling &amp; GIS</h3>
-        </div>
+        </summary>
         <ul>
           <li>Spatial analysis &amp; mapping</li>
           <li>Catchment modelling</li>
           <li>Dashboards &amp; visualization</li>
         </ul>
-      </article>
+      </details>
 
-      <article class="card">
-        <div class="card-head">
+      <details class="card service-item">
+        <summary class="card-head">
           <div class="icon">🧾</div>
           <h3>Advisory &amp; Review</h3>
-        </div>
+        </summary>
         <ul>
           <li>Technical reviews</li>
           <li>Project advisory</li>
           <li>Training &amp; capacity building</li>
         </ul>
-      </article>
+      </details>
+
+      <!-- "Our Team" option added as requested -->
+      <details class="card service-item">
+        <summary class="card-head">
+          <div class="icon">👥</div>
+          <h3>Our Team</h3>
+        </summary>
+        <p class="lead" style="margin: 0.75rem 0 0.25rem;">
+          A multidisciplinary team delivering practical, science-based engineering solutions.
+        </p>
+        <ul>
+          <li>Civil, water, and environmental engineering expertise</li>
+          <li>Hydrology, hydraulics, and risk assessment experience</li>
+          <li>GIS, modelling, and decision-support tools</li>
+        </ul>
+        <a class="btn btn-ghost" href="#team" style="margin-top: 0.5rem;">Meet the team</a>
+      </details>
 
     </div>
   </div>
 </section>
 
+<!-- ================= TEAM ================= -->
+<section id="team" class="section alt">
+  <div class="container">
+    <h2 class="section-title">Our Team</h2>
+
+    <div class="cards">
+      <!-- Replace the placeholders with real names/titles -->
+      <article class="card">
+        <div class="card-head">
+          <div class="icon">👤</div>
+          <h3>Team Lead</h3>
+        </div>
+        <p class="lead" style="margin: 0.5rem 0 0;">
+          Civil • Hydrology • Environment
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="icon">👤</div>
+          <h3>Hydrology Specialist</h3>
+        </div>
+        <p class="lead" style="margin: 0.5rem 0 0;">
+          Flood risk • Catchments • Modelling
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <div class="icon">👤</div>
+          <h3>GIS &amp; Modelling Analyst</h3>
+        </div>
+        <p class="lead" style="margin: 0.5rem 0 0;">
+          Mapping • Dashboards • Spatial analysis
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ================= ABOUT ================= -->
-<section id="about" class="section alt">
+<section id="about" class="section">
   <div class="container about-grid">
 
     <div>
@@ -169,7 +228,6 @@
       </p>
     </div>
 
-    <!-- ✅ UPDATED STATS -->
     <div class="stats">
       <div class="stat">
         <div class="stat-num">1+</div>
@@ -189,7 +247,7 @@
 </section>
 
 <!-- ================= SECTORS ================= -->
-<section id="sectors" class="section">
+<section id="sectors" class="section alt">
   <div class="container">
     <h2 class="section-title">Who We Work With</h2>
 
@@ -203,7 +261,7 @@
 </section>
 
 <!-- ================= CONTACT ================= -->
-<section id="contact" class="section alt">
+<section id="contact" class="section">
   <div class="container contact-grid">
 
     <div>
@@ -230,7 +288,7 @@
         <textarea rows="5" required></textarea>
       </label>
 
-      <button class="btn btn-primary">Send message</button>
+      <button class="btn btn-primary" type="submit">Send message</button>
     </form>
 
   </div>
@@ -243,6 +301,7 @@
 
     <div class="footer-links">
       <a href="#services">Services</a>
+      <a href="#team">Our Team</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
@@ -257,11 +316,8 @@
   }
 </script>
 
-<script src="js/main.js" defer></script>
+<!-- NOTE: your repo earlier shows "jsmain.js" at the root. Use that file path: -->
+<script src="jsmain.js" defer></script>
 
 </body>
 </html>
-
-
-
-
