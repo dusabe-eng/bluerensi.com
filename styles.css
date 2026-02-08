@@ -389,3 +389,118 @@ input:focus, textarea:focus{
     padding: 84px 0 60px;
   }
 }
+/* =========================
+   SERVICES (premium section)
+   ========================= */
+
+.section.services{
+  position: relative;
+  padding: 88px 0;
+  overflow: hidden;
+  background:
+    radial-gradient(900px 320px at 20% 10%, rgba(29,78,216,.10), transparent 60%),
+    radial-gradient(800px 280px at 85% 30%, rgba(14,165,233,.10), transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
+  border-top: 1px solid rgba(226,232,240,.8);
+  border-bottom: 1px solid rgba(226,232,240,.8);
+}
+
+/* Decorative blurred bubbles */
+.section.services::before{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:520px;
+  border-radius:50%;
+  left:-220px;
+  top:140px;
+  background: rgba(29,78,216,.10);
+  filter: blur(40px);
+}
+.section.services::after{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:520px;
+  border-radius:50%;
+  right:-260px;
+  top:-140px;
+  background: rgba(14,165,233,.10);
+  filter: blur(44px);
+}
+
+/* Title spacing */
+.section.services .section-title{
+  margin-bottom: 28px;
+}
+
+/* Services grid – stronger spacing */
+.section.services .cards{
+  position: relative;
+  z-index: 1;
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* Premium card */
+.section.services .card{
+  background: rgba(255,255,255,.78);
+  border: 1px solid rgba(226,232,240,.95);
+  box-shadow: 0 20px 70px rgba(2,6,23,.08);
+  backdrop-filter: blur(10px);
+  transform: translateY(12px);
+  opacity: 0;
+  transition:
+    transform .65s cubic-bezier(.2,.8,.2,1),
+    opacity .65s ease,
+    box-shadow .18s ease,
+    border-color .18s ease;
+}
+
+/* When revealed */
+.section.services .card.in-view{
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Hover polish */
+.section.services .card:hover{
+  transform: translateY(-6px);
+  border-color: rgba(29,78,216,.25);
+  box-shadow: 0 26px 90px rgba(2,6,23,.12);
+}
+
+/* Summary layout */
+.section.services .service-item summary{
+  padding: 20px 20px;
+}
+
+/* Icon improvements */
+.section.services .icon{
+  width:52px;
+  height:52px;
+  border-radius:18px;
+  font-size: 22px;
+}
+
+/* Clean dropdown list */
+.section.services .service-item ul{
+  margin: 0;
+  padding: 0 20px 18px;
+}
+.section.services .service-item ul li{
+  padding: 10px 0;
+}
+
+/* Add a thin divider under summary when open */
+.section.services .service-item[open] summary{
+  border-bottom: 1px solid rgba(226,232,240,.9);
+}
+
+/* Responsive */
+@media (max-width: 950px){
+  .section.services .cards{
+    grid-template-columns: 1fr;
+  }
+}
