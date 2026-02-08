@@ -32,8 +32,8 @@
     <nav class="menu" id="menu">
       <a href="#home" class="active">Home</a>
       <a href="#services">Services</a>
-           <a href="#about">About us</a>
-            <a href="#contact">Contact</a>
+      <a href="#about">About us</a>
+      <a href="#contact">Contact</a>
     </nav>
 
     <a class="btn btn-primary btn-small" href="#contact">Request a consultation</a>
@@ -56,6 +56,7 @@
     </p>
   </div>
 </main>
+
 <!-- ================= SERVICES ================= -->
 <section id="services" class="section services">
   <div class="container">
@@ -139,6 +140,7 @@
     </div>
   </div>
 </section>
+
 <!-- ================= ABOUT ================= -->
 <section id="about" class="section">
   <div class="container">
@@ -169,42 +171,47 @@
       </div>
     </div>
 
-    <!-- TEAM (ONLY HERE) -->
-    <div id="about-team" style="margin-top:4rem;">
+    <!-- TEAM (FOLDING) -->
+    <section id="about-team" style="margin-top:4rem;">
       <h3 class="section-title">Meet The Team</h3>
 
       <div class="cards">
-        <article class="card">
-          <div class="card-head">
+
+        <details class="card team-item">
+          <summary class="card-head">
             <div class="icon">👤</div>
             <h3>Managing Director</h3>
-          </div>
-          <p class="lead">
-            Jean D'Amour Dusabimana
+          </summary>
+          <p class="lead">Jean D'Amour Dusabimana</p>
+          <p class="muted">
+            Leads strategy, client engagement, and technical oversight for civil and water engineering services.
           </p>
-        </article>
+        </details>
 
-        <article class="card">
-          <div class="card-head">
+        <details class="card team-item">
+          <summary class="card-head">
             <div class="icon">👤</div>
             <h3>Technical Director</h3>
-          </div>
-          <p class="lead">
-            xxxxxxxx
+          </summary>
+          <p class="lead">xxxxxxxx</p>
+          <p class="muted">
+            Oversees technical delivery, modelling/GIS workflows, and engineering reviews to ensure high-quality results.
           </p>
-        </article>
+        </details>
 
-        <article class="card">
-          <div class="card-head">
+        <details class="card team-item">
+          <summary class="card-head">
             <div class="icon">👤</div>
             <h3>Operations Director</h3>
-          </div>
-          <p class="lead">
-            xxxxxxxxxx
+          </summary>
+          <p class="lead">xxxxxxxxxx</p>
+          <p class="muted">
+            Manages operations, scheduling, coordination, and reporting to keep projects running smoothly.
           </p>
-        </article>
+        </details>
+
       </div>
-    </div>
+    </section>
 
   </div>
 </section>
@@ -250,7 +257,7 @@
 
     <div class="footer-links">
       <a href="#services">Services</a>
-      <a href="#team">Our Team</a>
+      <a href="#about-team">Our Team</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
@@ -258,25 +265,7 @@
 </footer>
 
 <!-- ================= SCRIPTS ================= -->
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-  function toggleMenu() {
-    document.getElementById("menu").classList.toggle("open");
-  }
-</script>
-
 <script src="jsmain.js" defer></script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
