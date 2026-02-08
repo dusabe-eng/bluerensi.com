@@ -516,5 +516,10 @@ input:focus, textarea:focus{
 @media (max-width: 950px){
   .section.services .cards{grid-template-columns: 1fr;}
 }
+.home-mission{
+  background:#e6f0f7;
+  padding:70px 0;
+  border-top:1px solid #e2e8f0;
+}
 
 
