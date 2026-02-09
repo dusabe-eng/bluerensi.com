@@ -200,3 +200,4 @@ body {
   .nav-inner { position: relative; }
   .nav-cta { display: none; }
 }
+.page-section[hidden] { display: none !important; }
