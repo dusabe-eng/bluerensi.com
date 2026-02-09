@@ -14,10 +14,8 @@
 
 <body>
 
-<!-- ================= NAV ================= -->
 <header class="nav">
   <div class="container nav-inner">
-
     <a class="brand" href="#home">
       <img src="logo.png" alt="Bluerensi Consult logo" class="logo-img" />
       <div class="brand-text">
@@ -26,9 +24,7 @@
       </div>
     </a>
 
-    <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
-
-    <nav class="menu" id="menu">
+    <nav class="menu">
       <a href="#home" class="nav-link active">Home</a>
       <a href="#services" class="nav-link">Services</a>
       <a href="#about" class="nav-link">About us</a>
@@ -39,28 +35,23 @@
   </div>
 </header>
 
-<!-- ================= HOME (SCROLLABLE) ================= -->
-<section id="home" class="page-section">
+<!-- ================= HOME ================= -->
+<section id="home">
+
   <!-- HERO -->
-  <div class="hero hero-banner">
+  <div class="hero">
     <div class="hero-overlay"></div>
-
     <div class="container hero-content">
-      <h1>
-        Resilient civil &amp;<br />
-        water engineering solutions
-      </h1>
-
+      <h1>Resilient civil &<br>water engineering solutions</h1>
       <p class="lead lead-light">
         We provide tailored services in civil, hydrology, and environmental engineering.
         Partner with us to deliver sustainable and resilient outcomes.
       </p>
-
       <a class="btn btn-primary" href="#services">Explore our services</a>
     </div>
   </div>
 
-  <!-- MISSION STRIP (NO WHITE BLOCK) -->
+  <!-- 🌿 MISSION STRIP (GREEN) -->
   <section class="mission-strip">
     <div class="container mission-strip-inner">
       <p class="mission-text">
@@ -71,248 +62,24 @@
     </div>
   </section>
 
-  <!-- OPTIONAL: small home section so it feels more complete -->
-  <section class="section home-extra">
+  <!-- WHAT WE DO -->
+  <section class="section">
     <div class="container">
       <h2 class="section-title">What we do</h2>
       <p class="section-subtitle">
-        We help clients plan, design, and deliver reliable infrastructure, water resources solutions,
-        and climate-resilient systems with practical engineering and clear decision support.
+        We help clients plan, design, and deliver reliable infrastructure,
+        water resources solutions, and climate-resilient systems.
       </p>
-
-      <div class="cards">
-        <div class="card">
-          <div class="card-head">
-            <div class="icon">✅</div>
-            <h3>Practical engineering</h3>
-          </div>
-          <p class="muted">Designs and recommendations that work on real projects, real budgets, real timelines.</p>
-        </div>
-
-        <div class="card">
-          <div class="card-head">
-            <div class="icon">📍</div>
-            <h3>Local context</h3>
-          </div>
-          <p class="muted">Solutions aligned with terrain, data availability, regulations, and operational capacity.</p>
-        </div>
-
-        <div class="card">
-          <div class="card-head">
-            <div class="icon">📈</div>
-            <h3>Decision support</h3>
-          </div>
-          <p class="muted">Hydrology + modelling + GIS outputs that guide planning and reduce risk.</p>
-        </div>
-      </div>
     </div>
   </section>
+
 </section>
 
-<!-- ================= SERVICES ================= -->
-<section id="services" class="page-section section services" hidden>
-  <div class="container">
-    <h2 class="section-title">Our Services</h2>
-
-    <div class="cards">
-
-      <details class="card service-item reveal">
-        <summary class="card-head">
-          <div class="icon">🏗️</div>
-          <h3>Civil &amp; Structural</h3>
-        </summary>
-        <ul>
-          <li>Civil infrastructure design</li>
-          <li>Site assessment &amp; feasibility</li>
-          <li>Construction supervision</li>
-        </ul>
-      </details>
-
-      <details class="card service-item reveal">
-        <summary class="card-head">
-          <div class="icon">💧</div>
-          <h3>Hydrology &amp; Hydraulics</h3>
-        </summary>
-        <ul>
-          <li>Flood risk assessment</li>
-          <li>Drainage &amp; river modelling</li>
-          <li>Hydrologic analysis</li>
-        </ul>
-      </details>
-
-      <details class="card service-item reveal">
-        <summary class="card-head">
-          <div class="icon">🌿</div>
-          <h3>Environmental &amp; Climate</h3>
-        </summary>
-        <ul>
-          <li>Environmental impact support</li>
-          <li>Climate resilience planning</li>
-          <li>Monitoring &amp; reporting</li>
-        </ul>
-      </details>
-
-      <details class="card service-item reveal">
-        <summary class="card-head">
-          <div class="icon">🚰</div>
-          <h3>Water Supply &amp; WASH</h3>
-        </summary>
-        <ul>
-          <li>Water system design</li>
-          <li>WASH program support</li>
-          <li>Operation &amp; maintenance planning</li>
-        </ul>
-      </details>
-
-      <details class="card service-item reveal">
-        <summary class="card-head">
-          <div class="icon">🗺️</div>
-          <h3>Modelling &amp; GIS</h3>
-        </summary>
-        <ul>
-          <li>Spatial analysis &amp; mapping</li>
-          <li>Catchment modelling</li>
-          <li>Dashboards &amp; visualization</li>
-        </ul>
-      </details>
-
-      <details class="card service-item reveal">
-        <summary class="card-head">
-          <div class="icon">🧾</div>
-          <h3>Advisory &amp; Review</h3>
-        </summary>
-        <ul>
-          <li>Technical reviews</li>
-          <li>Project advisory</li>
-          <li>Training &amp; capacity building</li>
-        </ul>
-      </details>
-
-    </div>
-  </div>
-</section>
-
-<!-- ================= ABOUT ================= -->
-<section id="about" class="page-section section" hidden>
-  <div class="container">
-
-    <div class="about-grid">
-      <div>
-        <h2 class="section-title left">About Us</h2>
-        <p class="lead">
-          Bluerensi Consult delivers practical, science-based engineering solutions
-          across civil infrastructure, hydrology, water resources, and environmental systems.
-        </p>
-      </div>
-
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-num">1+</div>
-          <div class="stat-label">Years of experience</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">2</div>
-          <div class="stat-label">Core focus areas</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">3</div>
-          <div class="stat-label">Countries served</div>
-        </div>
-      </div>
-    </div>
-
-    <section id="about-team" style="margin-top:4rem;">
-      <h3 class="section-title">Meet The Team</h3>
-
-      <div class="cards">
-
-        <details class="card team-item">
-          <summary class="card-head">
-            <div class="icon">👤</div>
-            <h3>Managing Director</h3>
-          </summary>
-          <p class="lead">Jean D'Amour Dusabimana</p>
-          <p class="muted">
-            Leads strategy, client engagement, and technical oversight for civil and water engineering services.
-          </p>
-        </details>
-
-        <details class="card team-item">
-          <summary class="card-head">
-            <div class="icon">👤</div>
-            <h3>Technical Director</h3>
-          </summary>
-          <p class="lead">xxxxxxxx</p>
-          <p class="muted">
-            Oversees technical delivery, modelling/GIS workflows, and engineering reviews to ensure high-quality results.
-          </p>
-        </details>
-
-        <details class="card team-item">
-          <summary class="card-head">
-            <div class="icon">👤</div>
-            <h3>Operations Director</h3>
-          </summary>
-          <p class="lead">xxxxxxxxxx</p>
-          <p class="muted">
-            Manages operations, scheduling, coordination, and reporting to keep projects running smoothly.
-          </p>
-        </details>
-
-      </div>
-    </section>
-
-  </div>
-</section>
-
-<!-- ================= CONTACT ================= -->
-<section id="contact" class="page-section section" hidden>
-  <div class="container contact-grid">
-
-    <div>
-      <h2 class="section-title left">Contact</h2>
-      <p class="lead">Tell us about your project. We’ll reply within 1–2 business days.</p>
-
-      <div class="contact-info">
-        <div><strong>Email:</strong> info@bluerensi.com</div>
-        <div><strong>Phone:</strong> +250 788 333 074</div>
-        <div><strong>Location:</strong> Kigali, Rwanda</div>
-      </div>
-    </div>
-
-    <form class="form" onsubmit="event.preventDefault(); alert('Thank you! We will contact you soon.');">
-      <label>Name
-        <input type="text" required>
-      </label>
-
-      <label>Email
-        <input type="email" required>
-      </label>
-
-      <label>Message
-        <textarea rows="5" required></textarea>
-      </label>
-
-      <button class="btn btn-primary" type="submit">Send message</button>
-    </form>
-
-  </div>
-</section>
-
-<!-- ================= FOOTER (ONLY ONE) ================= -->
 <footer class="footer">
   <div class="container footer-inner">
-    <div>© <span id="year"></span> BLUERENSI Consult. All rights reserved.</div>
-
-    <div class="footer-links">
-      <a href="#services">Services</a>
-      <a href="#about-team">Our Team</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </div>
+    <div>© 2026 BLUERENSI Consult. All rights reserved.</div>
   </div>
 </footer>
 
-<script src="jsmain.js" defer></script>
 </body>
 </html>
