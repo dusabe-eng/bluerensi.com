@@ -18,7 +18,7 @@
 <header class="nav">
   <div class="container nav-inner">
 
-    <a class="brand" href="#home" aria-label="Bluerensi Consult Home">
+    <a class="brand" href="#home">
       <img src="logo.png" alt="Bluerensi Consult logo" class="logo-img" />
       <div class="brand-text">
         <div class="brand-name">BLUERENSI</div>
@@ -29,20 +29,21 @@
     <button class="nav-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
 
     <nav class="menu" id="menu">
-      <a href="#home" class="nav-link active" data-section="home">Home</a>
-      <a href="#services" class="nav-link" data-section="services">Services</a>
-      <a href="#about" class="nav-link" data-section="about">About us</a>
-      <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#about" class="nav-link">About us</a>
+      <a href="#contact" class="nav-link">Contact</a>
     </nav>
 
-    <a class="btn btn-primary btn-small nav-cta" href="#contact" data-section="contact">Request a consultation</a>
+    <a class="btn btn-primary btn-small nav-cta" href="#contact">Request a consultation</a>
   </div>
 </header>
 
 <!-- ================= HOME ================= -->
-<section id="home" class="page-section is-active">
+<section id="home" class="page-section">
+
   <!-- HERO -->
-  <div class="hero">
+  <div class="hero hero-banner">
     <div class="hero-overlay"></div>
 
     <div class="container hero-content">
@@ -56,12 +57,11 @@
         Partner with us to deliver sustainable and resilient outcomes.
       </p>
 
-      <!-- This will OPEN Services (not scroll) -->
-      <a class="btn btn-primary" href="#services" data-section="services">Explore our services</a>
+      <a class="btn btn-primary" href="#services">Explore our services</a>
     </div>
   </div>
 
-  <!-- Quote strip (only on home) -->
+  <!-- QUOTE STRIP (only on home) -->
   <section class="mission-strip">
     <div class="container mission-strip-inner">
       <p class="mission-text">
@@ -72,65 +72,169 @@
     </div>
   </section>
 
-  <!-- OPTIONAL: home content -->
-  <section class="section">
+  <!-- OPTIONAL: small home section -->
+  <section class="section home-extra">
     <div class="container">
       <h2 class="section-title">What we do</h2>
       <p class="section-subtitle">
-        We help clients plan, design, and deliver reliable infrastructure,
-        water resources solutions, and climate-resilient systems.
+        We help clients plan, design, and deliver reliable infrastructure, water resources solutions,
+        and climate-resilient systems with practical engineering and clear decision support.
       </p>
     </div>
   </section>
+
 </section>
 
 <!-- ================= SERVICES ================= -->
-<section id="services" class="page-section" hidden>
-  <div class="container section">
+<section id="services" class="page-section section services" hidden>
+  <div class="container">
     <h2 class="section-title">Our Services</h2>
-    <p class="section-subtitle">
-      Civil, hydrology, environmental, WASH, modelling &amp; GIS, advisory &amp; review.
-    </p>
 
-    <!-- Put your services content/cards here -->
-    <div class="simple-block">
-      <h3>Civil &amp; Structural</h3>
-      <p>Design, site assessment, feasibility, and supervision.</p>
-    </div>
+    <div class="cards">
 
-    <div class="simple-block">
-      <h3>Hydrology &amp; Hydraulics</h3>
-      <p>Flood risk, drainage and river modelling, hydrologic analysis.</p>
+      <details class="card service-item reveal">
+        <summary class="card-head">
+          <div class="icon">🏗️</div>
+          <h3>Civil &amp; Structural</h3>
+        </summary>
+        <ul>
+          <li>Civil infrastructure design</li>
+          <li>Site assessment &amp; feasibility</li>
+          <li>Construction supervision</li>
+        </ul>
+      </details>
+
+      <details class="card service-item reveal">
+        <summary class="card-head">
+          <div class="icon">💧</div>
+          <h3>Hydrology &amp; Hydraulics</h3>
+        </summary>
+        <ul>
+          <li>Flood risk assessment</li>
+          <li>Drainage &amp; river modelling</li>
+          <li>Hydrologic analysis</li>
+        </ul>
+      </details>
+
+      <details class="card service-item reveal">
+        <summary class="card-head">
+          <div class="icon">🌿</div>
+          <h3>Environmental &amp; Climate</h3>
+        </summary>
+        <ul>
+          <li>Environmental impact support</li>
+          <li>Climate resilience planning</li>
+          <li>Monitoring &amp; reporting</li>
+        </ul>
+      </details>
+
+      <details class="card service-item reveal">
+        <summary class="card-head">
+          <div class="icon">🚰</div>
+          <h3>Water Supply &amp; WASH</h3>
+        </summary>
+        <ul>
+          <li>Water system design</li>
+          <li>WASH program support</li>
+          <li>Operation &amp; maintenance planning</li>
+        </ul>
+      </details>
+
+      <details class="card service-item reveal">
+        <summary class="card-head">
+          <div class="icon">🗺️</div>
+          <h3>Modelling &amp; GIS</h3>
+        </summary>
+        <ul>
+          <li>Spatial analysis &amp; mapping</li>
+          <li>Catchment modelling</li>
+          <li>Dashboards &amp; visualization</li>
+        </ul>
+      </details>
+
+      <details class="card service-item reveal">
+        <summary class="card-head">
+          <div class="icon">🧾</div>
+          <h3>Advisory &amp; Review</h3>
+        </summary>
+        <ul>
+          <li>Technical reviews</li>
+          <li>Project advisory</li>
+          <li>Training &amp; capacity building</li>
+        </ul>
+      </details>
+
     </div>
   </div>
 </section>
 
 <!-- ================= ABOUT ================= -->
-<section id="about" class="page-section" hidden>
-  <div class="container section">
-    <h2 class="section-title">About us</h2>
+<section id="about" class="page-section section" hidden>
+  <div class="container">
+
+    <h2 class="section-title">About Us</h2>
     <p class="section-subtitle">
-      Bluerensi Consult delivers practical, science-based engineering solutions across civil infrastructure,
-      hydrology, water resources, and environmental systems.
+      Bluerensi Consult delivers practical, science-based engineering solutions
+      across civil infrastructure, hydrology, water resources, and environmental systems.
     </p>
 
-    <div class="simple-block">
-      <h3>Our approach</h3>
-      <p>Sound engineering + hydrologic science + context-aware decision making.</p>
-    </div>
+    <section id="about-team" style="margin-top:2.5rem;">
+      <h3 class="section-title">Meet The Team</h3>
+
+      <div class="cards">
+
+        <details class="card team-item">
+          <summary class="card-head">
+            <div class="icon">👤</div>
+            <h3>Managing Director</h3>
+          </summary>
+          <p class="lead">Jean D'Amour Dusabimana</p>
+          <p class="muted">
+            Leads strategy, client engagement, and technical oversight for civil and water engineering services.
+          </p>
+        </details>
+
+        <details class="card team-item">
+          <summary class="card-head">
+            <div class="icon">👤</div>
+            <h3>Technical Director</h3>
+          </summary>
+          <p class="lead">xxxxxxxx</p>
+          <p class="muted">
+            Oversees technical delivery, modelling/GIS workflows, and engineering reviews to ensure high-quality results.
+          </p>
+        </details>
+
+        <details class="card team-item">
+          <summary class="card-head">
+            <div class="icon">👤</div>
+            <h3>Operations Director</h3>
+          </summary>
+          <p class="lead">xxxxxxxxxx</p>
+          <p class="muted">
+            Manages operations, scheduling, coordination, and reporting to keep projects running smoothly.
+          </p>
+        </details>
+
+      </div>
+    </section>
+
   </div>
 </section>
 
 <!-- ================= CONTACT ================= -->
-<section id="contact" class="page-section" hidden>
-  <div class="container section">
-    <h2 class="section-title">Contact</h2>
-    <p class="section-subtitle">Tell us about your project. We’ll reply within 1–2 business days.</p>
+<section id="contact" class="page-section section" hidden>
+  <div class="container contact-grid">
 
-    <div class="simple-block">
-      <p><strong>Email:</strong> info@bluerensi.com</p>
-      <p><strong>Phone:</strong> +250 788 333 074</p>
-      <p><strong>Location:</strong> Kigali, Rwanda</p>
+    <div>
+      <h2 class="section-title left">Contact</h2>
+      <p class="lead">Tell us about your project. We’ll reply within 1–2 business days.</p>
+
+      <div class="contact-info">
+        <div><strong>Email:</strong> info@bluerensi.com</div>
+        <div><strong>Phone:</strong> +250 788 333 074</div>
+        <div><strong>Location:</strong> Kigali, Rwanda</div>
+      </div>
     </div>
 
     <form class="form" onsubmit="event.preventDefault(); alert('Thank you! We will contact you soon.');">
@@ -148,6 +252,7 @@
 
       <button class="btn btn-primary" type="submit">Send message</button>
     </form>
+
   </div>
 </section>
 
@@ -155,6 +260,13 @@
 <footer class="footer">
   <div class="container footer-inner">
     <div>© <span id="year"></span> BLUERENSI Consult. All rights reserved.</div>
+
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#about-team">Our Team</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
   </div>
 </footer>
 
