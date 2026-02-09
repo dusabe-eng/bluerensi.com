@@ -4,22 +4,17 @@ function toggleMenu() {
 }
 
 function showOnly(id) {
-  const sections = ["home", "services", "about", "contact"];
+  const allowed = ["home", "services", "about", "contact"];
 
-  sections.forEach(secId => {
+  allowed.forEach(secId => {
     const el = document.getElementById(secId);
     if (!el) return;
-
-    if (secId === id) {
-      el.hidden = false;
-    } else {
-      el.hidden = true;
-    }
+    el.hidden = secId !== id;
   });
 
-  // update active nav link
-  document.querySelectorAll(".nav-link").forEach(link => {
-    link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+  // Active nav link
+  document.querySelectorAll(".nav-link").forEach(a => {
+    a.classList.toggle("active", a.getAttribute("href") === `#${id}`);
   });
 
   // close mobile menu
@@ -27,28 +22,35 @@ function showOnly(id) {
   if (menu) menu.classList.remove("open");
 }
 
-function currentIdFromHash() {
+function getIdFromHash() {
   const id = (window.location.hash || "#home").slice(1);
   const allowed = ["home", "services", "about", "contact"];
   return allowed.includes(id) ? id : "home";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // year
   const y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
 
-  // show correct section on load
-  showOnly(currentIdFromHash());
+  showOnly(getIdFromHash());
 });
 
-// when clicking links
 document.addEventListener("click", (e) => {
-  const a = e.target.closest('a[href^="#"]');
-  if (!a) return;
+  const link = e.target.closest('a[href^="#"]');
+  if (!link) return;
 
-  const id = a.getAttribute("href").slice(1);
+  const id = link.getAttribute("href").slice(1);
   const allowed = ["home", "services", "about", "contact"];
+
+  // allow footer #about-team to scroll inside About
+  if (id === "about-team") {
+    showOnly("about");
+    setTimeout(() => {
+      document.getElementById("about-team")?.scrollIntoView({ behavior: "smooth" });
+    }, 50);
+    return;
+  }
+
   if (!allowed.includes(id)) return;
 
   e.preventDefault();
@@ -56,7 +58,6 @@ document.addEventListener("click", (e) => {
   showOnly(id);
 });
 
-// back/forward buttons
 window.addEventListener("hashchange", () => {
-  showOnly(currentIdFromHash());
+  showOnly(getIdFromHash());
 });
