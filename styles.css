@@ -11,7 +11,7 @@ body {
   line-height: 1.6;
 }
 
-/* ================= UTILITIES ================= */
+/* ================= LAYOUT ================= */
 .container {
   width: 90%;
   max-width: 1100px;
@@ -28,13 +28,13 @@ body {
 }
 
 .section-subtitle {
-  max-width: 700px;
   color: #555;
+  max-width: 720px;
 }
 
 /* ================= NAV ================= */
 .nav {
-  background: #fff;
+  background: #ffffff;
   border-bottom: 1px solid #e5e7eb;
 }
 
@@ -46,9 +46,9 @@ body {
 }
 
 .nav-link {
-  margin: 0 0.75rem;
   text-decoration: none;
-  color: #333;
+  margin: 0 0.75rem;
+  color: #374151;
   font-weight: 500;
 }
 
@@ -56,21 +56,21 @@ body {
 .btn {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  border-radius: 4px;
+  border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
 }
 
 .btn-primary {
-  background: #1e88e5;
-  color: #fff;
+  background: #1d4ed8;
+  color: #ffffff;
 }
 
 /* ================= HERO ================= */
 .hero {
   position: relative;
   min-height: 80vh;
-  background: linear-gradient(120deg, #263238, #90a4ae);
+  background: linear-gradient(120deg, #2c3440, #a6a9ad);
   display: flex;
   align-items: center;
 }
@@ -78,12 +78,12 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0, 0, 0, 0.35);
 }
 
 .hero-content {
   position: relative;
-  color: #fff;
+  color: #ffffff;
 }
 
 .hero h1 {
@@ -95,26 +95,27 @@ body {
   color: #e5e7eb;
 }
 
-/* ================= 🌿 MISSION STRIP ================= */
+/* ================= ✅ SEPARATE QUOTE SECTION ================= */
 .mission-strip {
-  background: #e8f5e9;              /* soft green */
-  padding: 2.5rem 0;
+  background: #f3f4f6;            /* SEPARATE color band */
+  padding: 3rem 0;
   text-align: center;
 }
 
 .mission-text {
-  color: #1b5e20;                   /* dark green */
-  font-size: 1.1rem;
+  color: #111827;
+  font-size: 1.15rem;
   font-style: italic;
-  max-width: 800px;
-  margin: auto;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.7;
 }
 
 .mission-author {
   display: block;
-  margin-top: 0.5rem;
-  color: #2e7d32;
-  font-weight: 600;
+  margin-top: 0.75rem;
+  font-weight: 700;
+  color: #1d4ed8;
 }
 
 /* ================= FOOTER ================= */
