@@ -1,64 +1,74 @@
-function toggleMenu() {
+// Mobile menu
+function toggleMenu(){
   const menu = document.getElementById("menu");
-  if (menu) menu.classList.toggle("open");
+  if(!menu) return;
+  menu.classList.toggle("open");
 }
 
-function showOnly(id) {
-  const ids = ["home", "services", "about", "contact"];
+// Simple SPA navigation: show only the section in the hash
+function showSectionFromHash(){
+  const hash = window.location.hash || "#home";
+  const sections = document.querySelectorAll(".page-section");
+  sections.forEach(s => s.hidden = true);
 
-  ids.forEach(secId => {
-    const el = document.getElementById(secId);
-    if (!el) return;
-    el.hidden = secId !== id;
-  });
+  const target = document.querySelector(hash);
+  if(target) target.hidden = false;
 
-  // active nav link (based on href)
-  document.querySelectorAll(".nav-link").forEach(a => {
-    const href = a.getAttribute("href") || "";
-    a.classList.toggle("active", href === `#${id}`);
-  });
+  // Active link highlight
+  document.querySelectorAll(".nav-link").forEach(a => a.classList.remove("active"));
+  const active = document.querySelector(`.nav-link[href="${hash}"]`);
+  if(active) active.classList.add("active");
 
-  // close mobile menu
+  // Close menu on mobile after click
   const menu = document.getElementById("menu");
-  if (menu) menu.classList.remove("open");
+  if(menu) menu.classList.remove("open");
 }
 
-function getIdFromHash() {
-  const id = (window.location.hash || "#home").slice(1);
-  return document.getElementById(id) ? id : "home";
+// Count-up animation (runs when stats section appears)
+function initCounters(){
+  const stats = document.querySelector(".stats-moving");
+  const nums = document.querySelectorAll(".count");
+  if(!stats || nums.length === 0) return;
+
+  let done = false;
+
+  const animate = (el) => {
+    const target = Number(el.dataset.target || 0);
+    const plus = el.dataset.plus === "1";
+    const duration = 1200;
+    const start = performance.now();
+
+    const tick = (t) => {
+      const p = Math.min((t - start) / duration, 1);
+      const val = Math.floor(p * target);
+      el.textContent = val + (plus ? "+" : "");
+      if(p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const obs = new IntersectionObserver((entries) => {
+    if(done) return;
+    if(entries[0].isIntersecting){
+      done = true;
+      nums.forEach(animate);
+      obs.disconnect();
+    }
+  }, { threshold: 0.35 });
+
+  obs.observe(stats);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+// Year
+function setYear(){
   const y = document.getElementById("year");
-  if (y) y.textContent = new Date().getFullYear();
+  if(y) y.textContent = new Date().getFullYear();
+}
 
-  showOnly(getIdFromHash());
-});
-
-document.addEventListener("click", (e) => {
-  const link = e.target.closest('a[href^="#"]');
-  if (!link) return;
-
-  const id = link.getAttribute("href").slice(1);
-
-  // special case: footer link inside About section
-  if (id === "about-team") {
-    e.preventDefault();
-    history.pushState(null, "", "#about");
-    showOnly("about");
-    setTimeout(() => {
-      document.getElementById("about-team")?.scrollIntoView({ behavior: "smooth" });
-    }, 50);
-    return;
-  }
-
-  if (!document.getElementById(id)) return;
-
-  e.preventDefault();
-  history.pushState(null, "", `#${id}`);
-  showOnly(id);
-});
-
-window.addEventListener("hashchange", () => {
-  showOnly(getIdFromHash());
+// Run
+window.addEventListener("hashchange", showSectionFromHash);
+window.addEventListener("DOMContentLoaded", () => {
+  setYear();
+  showSectionFromHash();
+  initCounters();
 });
