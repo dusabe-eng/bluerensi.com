@@ -312,3 +312,105 @@ body {
 @media (max-width: 640px) {
   #services .cards { grid-template-columns: 1fr; }
 }
+
+/* ================= ABOUT TEAM: make it attractive ================= */
+
+#about #about-team {
+  margin-top: 3rem;
+}
+
+/* Grid for team cards */
+#about #about-team .cards {
+  margin-top: 1.4rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+/* Team card look */
+#about details.card.team-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+  overflow: hidden;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+#about details.card.team-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(0,0,0,0.10);
+  border-color: rgba(29, 78, 216, 0.35);
+}
+
+/* Summary header */
+#about details.card.team-item > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.05rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  user-select: none;
+}
+
+/* Hide default marker triangle */
+#about details.card.team-item > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Icon badge */
+#about details.card.team-item .icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(29, 78, 216, 0.10);
+  font-size: 1.2rem;
+}
+
+/* Title */
+#about details.card.team-item h3 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+/* Arrow on right */
+#about details.card.team-item > summary::after {
+  content: "›";
+  margin-left: auto;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #9ca3af;
+  transition: transform 160ms ease, color 160ms ease;
+}
+
+/* Open state */
+#about details.card.team-item[open] > summary {
+  border-bottom: 1px solid #eef2f7;
+}
+
+#about details.card.team-item[open] > summary::after {
+  transform: rotate(90deg);
+  color: #1d4ed8;
+}
+
+/* Body text spacing */
+#about details.card.team-item .lead {
+  margin: 0.9rem 1.1rem 0.2rem;
+  font-weight: 800;
+}
+
+#about details.card.team-item .muted {
+  margin: 0 1.1rem 1.1rem;
+  color: #4b5563;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  #about #about-team .cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  #about #about-team .cards { grid-template-columns: 1fr; }
+}
