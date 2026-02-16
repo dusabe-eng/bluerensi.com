@@ -234,23 +234,16 @@
       </div>
     </div>
 
-    <form class="form" onsubmit="event.preventDefault(); alert('Thank you! We will contact you soon.');">
-      <label>Name
-        <input type="text" required>
-      </label>
+  <form action="https://formspree.io/f/XXXXXXX" method="POST">
+  <input type="text" name="name" placeholder="Name" required />
+  <input type="email" name="email" placeholder="Email" required />
+  <textarea name="message" placeholder="Message" required></textarea>
 
-      <label>Email
-        <input type="email" required>
-      </label>
+  <!-- optional: email subject -->
+  <input type="hidden" name="_subject" value="New message from bluerensi.com" />
 
-      <label>Message
-        <textarea rows="5" required></textarea>
-      </label>
-
-      <button class="btn btn-primary" type="submit">Send message</button>
-    </form>
-  </div>
-</section>
+  <button type="submit">Send message</button>
+</form>
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
@@ -269,3 +262,4 @@
 <script src="jsmain.js" defer></script>
 </body>
 </html>
+
