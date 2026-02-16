@@ -221,7 +221,6 @@ body{
   border-radius:14px;
   display:grid; place-items:center;
   background: rgba(31,79,215,.10);
-  overflow: hidden; /* ✅ added: keeps photo inside the icon box */
 }
 .card ul{
   margin:12px 0 0;
@@ -307,7 +306,6 @@ body{
 @media (max-width: 520px){
   .cards{ grid-template-columns: 1fr; }
 }
-
 /* ===== Contact form polish ===== */
 #contact .form{
   display: grid;
@@ -349,9 +347,17 @@ body{
   font-weight: 700;
   cursor: pointer;
 }
-
-/* ✅ Team photo inside icon (only affects your MD photo) */
-.card-head .icon img.team-photo{
+.icon{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background: rgba(31,79,215,.10);
+  overflow: hidden;   /* 👈 THIS IS THE FIX */
+}
+/* Photo inside team icon box (keep other styles unchanged) */
+.icon img.team-photo{
   width: 100%;
   height: 100%;
   border-radius: 50%;
