@@ -387,7 +387,7 @@ body{
 details.service-item > summary.card-head::after{
   content: "▾";
   margin-left: auto;
-  font-size: 18px;
+  font-size: 30px;
   opacity: 0.6;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
@@ -396,3 +396,4 @@ details.service-item[open] > summary.card-head::after{
   transform: rotate(180deg);
   opacity: 1;
 }
+
