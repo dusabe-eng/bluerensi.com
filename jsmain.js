@@ -29,3 +29,18 @@ window.addEventListener("DOMContentLoaded", () => {
   setYear();
   showSectionFromHash();
 });
+
+// ===== Services dropdown (accordion) =====
+document.addEventListener("DOMContentLoaded", () => {
+  const serviceDetails = document.querySelectorAll("details.service-item");
+
+  serviceDetails.forEach((item) => {
+    item.addEventListener("toggle", () => {
+      if (item.open) {
+        serviceDetails.forEach((other) => {
+          if (other !== item) other.open = false;
+        });
+      }
+    });
+  });
+});
