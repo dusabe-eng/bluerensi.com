@@ -10,6 +10,70 @@
 
   <title>BLUERENSI Consult | Civil • Hydrology • Environment</title>
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- ===== Contact form polish (ONLY affects #contact) ===== -->
+  <style>
+    #contact .contact-grid{
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px){
+      #contact .contact-grid{
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    #contact .form{
+      background: #ffffff;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      display: grid;
+      gap: 14px;
+    }
+
+    #contact .form label{
+      display: grid;
+      gap: 8px;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    #contact .form input,
+    #contact .form textarea{
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid rgba(15, 23, 42, 0.18);
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+      background: #fff;
+    }
+
+    #contact .form input:focus,
+    #contact .form textarea:focus{
+      border-color: rgba(37, 99, 235, 0.65);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    #contact .form textarea{
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    #contact .form .btn{
+      width: 100%;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
@@ -169,7 +233,7 @@
 </section>
 
 <!-- ================= ABOUT ================= -->
-<section id="about" class="page-section section">
+<section id="about" class="page-section section" hidden>
   <div class="container">
     <h2 class="section-title">About Us</h2>
     <p class="section-subtitle">
@@ -234,27 +298,30 @@
       </div>
     </div>
 
- <form class="form" action="https://formspree.io/f/xgolyvzw" method="POST">
-  <label>
-    Name
-    <input type="text" name="name" required />
-  </label>
+    <form class="form" action="https://formspree.io/f/xgolyvzw" method="POST">
+      <label>
+        Name
+        <input type="text" name="name" required />
+      </label>
 
-  <label>
-    Email
-    <input type="email" name="email" required />
-  </label>
+      <label>
+        Email
+        <input type="email" name="email" required />
+      </label>
 
-  <label>
-    Message
-    <textarea name="message" rows="5" required></textarea>
-  </label>
+      <label>
+        Message
+        <textarea name="message" rows="5" required></textarea>
+      </label>
 
-  <!-- optional: email subject -->
-  <input type="hidden" name="_subject" value="New message from bluerensi.com" />
+      <!-- optional: email subject -->
+      <input type="hidden" name="_subject" value="New message from bluerensi.com" />
 
-  <button class="btn btn-primary" type="submit">Send message</button>
-</form>
+      <button class="btn btn-primary" type="submit">Send message</button>
+    </form>
+
+  </div>
+</section>
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
@@ -273,5 +340,3 @@
 <script src="jsmain.js" defer></script>
 </body>
 </html>
-
-
