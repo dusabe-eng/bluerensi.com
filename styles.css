@@ -347,6 +347,15 @@ body{
   font-weight: 700;
   cursor: pointer;
 }
+.icon{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background: rgba(31,79,215,.10);
+  overflow: hidden;   /* 👈 THIS IS THE FIX */
+}
 /* Photo inside team icon box (keep other styles unchanged) */
 .icon img.team-photo{
   width: 100%;
@@ -355,3 +364,4 @@ body{
   object-fit: cover;
   display: block;
 }
+
