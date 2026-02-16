@@ -298,27 +298,28 @@
       </div>
     </div>
 
-    <form class="form" action="https://formspree.io/f/xgolyvzw" method="POST">
-      <label>
-        Name
-        <input type="text" name="name" required />
-      </label>
+<form id="contact-form" class="form" action="https://formspree.io/f/xgolyvzw" method="POST">
+  <label>
+    Name
+    <input type="text" name="name" required />
+  </label>
 
-      <label>
-        Email
-        <input type="email" name="email" required />
-      </label>
+  <label>
+    Email
+    <input type="email" name="email" required />
+  </label>
 
-      <label>
-        Message
-        <textarea name="message" rows="5" required></textarea>
-      </label>
+  <label>
+    Message
+    <textarea name="message" rows="5" required></textarea>
+  </label>
 
-      <!-- optional: email subject -->
-      <input type="hidden" name="_subject" value="New message from bluerensi.com" />
+  <input type="hidden" name="_subject" value="New message from bluerensi.com" />
 
-      <button class="btn btn-primary" type="submit">Send message</button>
-    </form>
+  <button class="btn btn-primary" type="submit">Send message</button>
+
+  <p id="form-status" style="margin-top:10px;"></p>
+</form>
 
   </div>
 </section>
@@ -340,3 +341,4 @@
 <script src="jsmain.js" defer></script>
 </body>
 </html>
+
