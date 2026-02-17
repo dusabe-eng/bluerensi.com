@@ -52,7 +52,6 @@
 
   <section class="mission-vision">
     <div class="container mv-grid">
-
       <div class="mv-card">
         <h2>Our Mission</h2>
         <p>
@@ -69,16 +68,12 @@
           in water, infrastructure, and environmental systems.
         </p>
       </div>
-
     </div>
   </section>
 </main>
 
 <!-- ================= SERVICES ================= -->
 <section id="services" class="route">
-  <section class="services-layout">
-    
-   <section id="services" class="route">
   <section class="services-layout">
     <div class="container">
       <h2 class="services-title">Our Services</h2>
@@ -96,10 +91,15 @@
 
       <div class="services-grid">
 
+        <!-- Civil -->
         <div class="service-item" data-cat="civil">
           <details class="service-details" open>
             <summary class="service-summary">
-              <img class="service-icon" src="./icon-civil.png" alt="Civil & Structural">
+              <span class="service-icon svg civil">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 21h18v-2H3v2zm2-4h14V3H5v14zm2-2V5h10v10H7z"></path>
+                </svg>
+              </span>
               <div>
                 <h3>Civil & Structural</h3>
                 <p class="service-mini">Drainage, road and site engineering support.</p>
@@ -114,10 +114,15 @@
           </details>
         </div>
 
+        <!-- Hydrology -->
         <div class="service-item" data-cat="hydro">
           <details class="service-details">
             <summary class="service-summary">
-              <img class="service-icon" src="./icon-hydro.png" alt="Hydrology & Hydraulics">
+              <span class="service-icon svg hydro">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2C8 7 5 10 5 14a7 7 0 0014 0c0-4-3-7-7-12z"></path>
+                </svg>
+              </span>
               <div>
                 <h3>Hydrology & Hydraulics</h3>
                 <p class="service-mini">Catchment assessment and flood risk studies.</p>
@@ -132,10 +137,15 @@
           </details>
         </div>
 
+        <!-- Environment -->
         <div class="service-item" data-cat="env">
           <details class="service-details">
             <summary class="service-summary">
-              <img class="service-icon" src="./icon-env.png" alt="Environmental & Climate">
+              <span class="service-icon svg env">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2C7 7 4 10 4 14a8 8 0 0016 0c0-4-3-7-8-12z"></path>
+                </svg>
+              </span>
               <div>
                 <h3>Environmental & Climate</h3>
                 <p class="service-mini">Assessment support, compliance and mitigation.</p>
@@ -150,10 +160,15 @@
           </details>
         </div>
 
+        <!-- WASH -->
         <div class="service-item" data-cat="wash">
           <details class="service-details">
             <summary class="service-summary">
-              <img class="service-icon" src="./icon-wash.png" alt="Water Supply & WASH">
+              <span class="service-icon svg wash">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2s-6 7-6 11a6 6 0 0012 0c0-4-6-11-6-11z"></path>
+                </svg>
+              </span>
               <div>
                 <h3>Water Supply & WASH</h3>
                 <p class="service-mini">Water supply planning and WASH program support.</p>
@@ -168,10 +183,15 @@
           </details>
         </div>
 
+        <!-- GIS -->
         <div class="service-item" data-cat="gis">
           <details class="service-details">
             <summary class="service-summary">
-              <img class="service-icon" src="./icon-gis.png" alt="Modelling & GIS">
+              <span class="service-icon svg gis">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6z"></path>
+                </svg>
+              </span>
               <div>
                 <h3>Modelling & GIS</h3>
                 <p class="service-mini">Modelling, mapping and decision support.</p>
@@ -186,10 +206,15 @@
           </details>
         </div>
 
+        <!-- Advisory -->
         <div class="service-item" data-cat="advisory">
           <details class="service-details">
             <summary class="service-summary">
-              <img class="service-icon" src="./icon-review.png" alt="Advisory & Review">
+              <span class="service-icon svg advisory">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-9 14l-4-4 1.4-1.4L10 14.2l6.6-6.6L18 9l-8 8z"></path>
+                </svg>
+              </span>
               <div>
                 <h3>Advisory & Review</h3>
                 <p class="service-mini">Peer review and project technical guidance.</p>
@@ -206,8 +231,6 @@
 
       </div>
     </div>
-  </section>
-</section>
   </section>
 </section>
 
@@ -328,4 +351,3 @@
 <script src="./jsmain.js?v=2026-5"></script>
 </body>
 </html>
-
