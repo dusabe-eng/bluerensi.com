@@ -77,73 +77,137 @@
 <!-- ================= SERVICES ================= -->
 <section id="services" class="route">
   <section class="services-layout">
+    
+   <section id="services" class="route">
+  <section class="services-layout">
     <div class="container">
       <h2 class="services-title">Our Services</h2>
 
+      <!-- Selection / filter -->
+      <div class="service-filters">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="civil">Civil</button>
+        <button class="chip" data-filter="hydro">Hydrology</button>
+        <button class="chip" data-filter="env">Environment</button>
+        <button class="chip" data-filter="wash">WASH</button>
+        <button class="chip" data-filter="gis">GIS</button>
+        <button class="chip" data-filter="advisory">Advisory</button>
+      </div>
+
       <div class="services-grid">
 
-        <div class="service-item">
-          <img class="service-icon" src="./icon-civil.png" alt="Civil & Structural">
-          <h3>Civil & Structural</h3>
-          <ul>
-            <li>Drainage & stormwater design</li>
-            <li>Road & site engineering</li>
-            <li>Small structures and technical support</li>
-          </ul>
+        <div class="service-item" data-cat="civil">
+          <details class="service-details" open>
+            <summary class="service-summary">
+              <img class="service-icon" src="./icon-civil.png" alt="Civil & Structural">
+              <div>
+                <h3>Civil & Structural</h3>
+                <p class="service-mini">Drainage, road and site engineering support.</p>
+              </div>
+              <span class="chev">▾</span>
+            </summary>
+            <ul class="service-list">
+              <li>Drainage & stormwater design</li>
+              <li>Road & site engineering</li>
+              <li>Small structures and technical support</li>
+            </ul>
+          </details>
         </div>
 
-        <div class="service-item">
-          <img class="service-icon" src="./icon-hydro.png" alt="Hydrology & Hydraulics">
-          <h3>Hydrology & Hydraulics</h3>
-          <ul>
-            <li>Catchment assessment</li>
-            <li>Flood frequency / risk analysis</li>
-            <li>Water balance and planning support</li>
-          </ul>
+        <div class="service-item" data-cat="hydro">
+          <details class="service-details">
+            <summary class="service-summary">
+              <img class="service-icon" src="./icon-hydro.png" alt="Hydrology & Hydraulics">
+              <div>
+                <h3>Hydrology & Hydraulics</h3>
+                <p class="service-mini">Catchment assessment and flood risk studies.</p>
+              </div>
+              <span class="chev">▾</span>
+            </summary>
+            <ul class="service-list">
+              <li>Catchment assessment</li>
+              <li>Flood frequency / risk analysis</li>
+              <li>Water balance and planning support</li>
+            </ul>
+          </details>
         </div>
 
-        <div class="service-item">
-          <img class="service-icon" src="./icon-env.png" alt="Environmental & Climate">
-          <h3>Environmental & Climate</h3>
-          <ul>
-            <li>Environmental assessment support</li>
-            <li>Sustainable solutions and compliance</li>
-            <li>Mitigation and monitoring guidance</li>
-          </ul>
+        <div class="service-item" data-cat="env">
+          <details class="service-details">
+            <summary class="service-summary">
+              <img class="service-icon" src="./icon-env.png" alt="Environmental & Climate">
+              <div>
+                <h3>Environmental & Climate</h3>
+                <p class="service-mini">Assessment support, compliance and mitigation.</p>
+              </div>
+              <span class="chev">▾</span>
+            </summary>
+            <ul class="service-list">
+              <li>Environmental assessment support</li>
+              <li>Sustainable solutions and compliance</li>
+              <li>Mitigation and monitoring guidance</li>
+            </ul>
+          </details>
         </div>
 
-        <div class="service-item">
-          <img class="service-icon" src="./icon-wash.png" alt="Water Supply & WASH">
-          <h3>Water Supply & WASH</h3>
-          <ul>
-            <li>Water supply planning support</li>
-            <li>WASH program support</li>
-            <li>Technical reporting</li>
-          </ul>
+        <div class="service-item" data-cat="wash">
+          <details class="service-details">
+            <summary class="service-summary">
+              <img class="service-icon" src="./icon-wash.png" alt="Water Supply & WASH">
+              <div>
+                <h3>Water Supply & WASH</h3>
+                <p class="service-mini">Water supply planning and WASH program support.</p>
+              </div>
+              <span class="chev">▾</span>
+            </summary>
+            <ul class="service-list">
+              <li>Water supply planning support</li>
+              <li>WASH program support</li>
+              <li>Technical reporting</li>
+            </ul>
+          </details>
         </div>
 
-        <div class="service-item">
-          <img class="service-icon" src="./icon-gis.png" alt="Modelling & GIS">
-          <h3>Modelling & GIS</h3>
-          <ul>
-            <li>Hydrological modelling</li>
-            <li>Spatial analysis and mapping</li>
-            <li>Dashboards and indicators</li>
-          </ul>
+        <div class="service-item" data-cat="gis">
+          <details class="service-details">
+            <summary class="service-summary">
+              <img class="service-icon" src="./icon-gis.png" alt="Modelling & GIS">
+              <div>
+                <h3>Modelling & GIS</h3>
+                <p class="service-mini">Modelling, mapping and decision support.</p>
+              </div>
+              <span class="chev">▾</span>
+            </summary>
+            <ul class="service-list">
+              <li>Hydrological modelling</li>
+              <li>Spatial analysis and mapping</li>
+              <li>Dashboards and indicators</li>
+            </ul>
+          </details>
         </div>
 
-        <div class="service-item">
-          <img class="service-icon" src="./icon-review.png" alt="Advisory & Review">
-          <h3>Advisory & Review</h3>
-          <ul>
-            <li>Peer review and advisory</li>
-            <li>Feasibility support</li>
-            <li>Project technical guidance</li>
-          </ul>
+        <div class="service-item" data-cat="advisory">
+          <details class="service-details">
+            <summary class="service-summary">
+              <img class="service-icon" src="./icon-review.png" alt="Advisory & Review">
+              <div>
+                <h3>Advisory & Review</h3>
+                <p class="service-mini">Peer review and project technical guidance.</p>
+              </div>
+              <span class="chev">▾</span>
+            </summary>
+            <ul class="service-list">
+              <li>Peer review and advisory</li>
+              <li>Feasibility support</li>
+              <li>Project technical guidance</li>
+            </ul>
+          </details>
         </div>
 
       </div>
     </div>
+  </section>
+</section>
   </section>
 </section>
 
@@ -264,3 +328,4 @@
 <script src="./jsmain.js?v=2026-5"></script>
 </body>
 </html>
+
