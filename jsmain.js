@@ -1,21 +1,48 @@
+// jsmain.js (clean - no duplicates)
+
 document.addEventListener("DOMContentLoaded", () => {
-  const menu = document.querySelector(".menu");
-  const toggle = document.querySelector(".nav-toggle");
-  const routeLinks = document.querySelectorAll("[data-route]");
-  const routes = document.querySelectorAll(".route");
+  // ---------- Helpers ----------
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  toggle?.addEventListener("click", () => menu.classList.toggle("open"));
+  // ---------- Mobile menu toggle ----------
+  const menu = $(".menu");
+  const toggle = $(".nav-toggle");
 
-  function showRoute(name){
+  toggle?.addEventListener("click", () => menu?.classList.toggle("open"));
+
+  // Close menu when clicking any nav link (mobile)
+  $$(".menu .nav-link").forEach(a => {
+    a.addEventListener("click", () => menu?.classList.remove("open"));
+  });
+
+  // ---------- Routing ----------
+  const routes = $$(".route");
+
+  function showRoute(name) {
+    // show the route
     routes.forEach(r => r.classList.toggle("route-active", r.id === name));
-    document.querySelectorAll(".nav-link").forEach(a => {
+
+    // active nav style
+    $$(".nav-link").forEach(a => {
       a.classList.toggle("active", a.dataset.route === name);
     });
-    menu.classList.remove("open");
+
+    // close mobile menu
+    menu?.classList.remove("open");
+
+    // scroll top
     window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // AFTER route becomes visible, init services features (if services is opened)
+    if (name === "services") {
+      initServiceFilters();
+      initServiceAccordion();
+    }
   }
 
-  routeLinks.forEach(a => {
+  // click routing for any [data-route]
+  $$("[data-route]").forEach(a => {
     a.addEventListener("click", (e) => {
       const name = a.dataset.route;
       if (!name) return;
@@ -25,140 +52,66 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // back/forward
   window.addEventListener("popstate", () => {
-    const hash = (location.hash || "#home").replace("#", "");
-    showRoute(hash);
+    const hash = (location.hash || "#home").replace("#", "").trim();
+    showRoute(document.getElementById(hash) ? hash : "home");
   });
 
-  const start = (location.hash || "#home").replace("#", "");
-  showRoute(start);
+  // initial route
+  const start = (location.hash || "#home").replace("#", "").trim();
+  showRoute(document.getElementById(start) ? start : "home");
 
-  // contact demo
-  const form = document.getElementById("contactForm");
-  const msg = document.getElementById("sentMsg");
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    msg.hidden = false;
-    form.reset();
-    setTimeout(() => (msg.hidden = true), 2500);
-  });
-});
-/* jsmain.js */
+  // ---------- Services: Filter chips ----------
+  function initServiceFilters() {
+    const chips = $$(".chip");
+    const items = $$(".service-item");
+    if (!chips.length || !items.length) return;
 
-// ---------- Helpers ----------
-function $(sel, root = document) { return root.querySelector(sel); }
-function $all(sel, root = document) { return Array.from(root.querySelectorAll(sel)); }
+    // prevent double-binding if user opens services multiple times
+    chips.forEach(btn => {
+      if (btn.dataset.bound === "1") return;
+      btn.dataset.bound = "1";
 
-// ---------- Mobile menu toggle ----------
-const navToggle = $('.nav-toggle');
-const menu = $('.menu');
+      btn.addEventListener("click", () => {
+        chips.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
 
-if (navToggle && menu) {
-  navToggle.addEventListener('click', () => {
-    menu.classList.toggle('open');
-  });
-
-  // close menu when clicking a link (mobile)
-  $all('.menu .nav-link').forEach(a => {
-    a.addEventListener('click', () => menu.classList.remove('open'));
-  });
-}
-
-// ---------- Routing (show one .route at a time) ----------
-const routes = $all('.route');
-const navLinks = $all('[data-route]');
-
-function setActiveRoute(routeId) {
-  // show/hide routes
-  routes.forEach(r => r.classList.remove('route-active'));
-  const target = document.getElementById(routeId);
-  if (target) target.classList.add('route-active');
-
-  // set active menu link style
-  $all('.nav-link').forEach(l => l.classList.remove('active'));
-  $all(`.nav-link[data-route="${routeId}"]`).forEach(l => l.classList.add('active'));
-
-  // update hash
-  if (location.hash !== `#${routeId}`) {
-    history.replaceState(null, '', `#${routeId}`);
+        const f = btn.dataset.filter || "all";
+        items.forEach(it => {
+          const cat = it.dataset.cat || "";
+          it.style.display = (f === "all" || f === cat) ? "" : "none";
+        });
+      });
+    });
   }
 
-  // scroll to top on route change
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+  // ---------- Services: Accordion (only one open) ----------
+  function initServiceAccordion() {
+    const detailsList = $$(".service-details");
+    if (!detailsList.length) return;
 
-function handleHashRoute() {
-  const hash = (location.hash || '#home').replace('#', '').trim();
-  const exists = document.getElementById(hash);
-  setActiveRoute(exists ? hash : 'home');
-}
+    detailsList.forEach(d => {
+      if (d.dataset.bound === "1") return;
+      d.dataset.bound = "1";
 
-// click routing
-navLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    const routeId = link.getAttribute('data-route');
-    if (!routeId) return;
-    e.preventDefault();
-    setActiveRoute(routeId);
-  });
-});
-
-// initial route + hash changes
-window.addEventListener('load', handleHashRoute);
-window.addEventListener('hashchange', handleHashRoute);
-
-// ---------- Services: Filter chips (selection) ----------
-function initServiceFilters() {
-  const chips = $all('.chip');
-  const items = $all('.service-item');
-
-  if (!chips.length || !items.length) return;
-
-  chips.forEach(btn => {
-    btn.addEventListener('click', () => {
-      chips.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const f = btn.dataset.filter || 'all';
-
-      items.forEach(it => {
-        const cat = it.dataset.cat || '';
-        it.style.display = (f === 'all' || f === cat) ? '' : 'none';
+      d.addEventListener("toggle", () => {
+        if (!d.open) return;
+        detailsList.forEach(other => {
+          if (other !== d) other.open = false;
+        });
       });
     });
-  });
-}
+  }
 
-// ---------- Services: Accordion (only one open) ----------
-function initServiceAccordion() {
-  const detailsList = $all('.service-details');
-  if (!detailsList.length) return;
+  // ---------- Contact form demo ----------
+  const form = $("#contactForm");
+  const msg = $("#sentMsg");
 
-  detailsList.forEach(d => {
-    d.addEventListener('toggle', () => {
-      if (!d.open) return;
-      detailsList.forEach(other => {
-        if (other !== d) other.open = false;
-      });
-    });
-  });
-}
-
-// run these once
-window.addEventListener('load', () => {
-  initServiceFilters();
-  initServiceAccordion();
-});
-
-// ---------- Contact form demo ----------
-const contactForm = $('#contactForm');
-const sentMsg = $('#sentMsg');
-
-if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
+  form?.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (sentMsg) sentMsg.hidden = false;
-    contactForm.reset();
-    setTimeout(() => { if (sentMsg) sentMsg.hidden = true; }, 2500);
+    if (msg) msg.hidden = false;
+    form.reset();
+    setTimeout(() => { if (msg) msg.hidden = true; }, 2500);
   });
-}
+});
