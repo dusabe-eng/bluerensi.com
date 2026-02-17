@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BLUERENSI Consult</title>
 
-  <!-- cache bust -->
-  <link rel="stylesheet" href="./styles.css?v=2026-2">
+  <link rel="stylesheet" href="./styles.css?v=2026-3">
 </head>
 
-<body id="home">
+<body>
 
 <header class="nav">
   <div class="container nav-inner">
@@ -23,6 +22,7 @@
 
     <button class="nav-toggle" aria-label="menu">☰</button>
 
+    <!-- ✅ These must match section IDs exactly -->
     <nav class="menu">
       <a href="#home" class="nav-link">Home</a>
       <a href="#services" class="nav-link">Services</a>
@@ -35,13 +35,11 @@
   </div>
 </header>
 
-<!-- HERO -->
-<section id="hero" class="hero">
-  <!-- If your old HTML injected a big logo <img>, this wrapper prevents it showing -->
+<!-- ✅ Home anchor -->
+<section id="home" class="hero">
   <div class="hero-overlay"></div>
-
   <div class="container hero-content">
-    <h1>Resilient civil &amp; water engineering solutions</h1>
+    <h1>Resilient civil &amp; water engineering<br/>solutions</h1>
     <p>
       We provide tailored services in civil, hydrology, and environmental engineering.
       Partner with us to deliver sustainable and resilient outcomes.
@@ -53,15 +51,46 @@
   </div>
 </section>
 
+<!-- ✅ MUST exist and match -->
 <section id="services" class="section">
   <div class="container">
     <h2 class="title">Services</h2>
-    <!-- keep your content here -->
     <div class="auto-grid">
       <div class="card"><h3>Civil infrastructure</h3><p>Roads, drainage, and site engineering.</p></div>
       <div class="card"><h3>Hydrology</h3><p>Flood analysis, catchments, water planning.</p></div>
       <div class="card"><h3>Environmental</h3><p>Environmental engineering support and resilience.</p></div>
     </div>
+  </div>
+</section>
+
+<!-- ✅ MUST exist and match -->
+<section id="projects" class="section section-alt">
+  <div class="container">
+    <h2 class="title">Projects</h2>
+    <div class="auto-grid">
+      <div class="card"><h3>Drainage design</h3><p>Stormwater planning and drainage solutions.</p></div>
+      <div class="card"><h3>Flood assessment</h3><p>Hydrologic analysis and flood risk mapping.</p></div>
+      <div class="card"><h3>Water systems</h3><p>Planning support for resilient water resources.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ MUST exist and match -->
+<section id="about" class="section">
+  <div class="container">
+    <h2 class="title">About us</h2>
+    <p class="subtitle">
+      BLUERENSI Consult delivers practical, science-based engineering solutions across civil infrastructure,
+      hydrology, water resources, and environmental systems.
+    </p>
+  </div>
+</section>
+
+<!-- ✅ MUST exist and match -->
+<section id="contact" class="section section-alt">
+  <div class="container">
+    <h2 class="title">Contact</h2>
+    <p class="subtitle">Tell us about your project.</p>
   </div>
 </section>
 
@@ -77,6 +106,6 @@
   </div>
 </footer>
 
-<script src="./jsmain.js?v=2026-2"></script>
+<script src="./jsmain.js?v=2026-3"></script>
 </body>
 </html>
