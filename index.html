@@ -4,15 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BLUERENSI Consult</title>
-
-  <link rel="stylesheet" href="./styles.css?v=2026-3">
+  <link rel="stylesheet" href="./styles.css?v=2026-4">
 </head>
 
 <body>
 
 <header class="nav">
   <div class="container nav-inner">
-    <a class="brand" href="#home">
+    <a class="brand" href="#home" data-route="home">
       <img src="./logo.png" class="logo" alt="BLUERENSI logo">
       <div class="brand-text">
         <div class="brand-name">BLUERENSI</div>
@@ -22,90 +21,245 @@
 
     <button class="nav-toggle" aria-label="menu">☰</button>
 
-    <!-- ✅ These must match section IDs exactly -->
     <nav class="menu">
-      <a href="#home" class="nav-link">Home</a>
-      <a href="#services" class="nav-link">Services</a>
-      <a href="#projects" class="nav-link">Projects</a>
-      <a href="#about" class="nav-link">About us</a>
-      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#home" class="nav-link" data-route="home">Home</a>
+      <a href="#services" class="nav-link" data-route="services">Services</a>
+      <a href="#projects" class="nav-link" data-route="projects">Projects</a>
+      <a href="#about" class="nav-link" data-route="about">About us</a>
+      <a href="#contact" class="nav-link" data-route="contact">Contact</a>
     </nav>
 
-    <a class="btn btn-primary" href="#contact">Request a consultation</a>
+    <a class="btn btn-primary" href="#contact" data-route="contact">Request a consultation</a>
   </div>
 </header>
 
-<!-- ✅ Home anchor -->
-<section id="home" class="hero">
-  <div class="hero-overlay"></div>
-  <div class="container hero-content">
-    <h1>Resilient civil &amp; water engineering<br/>solutions</h1>
-    <p>
-      We provide tailored services in civil, hydrology, and environmental engineering.
-      Partner with us to deliver sustainable and resilient outcomes.
-    </p>
-    <div class="hero-actions">
-      <a href="#services" class="btn btn-primary">Explore our services</a>
-      <a href="#projects" class="btn btn-ghost">View projects</a>
+<!-- ================= HOME ONLY ================= -->
+<main id="home" class="route route-active">
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <h1>Resilient civil &amp; water engineering solutions</h1>
+      <p>
+        We provide tailored services in civil, hydrology, and environmental engineering.
+        Partner with us to deliver sustainable and resilient outcomes.
+      </p>
+      <div class="hero-actions">
+        <a href="#services" class="btn btn-primary" data-route="services">Explore our services</a>
+        <a href="#projects" class="btn btn-ghost" data-route="projects">View projects</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ✅ MUST exist and match -->
-<section id="services" class="section">
-  <div class="container">
-    <h2 class="title">Services</h2>
-    <div class="auto-grid">
-      <div class="card"><h3>Civil infrastructure</h3><p>Roads, drainage, and site engineering.</p></div>
-      <div class="card"><h3>Hydrology</h3><p>Flood analysis, catchments, water planning.</p></div>
-      <div class="card"><h3>Environmental</h3><p>Environmental engineering support and resilience.</p></div>
+  <section class="section">
+    <div class="container">
+      <h2 class="title">What we do</h2>
+      <p class="subtitle">
+        We help clients plan, design, and deliver reliable infrastructure, water resources solutions,
+        and climate-resilient systems with practical engineering and clear decision support.
+      </p>
+
+      <div class="auto-grid">
+        <div class="card">
+          <h3>Civil infrastructure</h3>
+          <p>Roads, drainage, and site engineering.</p>
+        </div>
+        <div class="card">
+          <h3>Hydrology</h3>
+          <p>Flood analysis, catchments, and water planning.</p>
+        </div>
+        <div class="card">
+          <h3>Environmental</h3>
+          <p>Environmental engineering support and resilience.</p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<!-- ✅ MUST exist and match -->
-<section id="projects" class="section section-alt">
-  <div class="container">
-    <h2 class="title">Projects</h2>
-    <div class="auto-grid">
-      <div class="card"><h3>Drainage design</h3><p>Stormwater planning and drainage solutions.</p></div>
-      <div class="card"><h3>Flood assessment</h3><p>Hydrologic analysis and flood risk mapping.</p></div>
-      <div class="card"><h3>Water systems</h3><p>Planning support for resilient water resources.</p></div>
+<!-- ================= SERVICES PAGE ================= -->
+<main id="services" class="route">
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="page-title">Services</h1>
+      <p class="page-subtitle">Practical engineering and science-based support for resilient systems.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ✅ MUST exist and match -->
-<section id="about" class="section">
-  <div class="container">
-    <h2 class="title">About us</h2>
-    <p class="subtitle">
-      BLUERENSI Consult delivers practical, science-based engineering solutions across civil infrastructure,
-      hydrology, water resources, and environmental systems.
-    </p>
-  </div>
-</section>
+  <section class="section">
+    <div class="container">
+      <div class="auto-grid">
+        <div class="card">
+          <h3>Civil Infrastructure</h3>
+          <ul class="list">
+            <li>Drainage design & stormwater management</li>
+            <li>Road & site engineering</li>
+            <li>Small structures and technical support</li>
+          </ul>
+        </div>
 
-<!-- ✅ MUST exist and match -->
-<section id="contact" class="section section-alt">
-  <div class="container">
-    <h2 class="title">Contact</h2>
-    <p class="subtitle">Tell us about your project.</p>
-  </div>
-</section>
+        <div class="card">
+          <h3>Hydrology & Water Resources</h3>
+          <ul class="list">
+            <li>Catchment assessment</li>
+            <li>Flood frequency / risk analysis</li>
+            <li>Water balance and planning support</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Environmental Engineering</h3>
+          <ul class="list">
+            <li>Environmental assessment support</li>
+            <li>Sustainable solutions & compliance support</li>
+            <li>Mitigation and monitoring guidance</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Climate Resilience</h3>
+          <ul class="list">
+            <li>Risk-informed adaptation planning</li>
+            <li>Resilient infrastructure solutions</li>
+            <li>Decision-support reporting</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Data & Decision Support</h3>
+          <ul class="list">
+            <li>Technical analysis and reporting</li>
+            <li>Dashboards and indicators</li>
+            <li>Clear recommendations</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Consulting & Advisory</h3>
+          <ul class="list">
+            <li>Peer review and advisory</li>
+            <li>Feasibility support</li>
+            <li>Project technical guidance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= PROJECTS PAGE ================= -->
+<main id="projects" class="route">
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="page-title">Projects</h1>
+      <p class="page-subtitle">Examples of work types we deliver. (We can replace with your real projects.)</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="auto-grid">
+        <div class="card">
+          <h3>Drainage & Stormwater</h3>
+          <p>Design and assessment of drainage systems, culverts, and mitigation solutions.</p>
+        </div>
+        <div class="card">
+          <h3>Flood Risk Studies</h3>
+          <p>Hydrologic/hydraulic analysis to support planning and risk reduction.</p>
+        </div>
+        <div class="card">
+          <h3>Water Supply Support</h3>
+          <p>Technical support to improve water supply reliability and planning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= ABOUT PAGE (TEAM HERE) ================= -->
+<main id="about" class="route">
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="page-title">About us</h1>
+      <p class="page-subtitle">
+        BLUERENSI Consult delivers practical, science-based engineering solutions across civil infrastructure,
+        hydrology, water resources, and environmental systems.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="title">Meet the Team</h2>
+
+      <div class="team-grid">
+        <article class="team-card">
+          <img src="./jean-dusabimana.jpg" alt="Jean D'Amour Dusabimana">
+          <div class="name">Jean D’Amour Dusabimana</div>
+          <div class="role">Managing Director</div>
+        </article>
+
+        <article class="team-card">
+          <img src="./pascal-sibomana.jpg" alt="Pascal Sibomana">
+          <div class="name">Pascal Sibomana</div>
+          <div class="role">Technical Director</div>
+        </article>
+
+        <article class="team-card">
+          <img src="./pierre-gapfizi.jpeg" alt="Pierre Gapfizi">
+          <div class="name">Pierre Gapfizi</div>
+          <div class="role">Civil Engineer</div>
+        </article>
+
+        <article class="team-card">
+          <img src="./rugaba-blaise.jpg" alt="Blaise Rugaba">
+          <div class="name">Blaise Rugaba</div>
+          <div class="role">Operations Director</div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= CONTACT PAGE ================= -->
+<main id="contact" class="route">
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="page-title">Contact</h1>
+      <p class="page-subtitle">Tell us about your project. We’ll respond quickly.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-wrap">
+      <form class="form" id="contactForm">
+        <label>Name<input type="text" required></label>
+        <label>Email<input type="email" required></label>
+        <label>Message<textarea required></textarea></label>
+        <button class="btn btn-primary" type="submit">Send</button>
+        <div id="sentMsg" class="sent" hidden>✅ Message sent (demo)</div>
+      </form>
+
+      <div class="card">
+        <h3>BLUERENSI Consult</h3>
+        <p class="muted">Email: info@bluerensi.com</p>
+        <p class="muted">Location: Rwanda</p>
+      </div>
+    </div>
+  </section>
+</main>
 
 <footer class="footer">
   <div class="container footer-inner">
     <div>© 2026 BLUERENSI Consult. All rights reserved.</div>
     <div class="footer-links">
-      <a href="#services">Services</a>
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#services" data-route="services">Services</a>
+      <a href="#projects" data-route="projects">Projects</a>
+      <a href="#about" data-route="about">About</a>
+      <a href="#contact" data-route="contact">Contact</a>
     </div>
   </div>
 </footer>
 
-<script src="./jsmain.js?v=2026-3"></script>
+<script src="./jsmain.js?v=2026-4"></script>
 </body>
 </html>
