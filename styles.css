@@ -170,30 +170,51 @@ a{text-decoration:none;color:inherit}
 .sent{color:#16a34a;font-weight:900}
 
 /* FOOTER */
-.footer{background:linear-gradient(90deg,var(--green),var(--green2));color:#fff;padding:10px 0}
-.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.footer-links{display:flex;gap:18px;margin-left:auto}
-.footer a:hover{color:#bff2dc}
-/* ===== Mission & Vision (Dark) ===== */
-.mission-vision.dark {
-  padding: 90px 20px;
-  background: linear-gradient(
-    180deg,
-    #0b2f36,
-    #0f3d3e
-  );
+.footer{
+  background:linear-gradient(90deg,var(--green),var(--green2));
+  color:#fff;
+  padding:14px 0;
+  position:relative;
+  z-index:2;
 }
-/* ===== Mission & Vision (Dark) ===== */
-.mission-vision.dark {
-  padding: 90px 20px;
-  background: linear-gradient(
-    180deg,
-    #0b2f36,
-    #0f3d3e
-  );
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.footer-links{
+  display:flex;
+  gap:18px;
+  margin-left:auto;
+}
+.footer a:hover{color:#bff2dc}
+
+/* If your HTML uses <footer> without class="footer", this ensures it still becomes green */
+footer{
+  background:linear-gradient(90deg,var(--green),var(--green2));
+  color:#fff;
+  padding:14px 0;
+  position:relative;
+  z-index:2;
+}
+footer a:hover{color:#bff2dc}
+
+/* Prevent sections from covering footer */
+main, section, .route{
+  position:relative;
+  z-index:1;
 }
 
-.mission-vision.dark .mv-grid {
+/* ===== Mission & Vision (Dark) ===== */
+/* (Removed duplicate block and kept only one clean version) */
+.mission-vision.dark{
+  padding: 90px 20px;
+  background: linear-gradient(180deg,#0b2f36,#0f3d3e);
+}
+
+.mission-vision.dark .mv-grid{
   max-width: 1100px;
   margin: 0 auto;
   display: grid;
@@ -201,7 +222,7 @@ a{text-decoration:none;color:inherit}
   gap: 32px;
 }
 
-.mission-vision.dark .mv-card {
+.mission-vision.dark .mv-card{
   background: rgba(255, 255, 255, 0.06);
   padding: 40px 32px;
   border-radius: 18px;
@@ -210,36 +231,37 @@ a{text-decoration:none;color:inherit}
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.mission-vision.dark .mv-card:hover {
+.mission-vision.dark .mv-card:hover{
   transform: translateY(-6px);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
-.mission-vision.dark h2 {
+.mission-vision.dark h2{
   font-size: 1.9rem;
   margin-bottom: 14px;
   color: #e8f6f7;
 }
 
-.mission-vision.dark p {
+.mission-vision.dark p{
   font-size: 1.05rem;
   line-height: 1.7;
   color: #cfe8ea;
 }
+
 /* ===== Services layout (icon grid like screenshot) ===== */
-.services-layout {
+.services-layout{
   padding: 70px 20px;
   background: #ffffff;
 }
 
-.services-title {
+.services-title{
   text-align: center;
   font-size: 3rem;
   margin-bottom: 40px;
   letter-spacing: 0.5px;
 }
 
-.services-grid {
+.services-grid{
   max-width: 1100px;
   margin: 0 auto;
   display: grid;
@@ -247,23 +269,23 @@ a{text-decoration:none;color:inherit}
   gap: 48px 70px;
 }
 
-.service-item {
+.service-item{
   text-align: left;
 }
 
-.service-icon {
+.service-icon{
   width: 52px;
   height: 52px;
   object-fit: contain;
   margin-bottom: 12px;
 }
 
-.service-item h3 {
+.service-item h3{
   font-size: 1.55rem;
   margin: 6px 0 10px;
 }
 
-.service-item ul {
+.service-item ul{
   margin: 0;
   padding-left: 18px;
   color: #333;
@@ -272,13 +294,14 @@ a{text-decoration:none;color:inherit}
 }
 
 /* Responsive */
-@media (max-width: 900px) {
-  .services-grid {
+@media (max-width: 900px){
+  .services-grid{
     grid-template-columns: 1fr;
     gap: 28px;
   }
-  .services-title {
+  .services-title{
     font-size: 2.2rem;
   }
 }
+
 
