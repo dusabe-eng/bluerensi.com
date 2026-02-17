@@ -4,7 +4,6 @@ html,body{margin:0;padding:0}
 body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#0f172a;background:#fff}
 a{color:inherit;text-decoration:none}
 [hidden]{display:none!important}
-
 .container{width:min(1100px,calc(100% - 40px));margin:auto}
 
 /* ===== Nav ===== */
@@ -38,11 +37,16 @@ a{color:inherit;text-decoration:none}
 .lead{font-size:18px;line-height:1.6}
 .muted{color:#475569;line-height:1.7}
 
-/* ===== HERO (ONLY image1 + image2, NEVER hero.png) ===== */
+/* =========================================================
+   HERO — FORCE ONLY image1.jpg + image2.jpg (NO hero.png)
+   ========================================================= */
+
+/* IMPORTANT: this line kills any old hero.png background */
 .hero.hero-banner{
   position:relative;
   min-height:560px;
   overflow:hidden;
+  background: none !important;       /* <— blocks hero.png if it exists elsewhere */
 }
 
 /* two moving layers */
@@ -54,7 +58,6 @@ a{color:inherit;text-decoration:none}
   background-size:cover;
   background-position:center;
   transform:scale(1.05);
-  animation:heroZoom 18s infinite;
   z-index:0;
 }
 
@@ -69,7 +72,8 @@ a{color:inherit;text-decoration:none}
 }
 
 .hero-overlay{
-  position:absolute;inset:0;
+  position:absolute;
+  inset:0;
   background:rgba(0,0,0,.45);
   z-index:1;
 }
@@ -109,7 +113,6 @@ a{color:inherit;text-decoration:none}
   box-shadow:0 10px 30px rgba(15,23,42,.06);
 }
 
-/* details styles */
 details.card summary{list-style:none;cursor:pointer}
 details.card summary::-webkit-details-marker{display:none}
 .card-head{display:flex;align-items:center;gap:14px}
@@ -124,14 +127,13 @@ details.card summary::-webkit-details-marker{display:none}
   overflow:hidden;
 }
 
-/* ===== Team photo sizing (fix too big) ===== */
+/* ===== Team photos (small, consistent) ===== */
 .team-photo{
   width:44px;height:44px;
   border-radius:50%;
   object-fit:cover;
   display:block;
 }
-
 .team-text .lead{margin:0;font-weight:800}
 .team-text .role{margin:2px 0 0;opacity:.75;font-size:14px}
 
