@@ -1,52 +1,56 @@
-function toggleMenu(){
-  const menu = document.getElementById("menu");
-  if(!menu) return;
-  menu.classList.toggle("open");
-}
+/* =========================================================
+   BLUERENSI — JS
+   - Mobile menu toggle
+   - Active nav link on scroll
+   - Smooth close menu on click
+   - Contact form: shows message (no backend)
+   ========================================================= */
 
-function setYear(){
-  const y = document.getElementById("year");
-  if(y) y.textContent = new Date().getFullYear();
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const menu = document.querySelector(".menu");
+  const toggle = document.querySelector(".nav-toggle");
+  const links = document.querySelectorAll(".nav-link");
 
-function showSectionFromHash(){
-  const hash = window.location.hash || "#home";
+  // Mobile menu toggle
+  toggle?.addEventListener("click", () => {
+    menu.classList.toggle("open");
+  });
 
-  // hide all "pages"
-  document.querySelectorAll(".page-section").forEach(s => s.hidden = true);
+  // Close menu when clicking a link (mobile)
+  links.forEach(a => {
+    a.addEventListener("click", () => menu.classList.remove("open"));
+  });
 
-  // show selected
-  const target = document.querySelector(hash) || document.querySelector("#home");
-  if(target) target.hidden = false;
+  // Active section highlight
+  const sectionIds = ["home","services","projects","about","contact"];
+  const sections = sectionIds
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
 
-  // set active menu item
-  document.querySelectorAll(".nav-link").forEach(a => a.classList.remove("active"));
-  const active = document.querySelector(`.nav-link[href="${hash}"]`);
-  if(active) active.classList.add("active");
-
-  // close mobile menu
-  const menu = document.getElementById("menu");
-  if(menu) menu.classList.remove("open");
-
-  // jump to top (prevents "mixed" view)
-  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-}
-
-window.addEventListener("hashchange", showSectionFromHash);
-
-window.addEventListener("DOMContentLoaded", () => {
-  setYear();
-  showSectionFromHash();
-
-  // Services accordion: only one open at a time
-  const serviceDetails = document.querySelectorAll("details.service-item");
-  serviceDetails.forEach((item) => {
-    item.addEventListener("toggle", () => {
-      if (item.open) {
-        serviceDetails.forEach((other) => {
-          if (other !== item) other.open = false;
-        });
+  const setActive = () => {
+    let current = "home";
+    for (const sec of sections) {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= 130 && rect.bottom >= 130) {
+        current = sec.id;
+        break;
       }
+    }
+    links.forEach(a => {
+      a.classList.toggle("active", a.getAttribute("href") === `#${current}`);
     });
+  };
+
+  window.addEventListener("scroll", setActive, { passive: true });
+  setActive();
+
+  // Contact form fake submit
+  const form = document.getElementById("contactForm");
+  const note = document.getElementById("formNote");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (note) note.hidden = false;
+    form.reset();
+    setTimeout(() => { if (note) note.hidden = true; }, 3000);
   });
 });
