@@ -395,5 +395,21 @@ body{
   color:#334155;
   line-height: 1.75;
 }
+/* If icons are missing, don't show broken-image boxes */
+.service-icon {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+/* Hide broken images and show a fallback */
+.service-icon:not([src]), 
+.service-icon[src=""] {
+  display: none;
+}
+.service-icon {
+  display: block;
+}
 
 
