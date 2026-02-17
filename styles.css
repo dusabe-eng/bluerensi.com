@@ -1,3 +1,10 @@
+/* =========================================================
+   BLUERENSI — Full CSS (Blue Brand Header + Black Footer)
+   - Header forced BLUE everywhere
+   - Hero blocks hero.png and uses only image1.jpg + image2.jpg
+   - Footer: copyright left, links right
+   ========================================================= */
+
 /* ===== Base ===== */
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -6,33 +13,74 @@ a{color:inherit;text-decoration:none}
 [hidden]{display:none!important}
 .container{width:min(1100px,calc(100% - 40px));margin:auto}
 
-/* ===== Nav (HEADER) — BLUE ===== */
-.nav{
-  position:fixed;
-  inset:0 0 auto 0;
-  background:#2563eb; /* blue */
-  border-bottom:1px solid rgba(255,255,255,.25);
-  z-index:1000
+/* ===== Brand tokens ===== */
+:root{
+  --blue:#2563eb;         /* main BLUERENSI blue */
+  --blue-dark:#1d4ed8;    /* hover/darker */
+  --blue-ink:#0b1f66;     /* deep text accent */
+  --white:#ffffff;
+  --border-w:rgba(255,255,255,.25);
 }
+
+/* =========================================================
+   HEADER / NAV — FORCE BLUE (works even if wrappers differ)
+   ========================================================= */
+
+/* Force all possible header wrappers to blue */
+header,
+.header,
+.site-header,
+.nav,
+.navbar,
+.topbar,
+.navbar-container,
+.nav-wrapper,
+.nav-inner{
+  background-color:var(--blue) !important;
+  border-bottom:1px solid var(--border-w) !important;
+}
+
+/* Make all header text white */
+header *,
+.header *,
+.site-header *,
+.nav *,
+.navbar *,
+.topbar *{
+  color:var(--white) !important;
+}
+
+/* Your existing nav layout */
+.nav{position:fixed;inset:0 0 auto 0;z-index:1000}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+
 .brand{display:flex;align-items:center;gap:12px}
 .logo-img{width:44px;height:44px;object-fit:contain}
-.brand-name{font-weight:800;letter-spacing:.3px;color:#fff}
-.brand-sub{font-size:12px;opacity:.85;color:#fff}
 
+/* If brand text exists */
+.brand-name{font-weight:800;letter-spacing:.3px}
+.brand-sub{font-size:12px;opacity:.85}
+
+/* menu */
 .menu{display:flex;gap:18px;align-items:center}
-.nav-link{padding:10px 12px;border-radius:999px;color:#fff}
-.nav-link.active{background:rgba(255,255,255,.20);color:#fff;font-weight:700}
+.nav-link{padding:10px 12px;border-radius:999px}
 
-.nav-toggle{display:none;border:0;background:transparent;font-size:22px;cursor:pointer;color:#fff}
+/* active menu pill */
+.nav-link.active{
+  background:rgba(255,255,255,.22) !important;
+  font-weight:800;
+}
+
+/* mobile toggle */
+.nav-toggle{display:none;border:0;background:transparent;font-size:22px;cursor:pointer}
 @media(max-width:900px){
   .nav-toggle{display:block}
   .menu{
     display:none;
     position:absolute;
     top:64px;right:20px;
-    background:#2563eb;
-    border:1px solid rgba(255,255,255,.25);
+    background:var(--blue) !important;
+    border:1px solid var(--border-w) !important;
     border-radius:14px;
     padding:10px;
     flex-direction:column;
@@ -43,7 +91,8 @@ a{color:inherit;text-decoration:none}
 
 /* buttons */
 .btn{display:inline-block;padding:12px 18px;border-radius:999px;font-weight:800}
-.btn-primary{background:#2563eb;color:#fff}
+.btn-primary{background:var(--blue);color:var(--white)}
+.btn-primary:hover{background:var(--blue-dark)}
 .btn-small{padding:10px 14px}
 
 /* ===== Sections ===== */
@@ -150,7 +199,7 @@ details.card summary::-webkit-details-marker{display:none}
   overflow:hidden;
 }
 
-/* ===== Team photos (small, consistent) ===== */
+/* ===== Team photos ===== */
 .team-photo{
   width:44px;height:44px;
   border-radius:50%;
@@ -193,7 +242,9 @@ details.card summary::-webkit-details-marker{display:none}
 }
 .form textarea{resize:vertical;min-height:140px}
 
-/* ===== Footer — BLACK with links on RIGHT ===== */
+/* =========================================================
+   FOOTER — BLACK + Links Right
+   ========================================================= */
 .footer{
   background:#000 !important;
   color:#fff !important;
@@ -201,30 +252,31 @@ details.card summary::-webkit-details-marker{display:none}
   padding:22px 0 !important;
 }
 
+/* keep structure in one line: left text, right links */
 .footer-inner{
   display:flex !important;
-  justify-content:space-between !important; /* left + right */
+  justify-content:space-between !important;
   align-items:center !important;
   gap:16px;
   flex-wrap:wrap;
 }
 
+/* links to the right */
 .footer-links{
   display:flex !important;
   gap:18px;
-  margin-left:auto; /* push to right */
+  margin-left:auto;
 }
 
 .footer a{
   color:#fff !important;
   font-weight:600;
 }
-
 .footer a:hover{
   color:#9fe0c3 !important;
 }
 
-/* optional: on very small screens, center footer links */
+/* small screens: center nicely */
 @media(max-width:520px){
   .footer-inner{justify-content:center !important}
   .footer-links{margin-left:0}
