@@ -349,13 +349,30 @@ a{text-decoration:none;color:inherit}
 details > summary::marker{ content:""; }
 details > summary::-webkit-details-marker{ display:none; }
 
-/* Icon */
-.service-icon{
-  width: 46px;
-  height: 46px;
-  object-fit: contain;
-  flex: 0 0 auto;
+/* ===== Inline SVG icons (NO PNG needed) ===== */
+.service-icon.svg{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
 }
+.service-icon.svg svg{
+  width:22px;
+  height:22px;
+  fill:#fff;
+  display:block;
+}
+
+/* category colors */
+.service-icon.civil{ background:#2b6de8; }
+.service-icon.hydro{ background:#0ea5e9; }
+.service-icon.env{ background:#16a34a; }
+.service-icon.wash{ background:#0891b2; }
+.service-icon.gis{ background:#7c3aed; }
+.service-icon.advisory{ background:#475569; }
 
 /* Title + mini text */
 .service-summary h3{
