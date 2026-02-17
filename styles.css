@@ -184,5 +184,13 @@ details.card summary::-webkit-details-marker{display:none}
 .footer a:hover{
     color: #ccc;
 }
+.footer{
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.footer a{
+  color: #fff !important;
+}
 
 
