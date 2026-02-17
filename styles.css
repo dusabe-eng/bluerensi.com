@@ -6,23 +6,23 @@ a{color:inherit;text-decoration:none}
 [hidden]{display:none!important}
 .container{width:min(1100px,calc(100% - 40px));margin:auto}
 
-/* ===== Nav (HEADER) — Deep Blue-Green Theme ===== */
+/* ===== Nav (HEADER) — BLUE ===== */
 .nav{
   position:fixed;
   inset:0 0 auto 0;
-  background:#0b2e2b;
-  border-bottom:1px solid rgba(255,255,255,.12);
+  background:#2563eb; /* blue */
+  border-bottom:1px solid rgba(255,255,255,.25);
   z-index:1000
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
 .brand{display:flex;align-items:center;gap:12px}
 .logo-img{width:44px;height:44px;object-fit:contain}
 .brand-name{font-weight:800;letter-spacing:.3px;color:#fff}
-.brand-sub{font-size:12px;opacity:.8;color:#fff}
+.brand-sub{font-size:12px;opacity:.85;color:#fff}
 
 .menu{display:flex;gap:18px;align-items:center}
 .nav-link{padding:10px 12px;border-radius:999px;color:#fff}
-.nav-link.active{background:rgba(255,255,255,.16);color:#fff;font-weight:700}
+.nav-link.active{background:rgba(255,255,255,.20);color:#fff;font-weight:700}
 
 .nav-toggle{display:none;border:0;background:transparent;font-size:22px;cursor:pointer;color:#fff}
 @media(max-width:900px){
@@ -31,8 +31,8 @@ a{color:inherit;text-decoration:none}
     display:none;
     position:absolute;
     top:64px;right:20px;
-    background:#0b2e2b;
-    border:1px solid rgba(255,255,255,.14);
+    background:#2563eb;
+    border:1px solid rgba(255,255,255,.25);
     border-radius:14px;
     padding:10px;
     flex-direction:column;
@@ -41,6 +41,7 @@ a{color:inherit;text-decoration:none}
   .menu.open{display:flex}
 }
 
+/* buttons */
 .btn{display:inline-block;padding:12px 18px;border-radius:999px;font-weight:800}
 .btn-primary{background:#2563eb;color:#fff}
 .btn-small{padding:10px 14px}
@@ -54,15 +55,21 @@ a{color:inherit;text-decoration:none}
 .muted{color:#475569;line-height:1.7}
 
 /* =========================================================
-   HERO — FORCE ONLY image1.jpg + image2.jpg (NO hero.png)
+   HERO — BLOCK hero.png + USE ONLY image1.jpg & image2.jpg
    ========================================================= */
 
-/* IMPORTANT: this line kills any old hero.png background */
+/* hard-block any hero.png/background set elsewhere */
+.hero,
+.hero-banner,
+.hero.hero-banner{
+  background:none !important;
+  background-image:none !important;
+}
+
 .hero.hero-banner{
   position:relative;
   min-height:560px;
   overflow:hidden;
-  background:none !important; /* blocks hero.png if it exists elsewhere */
 }
 
 /* two moving layers */
@@ -186,23 +193,39 @@ details.card summary::-webkit-details-marker{display:none}
 }
 .form textarea{resize:vertical;min-height:140px}
 
-/* ===== Footer — Deep Blue-Green Theme ===== */
+/* ===== Footer — BLACK with links on RIGHT ===== */
 .footer{
-  background:#0b2e2b !important;
-  color:#ffffff !important;
+  background:#000 !important;
+  color:#fff !important;
   border-top:1px solid rgba(255,255,255,.15) !important;
   padding:22px 0 !important;
 }
+
+.footer-inner{
+  display:flex !important;
+  justify-content:space-between !important; /* left + right */
+  align-items:center !important;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.footer-links{
+  display:flex !important;
+  gap:18px;
+  margin-left:auto; /* push to right */
+}
+
 .footer a{
-  color:#ffffff !important;
+  color:#fff !important;
   font-weight:600;
 }
+
 .footer a:hover{
   color:#9fe0c3 !important;
 }
 
-/* If your footer has inner wrappers with white background, force them too */
-.footer-inner,
-.footer .container{
-  background:transparent !important;
+/* optional: on very small screens, center footer links */
+@media(max-width:520px){
+  .footer-inner{justify-content:center !important}
+  .footer-links{margin-left:0}
 }
