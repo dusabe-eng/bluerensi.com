@@ -177,5 +177,12 @@ details.card summary::-webkit-details-marker{display:none}
     border-top: 1px solid #222;
     padding: 18px 0;
 }
+.footer a{
+    color: #fff;
+}
+
+.footer a:hover{
+    color: #ccc;
+}
 
 
