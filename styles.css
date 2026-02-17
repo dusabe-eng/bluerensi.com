@@ -1,6 +1,9 @@
 /* =========================================================
    BLUERENSI — FULL FINAL CSS
-   Sky Header + Green Footer + Moving Hero (image1.jpg/image2.jpg)
+   ✅ Sky header
+   ✅ Moving hero (image1.jpg + image2.jpg)
+   ✅ Footer green section SHORTER height
+   ✅ Services/Projects/About: GRID (not list)
    ========================================================= */
 
 /* ===== Base ===== */
@@ -27,7 +30,8 @@ a{color:inherit;text-decoration:none}
   --footer:#1f4f46;
   --footer-hover:#9fe0c3;
 
-  --white:#ffffff;
+  --card-border:rgba(15,23,42,.10);
+  --card-shadow:0 10px 30px rgba(15,23,42,.06);
 }
 
 /* =========================================================
@@ -41,7 +45,6 @@ header,
   background:var(--sky) !important;
   border-bottom:1px solid rgba(11,58,117,.15) !important;
 }
-
 header *,
 .header *,
 .site-header *,
@@ -97,40 +100,19 @@ header *,
 .muted{color:#475569;line-height:1.7}
 
 /* =========================================================
-   HERO — MOVING BACKGROUND (ROBUST SELECTORS)
-   This will work even if your hero is .hero OR .hero-banner, etc.
+   HERO — MOVING BACKGROUND (image1.jpg + image2.jpg)
    ========================================================= */
-
-/* Target common hero containers */
 .hero,
-.hero-banner,
-.hero-section,
-.banner,
-.home-hero,
-#home .hero,
-#home .hero-banner{
+.hero-banner{
   position:relative;
   min-height:560px;
   overflow:hidden;
-  /* block hero.png if it is set as background on the element */
-  background-image:none !important;
+  background-image:none !important; /* blocks hero.png if set */
 }
 
-/* Moving layers with built-in dark overlay (no extra div needed) */
-.hero::before,
-.hero::after,
-.hero-banner::before,
-.hero-banner::after,
-.hero-section::before,
-.hero-section::after,
-.banner::before,
-.banner::after,
-.home-hero::before,
-.home-hero::after,
-#home .hero::before,
-#home .hero::after,
-#home .hero-banner::before,
-#home .hero-banner::after{
+/* moving layers */
+.hero::before, .hero::after,
+.hero-banner::before, .hero-banner::after{
   content:"";
   position:absolute;
   inset:0;
@@ -140,141 +122,103 @@ header *,
   z-index:0;
 }
 
-/* Image 1 + dark overlay */
+/* image 1 + overlay */
 .hero::before,
-.hero-banner::before,
-.hero-section::before,
-.banner::before,
-.home-hero::before,
-#home .hero::before,
-#home .hero-banner::before{
+.hero-banner::before{
   background-image:
-    linear-gradient(rgba(0,0,0,.40), rgba(0,0,0,.40)),
+    linear-gradient(rgba(0,0,0,.38), rgba(0,0,0,.38)),
     url("image1.jpg");
   animation:heroFade1 12s infinite, heroZoom 18s infinite;
   opacity:1;
 }
 
-/* Image 2 + dark overlay */
+/* image 2 + overlay */
 .hero::after,
-.hero-banner::after,
-.hero-section::after,
-.banner::after,
-.home-hero::after,
-#home .hero::after,
-#home .hero-banner::after{
+.hero-banner::after{
   background-image:
-    linear-gradient(rgba(0,0,0,.40), rgba(0,0,0,.40)),
+    linear-gradient(rgba(0,0,0,.38), rgba(0,0,0,.38)),
     url("image2.jpg");
   animation:heroFade2 12s infinite, heroZoom 18s infinite;
   opacity:0;
 }
 
-/* Make hero text sit above images */
+/* keep hero content above */
 .hero .container,
 .hero-banner .container,
-.hero-section .container,
-.banner .container,
-.home-hero .container,
-#home .hero .container,
-#home .hero-banner .container,
 .hero-content{
   position:relative;
   z-index:2;
-}
-
-/* If your hero content is not using .hero-content, this still helps */
-.hero,
-.hero-banner,
-.hero-section,
-.banner,
-.home-hero,
-#home .hero,
-#home .hero-banner{
-  color:#fff;
-}
-.hero h1, .hero h2, .hero p,
-.hero-banner h1, .hero-banner h2, .hero-banner p{
   color:#fff;
 }
 
-/* Animations */
+/* animations */
 @keyframes heroFade1{0%,45%{opacity:1}55%,100%{opacity:0}}
 @keyframes heroFade2{0%,45%{opacity:0}55%,100%{opacity:1}}
 @keyframes heroZoom{0%{transform:scale(1.05)}50%{transform:scale(1.15)}100%{transform:scale(1.05)}}
 
 /* =========================================================
-   MISSION STRIP (if you use it)
+   GRID LAYOUT FOR CONTENT SECTIONS (Services/Projects/About)
+   Works even if HTML is a simple list
    ========================================================= */
-.mission-strip{background:#eef6ee;border-top:1px solid rgba(15,23,42,.06);border-bottom:1px solid rgba(15,23,42,.06)}
-.mission-strip-inner{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px 0}
-.mission-text{margin:0;font-style:italic;color:#0f172a}
-.mission-author{font-weight:900}
 
-/* =========================================================
-   CARDS (if you use them)
-   ========================================================= */
+/* Generic grid wrapper options (covers many structures) */
+.services-grid,
+.projects-grid,
+.about-grid,
+.grid,
 .cards{
   margin-top:18px;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:18px;
 }
-.card{
+
+/* If the section uses UL/OL list -> convert to grid */
+#services ul, #services ol,
+#projects ul, #projects ol,
+#about ul, #about ol{
+  list-style:none;
+  padding:0;
+  margin:18px 0 0;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+
+/* Make each list item look like a card */
+#services li, #projects li, #about li{
   background:#fff;
-  border:1px solid rgba(15,23,42,.10);
+  border:1px solid var(--card-border);
   border-radius:18px;
   padding:18px;
-  box-shadow:0 10px 30px rgba(15,23,42,.06);
+  box-shadow:var(--card-shadow);
 }
-details.card summary{list-style:none;cursor:pointer}
-details.card summary::-webkit-details-marker{display:none}
-.card-head{display:flex;align-items:center;gap:14px}
-.card-head h3{margin:0;font-size:18px}
-.icon{
-  width:54px;height:54px;
-  border-radius:16px;
-  background:rgba(59,130,246,.12);
-  display:grid;place-items:center;
-  overflow:hidden;
+
+/* If you already have .card class, style it nicely */
+.card{
+  background:#fff;
+  border:1px solid var(--card-border);
+  border-radius:18px;
+  padding:18px;
+  box-shadow:var(--card-shadow);
+}
+
+/* Responsive grid */
+@media(max-width:980px){
+  .services-grid,.projects-grid,.about-grid,.grid,.cards,
+  #services ul,#services ol,#projects ul,#projects ol,#about ul,#about ol{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media(max-width:600px){
+  .services-grid,.projects-grid,.about-grid,.grid,.cards,
+  #services ul,#services ol,#projects ul,#projects ol,#about ul,#about ol{
+    grid-template-columns:1fr;
+  }
 }
 
 /* =========================================================
-   CONTACT (if you use it)
-   ========================================================= */
-.contact-grid{
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:40px;
-  align-items:start;
-}
-@media(max-width:900px){
-  .contact-grid{grid-template-columns:1fr;gap:24px}
-}
-
-.form{
-  background:#fff;border:1px solid rgba(15,23,42,.08);
-  border-radius:18px;padding:22px;
-  box-shadow:0 10px 30px rgba(15,23,42,.06);
-  display:grid;gap:14px;
-}
-.form label{display:grid;gap:8px;font-weight:700}
-.form input,.form textarea{
-  width:100%;
-  padding:12px 14px;
-  border:1px solid rgba(15,23,42,.18);
-  border-radius:12px;
-  font-size:16px;
-  outline:none;
-}
-.form input:focus,.form textarea:focus{
-  border-color:rgba(59,130,246,.65);
-  box-shadow:0 0 0 4px rgba(59,130,246,.12);
-}
-.form textarea{resize:vertical;min-height:140px}
-
-/* =========================================================
-   FOOTER — GREENISH (links on RIGHT)
+   FOOTER — GREENISH + SHORTER HEIGHT
    ========================================================= */
 footer,
 .footer,
@@ -282,45 +226,45 @@ footer,
 [class*="footer"]{
   background:var(--footer) !important;
   color:#fff !important;
-  padding:24px 0 !important;
+  padding:10px 0 !important;          /* ✅ reduced height */
   border-top:1px solid rgba(255,255,255,.15) !important;
 }
 
-/* Make sure footer children don't force white backgrounds */
-footer *,
-.footer *,
-.site-footer *,
-[class*="footer"] *{
+/* ensure inner elements don't add extra height */
+footer *,.footer *{
   background:transparent !important;
   color:#fff !important;
+  margin:0;
 }
 
-/* Layout */
+/* footer layout */
 .footer-inner,
 footer .container{
   display:flex !important;
   justify-content:space-between !important;
   align-items:center !important;
   flex-wrap:wrap;
-  gap:16px;
+  gap:12px;
 }
+
+/* links right */
 .footer-links{
   display:flex !important;
-  gap:20px;
+  gap:18px;
   margin-left:auto;
 }
 
-footer a,
-.footer a{color:#fff !important;font-weight:600}
-footer a:hover,
-.footer a:hover{color:var(--footer-hover) !important}
+/* link hover */
+footer a,.footer a{color:#fff !important;font-weight:600}
+footer a:hover,.footer a:hover{color:var(--footer-hover) !important}
 
-@media(max-width:300px){
+/* mobile footer */
+@media(max-width:520px){
   .footer-inner,
   footer .container{
     justify-content:center !important;
     text-align:center;
+    gap:10px;
   }
   .footer-links{margin-left:0}
 }
-
