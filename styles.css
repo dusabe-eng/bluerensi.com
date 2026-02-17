@@ -1,46 +1,45 @@
 /* =========================================================
-   BLUERENSI — Full CSS (Blue Brand Header + Black Footer)
-   - Header forced BLUE everywhere
-   - Hero blocks hero.png and uses only image1.jpg + image2.jpg
-   - Footer: copyright left, links right
+   BLUERENSI — FINAL BRAND CSS
+   Blue Header + Greenish Footer
    ========================================================= */
 
 /* ===== Base ===== */
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#0f172a;background:#fff}
-a{color:inherit;text-decoration:none}
-[hidden]{display:none!important}
+body{
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:#0f172a;
+  background:#fff
+}
+a{text-decoration:none}
 .container{width:min(1100px,calc(100% - 40px));margin:auto}
 
-/* ===== Brand tokens ===== */
+/* ===== Brand variables ===== */
 :root{
-  --blue:#2563eb;         /* main BLUERENSI blue */
-  --blue-dark:#1d4ed8;    /* hover/darker */
-  --blue-ink:#0b1f66;     /* deep text accent */
+  --blue:#2563eb;
+  --blue-dark:#1d4ed8;
+  --footer-green:#0f3d3a;
+  --footer-hover:#9fe0c3;
   --white:#ffffff;
-  --border-w:rgba(255,255,255,.25);
 }
 
 /* =========================================================
-   HEADER / NAV — FORCE BLUE (works even if wrappers differ)
+   HEADER — FORCE BLUE (THIS FIXES YOUR ISSUE)
    ========================================================= */
 
-/* Force all possible header wrappers to blue */
+/* Force ALL possible header wrappers */
 header,
 .header,
 .site-header,
-.nav,
-.navbar,
 .topbar,
-.navbar-container,
-.nav-wrapper,
+.navbar,
+.nav,
 .nav-inner{
   background-color:var(--blue) !important;
-  border-bottom:1px solid var(--border-w) !important;
+  border-bottom:1px solid rgba(255,255,255,.25) !important;
 }
 
-/* Make all header text white */
+/* Force all header text to white */
 header *,
 .header *,
 .site-header *,
@@ -50,37 +49,54 @@ header *,
   color:var(--white) !important;
 }
 
-/* Your existing nav layout */
-.nav{position:fixed;inset:0 0 auto 0;z-index:1000}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+/* Layout */
+.nav{
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:1000;
+}
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:12px 0;
+}
 
+/* Brand */
 .brand{display:flex;align-items:center;gap:12px}
 .logo-img{width:44px;height:44px;object-fit:contain}
-
-/* If brand text exists */
-.brand-name{font-weight:800;letter-spacing:.3px}
+.brand-name{font-weight:800}
 .brand-sub{font-size:12px;opacity:.85}
 
-/* menu */
+/* Menu */
 .menu{display:flex;gap:18px;align-items:center}
-.nav-link{padding:10px 12px;border-radius:999px}
-
-/* active menu pill */
+.nav-link{
+  padding:10px 12px;
+  border-radius:999px;
+}
 .nav-link.active{
   background:rgba(255,255,255,.22) !important;
   font-weight:800;
 }
 
-/* mobile toggle */
-.nav-toggle{display:none;border:0;background:transparent;font-size:22px;cursor:pointer}
+/* Mobile */
+.nav-toggle{
+  display:none;
+  border:0;
+  background:transparent;
+  font-size:22px;
+  cursor:pointer;
+}
 @media(max-width:900px){
   .nav-toggle{display:block}
   .menu{
     display:none;
     position:absolute;
-    top:64px;right:20px;
+    top:64px;
+    right:20px;
     background:var(--blue) !important;
-    border:1px solid var(--border-w) !important;
+    border:1px solid rgba(255,255,255,.25);
     border-radius:14px;
     padding:10px;
     flex-direction:column;
@@ -89,25 +105,24 @@ header *,
   .menu.open{display:flex}
 }
 
-/* buttons */
-.btn{display:inline-block;padding:12px 18px;border-radius:999px;font-weight:800}
-.btn-primary{background:var(--blue);color:var(--white)}
-.btn-primary:hover{background:var(--blue-dark)}
-.btn-small{padding:10px 14px}
-
-/* ===== Sections ===== */
-.page-section{padding-top:78px}
-.section{padding:56px 0}
-.section-title{font-size:40px;margin:0 0 10px}
-.section-subtitle{margin:0;color:#475569;max-width:820px;line-height:1.6}
-.lead{font-size:18px;line-height:1.6}
-.muted{color:#475569;line-height:1.7}
+/* Buttons */
+.btn{
+  display:inline-block;
+  padding:12px 18px;
+  border-radius:999px;
+  font-weight:800
+}
+.btn-primary{
+  background:var(--white);
+  color:var(--blue) !important;
+}
+.btn-primary:hover{
+  background:#e0e7ff;
+}
 
 /* =========================================================
-   HERO — BLOCK hero.png + USE ONLY image1.jpg & image2.jpg
+   HERO — BLOCK hero.png COMPLETELY
    ========================================================= */
-
-/* hard-block any hero.png/background set elsewhere */
 .hero,
 .hero-banner,
 .hero.hero-banner{
@@ -121,7 +136,6 @@ header *,
   overflow:hidden;
 }
 
-/* two moving layers */
 .hero.hero-banner::before,
 .hero.hero-banner::after{
   content:"";
@@ -137,7 +151,6 @@ header *,
   background-image:url("image1.jpg");
   animation:heroFade1 12s infinite, heroZoom 18s infinite;
 }
-
 .hero.hero-banner::after{
   background-image:url("image2.jpg");
   animation:heroFade2 12s infinite, heroZoom 18s infinite;
@@ -149,7 +162,6 @@ header *,
   background:rgba(0,0,0,.45);
   z-index:1;
 }
-
 .hero-content{
   position:relative;
   z-index:2;
@@ -157,102 +169,20 @@ header *,
   color:#fff;
 }
 
-.lead-light{color:rgba(255,255,255,.85)}
-
 @keyframes heroFade1{0%,45%{opacity:1}55%,100%{opacity:0}}
 @keyframes heroFade2{0%,45%{opacity:0}55%,100%{opacity:1}}
 @keyframes heroZoom{0%{transform:scale(1.05)}50%{transform:scale(1.15)}100%{transform:scale(1.05)}}
 
-/* ===== Mission strip ===== */
-.mission-strip{background:#eef6ee;border-top:1px solid rgba(15,23,42,.06);border-bottom:1px solid rgba(15,23,42,.06)}
-.mission-strip-inner{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px 0}
-.mission-text{margin:0;font-style:italic;color:#0f172a}
-.mission-author{font-weight:900}
-
-/* ===== Cards ===== */
-.cards{
-  margin-top:18px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:18px;
-}
-
-.card{
-  background:#fff;
-  border:1px solid rgba(15,23,42,.10);
-  border-radius:18px;
-  padding:18px;
-  box-shadow:0 10px 30px rgba(15,23,42,.06);
-}
-
-details.card summary{list-style:none;cursor:pointer}
-details.card summary::-webkit-details-marker{display:none}
-.card-head{display:flex;align-items:center;gap:14px}
-.card-head h3{margin:0;font-size:18px}
-
-/* icon bubble */
-.icon{
-  width:54px;height:54px;
-  border-radius:16px;
-  background:rgba(37,99,235,.10);
-  display:grid;place-items:center;
-  overflow:hidden;
-}
-
-/* ===== Team photos ===== */
-.team-photo{
-  width:44px;height:44px;
-  border-radius:50%;
-  object-fit:cover;
-  display:block;
-}
-.team-text .lead{margin:0;font-weight:800}
-.team-text .role{margin:2px 0 0;opacity:.75;font-size:14px}
-
-/* ===== Contact grid ===== */
-.contact-grid{
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:40px;
-  align-items:start;
-}
-@media(max-width:900px){
-  .contact-grid{grid-template-columns:1fr;gap:24px}
-}
-
-/* ===== Form ===== */
-.form{
-  background:#fff;border:1px solid rgba(15,23,42,.08);
-  border-radius:18px;padding:22px;
-  box-shadow:0 10px 30px rgba(15,23,42,.06);
-  display:grid;gap:14px;
-}
-.form label{display:grid;gap:8px;font-weight:700}
-.form input,.form textarea{
-  width:100%;
-  padding:12px 14px;
-  border:1px solid rgba(15,23,42,.18);
-  border-radius:12px;
-  font-size:16px;
-  outline:none;
-}
-.form input:focus,.form textarea:focus{
-  border-color:rgba(37,99,235,.65);
-  box-shadow:0 0 0 4px rgba(37,99,235,.12);
-}
-.form textarea{resize:vertical;min-height:140px}
-
 /* =========================================================
-   FOOTER — BLACK + Links Right
+   FOOTER — GREENISH (NOT BLACK)
    ========================================================= */
 .footer{
-  background:#000 !important;
+  background:var(--footer-green) !important;
   color:#fff !important;
-  border-top:1px solid rgba(255,255,255,.15) !important;
   padding:22px 0 !important;
+  border-top:1px solid rgba(255,255,255,.15);
 }
 
-/* keep structure in one line: left text, right links */
 .footer-inner{
   display:flex !important;
   justify-content:space-between !important;
@@ -261,7 +191,6 @@ details.card summary::-webkit-details-marker{display:none}
   flex-wrap:wrap;
 }
 
-/* links to the right */
 .footer-links{
   display:flex !important;
   gap:18px;
@@ -273,10 +202,9 @@ details.card summary::-webkit-details-marker{display:none}
   font-weight:600;
 }
 .footer a:hover{
-  color:#9fe0c3 !important;
+  color:var(--footer-hover) !important;
 }
 
-/* small screens: center nicely */
 @media(max-width:520px){
   .footer-inner{justify-content:center !important}
   .footer-links{margin-left:0}
