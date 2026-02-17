@@ -6,22 +6,38 @@ a{color:inherit;text-decoration:none}
 [hidden]{display:none!important}
 .container{width:min(1100px,calc(100% - 40px));margin:auto}
 
-/* ===== Nav ===== */
-.nav{position:fixed;inset:0 0 auto 0;background:#fff;border-bottom:1px solid rgba(15,23,42,.08);z-index:1000}
+/* ===== Nav (HEADER) — Deep Blue-Green Theme ===== */
+.nav{
+  position:fixed;
+  inset:0 0 auto 0;
+  background:#0b2e2b;
+  border-bottom:1px solid rgba(255,255,255,.12);
+  z-index:1000
+}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
 .brand{display:flex;align-items:center;gap:12px}
 .logo-img{width:44px;height:44px;object-fit:contain}
-.brand-name{font-weight:800;letter-spacing:.3px}
-.brand-sub{font-size:12px;opacity:.7}
+.brand-name{font-weight:800;letter-spacing:.3px;color:#fff}
+.brand-sub{font-size:12px;opacity:.8;color:#fff}
 
 .menu{display:flex;gap:18px;align-items:center}
-.nav-link{padding:10px 12px;border-radius:999px}
-.nav-link.active{background:rgba(37,99,235,.10);color:#2563eb;font-weight:700}
+.nav-link{padding:10px 12px;border-radius:999px;color:#fff}
+.nav-link.active{background:rgba(255,255,255,.16);color:#fff;font-weight:700}
 
-.nav-toggle{display:none;border:0;background:transparent;font-size:22px;cursor:pointer}
+.nav-toggle{display:none;border:0;background:transparent;font-size:22px;cursor:pointer;color:#fff}
 @media(max-width:900px){
   .nav-toggle{display:block}
-  .menu{display:none;position:absolute;top:64px;right:20px;background:#fff;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:10px;flex-direction:column;min-width:180px}
+  .menu{
+    display:none;
+    position:absolute;
+    top:64px;right:20px;
+    background:#0b2e2b;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:14px;
+    padding:10px;
+    flex-direction:column;
+    min-width:180px
+  }
   .menu.open{display:flex}
 }
 
@@ -46,7 +62,7 @@ a{color:inherit;text-decoration:none}
   position:relative;
   min-height:560px;
   overflow:hidden;
-  background: none !important;       /* <— blocks hero.png if it exists elsewhere */
+  background:none !important; /* blocks hero.png if it exists elsewhere */
 }
 
 /* two moving layers */
@@ -148,7 +164,7 @@ details.card summary::-webkit-details-marker{display:none}
   .contact-grid{grid-template-columns:1fr;gap:24px}
 }
 
-/* form */
+/* ===== Form ===== */
 .form{
   background:#fff;border:1px solid rgba(15,23,42,.08);
   border-radius:18px;padding:22px;
@@ -170,27 +186,23 @@ details.card summary::-webkit-details-marker{display:none}
 }
 .form textarea{resize:vertical;min-height:140px}
 
-/* footer */
+/* ===== Footer — Deep Blue-Green Theme ===== */
 .footer{
-    background-color: #000;
-    color: #fff;
-    border-top: 1px solid #222;
-    padding: 18px 0;
+  background:#0b2e2b !important;
+  color:#ffffff !important;
+  border-top:1px solid rgba(255,255,255,.15) !important;
+  padding:22px 0 !important;
 }
 .footer a{
-    color: #fff;
+  color:#ffffff !important;
+  font-weight:600;
 }
-
 .footer a:hover{
-    color: #ccc;
-}
-.footer{
-  background: #000 !important;
-  color: #fff !important;
+  color:#9fe0c3 !important;
 }
 
-.footer a{
-  color: #fff !important;
+/* If your footer has inner wrappers with white background, force them too */
+.footer-inner,
+.footer .container{
+  background:transparent !important;
 }
-
-
