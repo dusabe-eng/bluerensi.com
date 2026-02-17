@@ -315,7 +315,7 @@ footer a,
 footer a:hover,
 .footer a:hover{color:var(--footer-hover) !important}
 
-@media(max-width:520px){
+@media(max-width:300px){
   .footer-inner,
   footer .container{
     justify-content:center !important;
@@ -323,3 +323,4 @@ footer a:hover,
   }
   .footer-links{margin-left:0}
 }
+
