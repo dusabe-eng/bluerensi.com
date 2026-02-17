@@ -2,155 +2,81 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BLUERENSI Consult</title>
 
-  <!-- Force newest CSS -->
-  <link rel="stylesheet" href="./styles.css?v=2026">
-
+  <!-- cache bust -->
+  <link rel="stylesheet" href="./styles.css?v=2026-2">
 </head>
-<body>
 
-  <!-- HEADER -->
-  <header class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="#home">
-        <img src="./logo.png" class="logo" alt="BLUERENSI logo">
-        <div class="brand-text">
-          <div class="brand-name">BLUERENSI</div>
-          <div class="brand-sub">CONSULT</div>
-        </div>
-      </a>
+<body id="home">
 
-      <button class="nav-toggle" aria-label="menu">☰</button>
-
-      <nav class="menu">
-        <a href="#home" class="nav-link">Home</a>
-        <a href="#services" class="nav-link">Services</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#about" class="nav-link">About us</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
-
-      <a class="btn btn-primary" href="#contact">Request a consultation</a>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <div class="hero-overlay"></div>
-    <div class="container hero-content">
-      <h1>Resilient civil &amp; water engineering solutions</h1>
-      <p>
-        We provide tailored services in civil, hydrology, and environmental engineering.
-        Partner with us to deliver sustainable and resilient outcomes.
-      </p>
-      <div class="hero-actions">
-        <a href="#services" class="btn btn-primary">Explore services</a>
-        <a href="#projects" class="btn btn-ghost">View projects</a>
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#home">
+      <img src="./logo.png" class="logo" alt="BLUERENSI logo">
+      <div class="brand-text">
+        <div class="brand-name">BLUERENSI</div>
+        <div class="brand-sub">CONSULT</div>
       </div>
+    </a>
+
+    <button class="nav-toggle" aria-label="menu">☰</button>
+
+    <nav class="menu">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#about" class="nav-link">About us</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <a class="btn btn-primary" href="#contact">Request a consultation</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <!-- If your old HTML injected a big logo <img>, this wrapper prevents it showing -->
+  <div class="hero-overlay"></div>
+
+  <div class="container hero-content">
+    <h1>Resilient civil &amp; water engineering solutions</h1>
+    <p>
+      We provide tailored services in civil, hydrology, and environmental engineering.
+      Partner with us to deliver sustainable and resilient outcomes.
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="btn btn-primary">Explore our services</a>
+      <a href="#projects" class="btn btn-ghost">View projects</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- SERVICES (KEEP YOUR TEXT INSIDE) -->
-  <section id="services" class="section">
-    <div class="container">
-      <h2 class="title">Services</h2>
-
-      <!-- ✅ Paste your existing services HTML here -->
-      <div class="auto-grid">
-        <div class="card"><h3>Service 1</h3><p>Replace with your text.</p></div>
-        <div class="card"><h3>Service 2</h3><p>Replace with your text.</p></div>
-        <div class="card"><h3>Service 3</h3><p>Replace with your text.</p></div>
-      </div>
+<section id="services" class="section">
+  <div class="container">
+    <h2 class="title">Services</h2>
+    <!-- keep your content here -->
+    <div class="auto-grid">
+      <div class="card"><h3>Civil infrastructure</h3><p>Roads, drainage, and site engineering.</p></div>
+      <div class="card"><h3>Hydrology</h3><p>Flood analysis, catchments, water planning.</p></div>
+      <div class="card"><h3>Environmental</h3><p>Environmental engineering support and resilience.</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="section section-alt">
-    <div class="container">
-      <h2 class="title">Projects</h2>
-
-      <!-- ✅ Paste your existing projects HTML here -->
-      <div class="auto-grid">
-        <div class="card"><h3>Project 1</h3><p>Replace with your text.</p></div>
-        <div class="card"><h3>Project 2</h3><p>Replace with your text.</p></div>
-        <div class="card"><h3>Project 3</h3><p>Replace with your text.</p></div>
-      </div>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>© 2026 BLUERENSI Consult. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </div>
-  </section>
+  </div>
+</footer>
 
-  <!-- ABOUT / TEAM -->
-  <section id="about" class="section">
-    <div class="container">
-      <h2 class="title">About us</h2>
-      <p class="subtitle">Meet the team</p>
-
-      <div class="auto-grid team-grid">
-        <div class="team-card">
-          <img src="./jean-dusabimana.jpg" alt="Jean">
-          <div class="name">Jean D’Amour Dusabimana</div>
-          <div class="role">Managing Director</div>
-        </div>
-
-        <div class="team-card">
-          <img src="./pascal-sibomana.jpg" alt="Pascal">
-          <div class="name">Pascal Sibomana</div>
-          <div class="role">Technical Director</div>
-        </div>
-
-        <div class="team-card">
-          <img src="./pierre-gapfizi.jpeg" alt="Pierre">
-          <div class="name">Pierre Gapfizi</div>
-          <div class="role">Civil Engineer</div>
-        </div>
-
-        <div class="team-card">
-          <img src="./rugaba-blaise.jpg" alt="Blaise">
-          <div class="name">Blaise Rugaba</div>
-          <div class="role">Operations Director</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section section-alt">
-    <div class="container">
-      <h2 class="title">Contact</h2>
-
-      <div class="contact-wrap">
-        <form class="form" id="contactForm">
-          <label>Name<input type="text" required></label>
-          <label>Email<input type="email" required></label>
-          <label>Message<textarea required></textarea></label>
-          <button class="btn btn-primary" type="submit">Send</button>
-          <div id="sentMsg" class="sent" hidden>✅ Message sent (demo)</div>
-        </form>
-
-        <div class="card">
-          <h3>BLUERENSI Consult</h3>
-          <p>Email: info@bluerensi.com</p>
-          <p>Location: Rwanda</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>© 2026 BLUERENSI Consult. All rights reserved.</div>
-      <div class="footer-links">
-        <a href="#services">Services</a>
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Force newest JS -->
-  <script src="./jsmain.js?v=2026"></script>
+<script src="./jsmain.js?v=2026-2"></script>
 </body>
 </html>
