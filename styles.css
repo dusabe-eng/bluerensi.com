@@ -1,6 +1,6 @@
 /* =========================================================
-   BLUERENSI — FULL CSS (Sky Header + Moving Hero + Clean Team)
-   Files in root: image1.jpg, image2.jpg
+   BLUERENSI — CLEAN WEBSITE STYLES
+   Uses: image1.jpg, image2.jpg (moving hero background)
    ========================================================= */
 
 /* ===== Base ===== */
@@ -11,10 +11,10 @@ body{
   color:#0f172a;
   background:#fff;
 }
-a{color:inherit;text-decoration:none}
+a{text-decoration:none;color:inherit}
 .container{width:min(1100px,calc(100% - 40px));margin:auto}
 
-/* ===== Brand ===== */
+/* ===== Brand colors ===== */
 :root{
   --sky:#e6f2ff;
   --sky-pill:#d4e9ff;
@@ -27,48 +27,76 @@ a{color:inherit;text-decoration:none}
   --footer-hover:#9fe0c3;
 
   --border:rgba(15,23,42,.10);
-  --shadow:0 10px 22px rgba(15,23,42,.08);
-  --radius:16px;
+  --shadow:0 10px 25px rgba(15,23,42,.08);
+  --radius:18px;
 }
 
-/* =========================================================
-   HEADER / NAV — SKY BLUE
-   ========================================================= */
-header,.header,.site-header,.nav,.nav-inner{
-  background:var(--sky) !important;
-  border-bottom:1px solid rgba(11,58,117,.15) !important;
+/* ===== Header ===== */
+.site-header{
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:1000;
+  background:var(--sky);
+  border-bottom:1px solid rgba(11,58,117,.15);
 }
-header *,.header *,.site-header *,.nav *,.nav-inner *{
-  color:var(--ink) !important;
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:12px 0;
 }
-.nav{position:fixed;inset:0 0 auto 0;z-index:1000}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.logo-img{width:44px;height:44px;object-fit:contain}
+.brand-name{font-weight:800;letter-spacing:.3px;color:var(--ink)}
+.brand-sub{font-size:12px;opacity:.8;color:var(--ink)}
+
 .menu{display:flex;gap:18px;align-items:center}
-.nav-link{padding:10px 14px;border-radius:999px;font-weight:600}
-.nav-link.active{background:var(--sky-pill) !important;font-weight:700}
-.btn{display:inline-block;padding:12px 18px;border-radius:999px;font-weight:800}
-.btn-primary{background:var(--cta) !important;color:#fff !important}
-.btn-primary:hover{background:var(--cta-hover) !important}
-
-/* =========================================================
-   SECTIONS
-   ========================================================= */
-.page-section{padding-top:78px}
-.section{padding:56px 0}
-.section-title{font-size:40px;margin:0 0 10px}
-.section-subtitle{margin:0;color:#475569;max-width:820px;line-height:1.6}
-
-/* =========================================================
-   HERO — MOVING BACKGROUND (image1.jpg + image2.jpg)
-   ========================================================= */
-.hero,.hero-banner{
-  position:relative;
-  min-height:520px;
-  overflow:hidden;
-  background-image:none !important; /* block hero.png */
+.nav-link{
+  padding:10px 14px;border-radius:999px;
+  font-weight:600;color:var(--ink);
 }
-.hero::before,.hero::after,
-.hero-banner::before,.hero-banner::after{
+.nav-link.active{background:var(--sky-pill)}
+.nav-toggle{display:none;border:0;background:transparent;font-size:22px;cursor:pointer;color:var(--ink)}
+
+.btn{
+  display:inline-block;
+  padding:12px 18px;
+  border-radius:999px;
+  font-weight:800;
+}
+.btn-primary{background:var(--cta);color:#fff}
+.btn-primary:hover{background:var(--cta-hover)}
+.btn-small{padding:10px 14px}
+
+@media(max-width:900px){
+  .nav-toggle{display:block}
+  .menu{
+    display:none;
+    position:absolute;
+    top:64px;right:20px;
+    background:var(--sky);
+    border:1px solid rgba(11,58,117,.15);
+    border-radius:14px;
+    padding:10px;
+    flex-direction:column;
+    min-width:180px;
+  }
+  .menu.open{display:flex}
+}
+
+/* ===== Page spacing because header is fixed ===== */
+#home{scroll-behavior:smooth}
+.hero{padding-top:78px}
+
+/* ===== Hero (moving background) ===== */
+.hero.hero-banner{
+  position:relative;
+  min-height:560px;
+  overflow:hidden;
+}
+.hero.hero-banner::before,
+.hero.hero-banner::after{
   content:"";
   position:absolute;
   inset:0;
@@ -77,179 +105,153 @@ header *,.header *,.site-header *,.nav *,.nav-inner *{
   transform:scale(1.05);
   z-index:0;
 }
-.hero::before,.hero-banner::before{
-  background-image:
-    linear-gradient(rgba(0,0,0,.38),rgba(0,0,0,.38)),
-    url("image1.jpg");
+.hero.hero-banner::before{
+  background-image:url("image1.jpg");
   animation:heroFade1 12s infinite, heroZoom 18s infinite;
-  opacity:1;
 }
-.hero::after,.hero-banner::after{
-  background-image:
-    linear-gradient(rgba(0,0,0,.38),rgba(0,0,0,.38)),
-    url("image2.jpg");
+.hero.hero-banner::after{
+  background-image:url("image2.jpg");
   animation:heroFade2 12s infinite, heroZoom 18s infinite;
   opacity:0;
 }
-.hero .container,.hero-banner .container,.hero-content{
-  position:relative;
-  z-index:2;
+.hero-overlay{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,.40);
+  z-index:1;
+}
+.hero-content{
+  position:relative;z-index:2;
+  padding:120px 0 90px;
   color:#fff;
 }
+.hero-content h1{font-size:44px;line-height:1.1;margin:0 0 12px}
+.lead-light{max-width:720px;line-height:1.6;color:rgba(255,255,255,.88);margin:0 0 18px}
+
 @keyframes heroFade1{0%,45%{opacity:1}55%,100%{opacity:0}}
 @keyframes heroFade2{0%,45%{opacity:0}55%,100%{opacity:1}}
 @keyframes heroZoom{0%{transform:scale(1.05)}50%{transform:scale(1.12)}100%{transform:scale(1.05)}}
 
-/* =========================================================
-   SERVICES / PROJECTS / ABOUT — GRID (if lists exist)
-   ========================================================= */
-.cards,.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:18px}
-@media(max-width:980px){.cards,.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){.cards,.grid{grid-template-columns:1fr}}
+/* ===== Mission ===== */
+.mission-strip{background:#eef6ee;border-top:1px solid rgba(15,23,42,.06);border-bottom:1px solid rgba(15,23,42,.06)}
+.mission-strip-inner{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px 0}
+.mission-text{margin:0;font-style:italic}
+.mission-author{font-weight:900}
 
-/* =========================================================
-   TEAM FIX — THIS IS THE IMPORTANT PART
-   Your team uses <details><summary> (triangle ▶).
-   We will style those as proper cards in a grid.
-   ========================================================= */
+/* ===== Sections ===== */
+.section{padding:56px 0}
+.section-alt{background:#f8fafc}
+.section-title{font-size:40px;margin:0 0 10px}
+.section-subtitle{margin:0;color:#475569;max-width:820px;line-height:1.6}
+.sub-title{margin:26px 0 12px;font-size:22px}
 
-/* 1) Make the team section a grid (works for common wrappers) */
-#about .team,
-#about .team-grid,
-#about .members,
-#about .people,
-#about .staff,
-#team,
-.team,
-.team-grid,
-.members,
-.people,
-.staff{
-  display:grid !important;
-  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-  gap:22px !important;
-  align-items:start !important;
-  margin-top:18px !important;
+/* ===== Cards grid ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+  margin-top:18px;
 }
-
-/* responsive */
-@media(max-width:980px){
-  #about .team,#about .team-grid,#about .members,#about .people,#about .staff,
-  #team,.team,.team-grid,.members,.people,.staff{
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-  }
+.card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow);
 }
+.card h3{margin:0 0 8px}
+.card p{margin:0;color:#475569;line-height:1.6}
+
+@media(max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){
-  #about .team,#about .team-grid,#about .members,#about .people,#about .staff,
-  #team,.team,.team-grid,.members,.people,.staff{
-    grid-template-columns:1fr !important;
-  }
+  .grid{grid-template-columns:1fr}
+  .hero-content h1{font-size:36px}
 }
 
-/* 2) Turn details into real cards */
-#about details,
-#team details,
-.team details,
-.team-grid details{
-  background:#fff !important;
-  border:1px solid var(--border) !important;
-  border-radius:var(--radius) !important;
-  box-shadow:var(--shadow) !important;
-  overflow:hidden !important;          /* ✅ prevents image spilling */
+/* ===== Team ===== */
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:18px;
+  margin-top:18px;
 }
-
-/* remove default marker spacing (triangle) */
-#about details summary,
-#team details summary,
-.team details summary,
-.team-grid details summary{
-  list-style:none !important;
-  cursor:pointer;
-  padding:14px 14px 0 !important;
+.team-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:14px;
+  overflow:hidden;
+  text-align:center;
 }
-#about details summary::-webkit-details-marker,
-#team details summary::-webkit-details-marker,
-.team details summary::-webkit-details-marker,
-.team-grid details summary::-webkit-details-marker{
-  display:none !important;
-}
-
-/* 3) Force images inside team cards to be SAME SIZE */
-#about details img,
-#team details img,
-.team details img,
-.team-grid details img{
-  width:100% !important;
-  height:220px !important;             /* ✅ key: stop giant photos */
-  object-fit:cover !important;
-  object-position:center top !important;
-  display:block !important;
-  margin:12px 0 0 !important;
-  border-radius:12px !important;
-}
-
-/* 4) Text area under image */
-#about details .team-text,
-#team details .team-text,
-.team details .team-text,
-.team-grid details .team-text{
-  padding:12px 14px 14px !important;
-}
-
-/* If you don’t have .team-text, style any text after image */
-#about details p,
-#team details p,
-.team details p,
-.team-grid details p{
-  margin:0;
-  padding:10px 14px 14px;
-  color:#475569;
-  font-size:14px;
-}
-
-/* Name & role (common patterns) */
-#about details strong,
-#team details strong,
-.team details strong,
-.team-grid details strong{
+.team-card img{
+  width:100%;
+  height:220px;           /* consistent size */
+  object-fit:cover;
+  object-position:center top;
+  border-radius:14px;
   display:block;
-  font-weight:800;
-  color:#0f172a;
-  margin-top:2px;
+  margin-bottom:12px;
 }
-#about details em,
-#team details em,
-.team details em,
-.team-grid details em{
-  display:block;
-  font-style:normal;
-  color:#475569;
-  font-size:13px;
-  margin-top:4px;
-}
+.team-name{font-weight:800;margin:0 0 4px}
+.team-role{color:#475569;font-size:14px}
 
-/* 5) Safety: any image inside about section should NEVER overflow */
-#about img{
-  max-width:100% !important;
-  height:auto;
-}
+@media(max-width:1100px){.team-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:820px){.team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.team-grid{grid-template-columns:1fr}}
 
-/* =========================================================
-   FOOTER — SHORT GREEN
-   ========================================================= */
-footer,.footer,.site-footer,[class*="footer"]{
-  background:var(--footer) !important;
-  color:#fff !important;
-  padding:10px 0 !important;
-  border-top:1px solid rgba(255,255,255,.15) !important;
+/* ===== Contact ===== */
+.contact-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:28px;
+  margin-top:18px;
 }
-footer *,.footer *{background:transparent !important;color:#fff !important;margin:0}
-.footer-inner,footer .container{
-  display:flex !important;
-  justify-content:space-between !important;
-  align-items:center !important;
-  flex-wrap:wrap;
+.form{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow);
+  display:grid;
   gap:12px;
 }
-.footer-links{display:flex !important;gap:18px;margin-left:auto}
-footer a:hover,.footer a:hover{color:var(--footer-hover) !important}
+.form label{display:grid;gap:8px;font-weight:700}
+.form input,.form textarea{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid rgba(15,23,42,.18);
+  border-radius:12px;
+  font-size:16px;
+  outline:none;
+}
+.form textarea{min-height:140px;resize:vertical}
+.form input:focus,.form textarea:focus{
+  border-color:rgba(59,130,246,.65);
+  box-shadow:0 0 0 4px rgba(59,130,246,.12);
+}
+.contact-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+.muted{color:#475569;line-height:1.6;margin:10px 0 0}
+
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr}}
+
+/* ===== Footer (short) ===== */
+.footer{
+  background:var(--footer);
+  color:#fff;
+  padding:10px 0;
+}
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.footer-links{display:flex;gap:18px;margin-left:auto}
+.footer a:hover{color:var(--footer-hover)}
