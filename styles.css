@@ -193,3 +193,102 @@ footer a:hover,
     margin-left:0;
   }
 }
+/* =========================================================
+   BLUERENSI — HARD OVERRIDE (Sky Header + Green Footer)
+   Paste at VERY END of CSS file
+   ========================================================= */
+
+/* --- COLORS --- */
+:root{
+  --bluerensi-sky: #e6f2ff;     /* sky blue */
+  --bluerensi-sky2:#cfe7ff;     /* active pill */
+  --bluerensi-ink: #0b3a75;     /* text */
+  --bluerensi-green:#1f4f46;    /* footer green */
+  --bluerensi-mint:#9fe0c3;     /* hover */
+}
+
+/* =========================
+   HEADER: SKY BLUE
+   ========================= */
+/* Target many possible header/nav wrappers */
+html body header,
+html body .header,
+html body .site-header,
+html body .topbar,
+html body .navbar,
+html body .nav,
+html body .nav-inner{
+  background: var(--bluerensi-sky) !important;
+  background-image: none !important;
+  border-bottom: 1px solid rgba(11,58,117,.15) !important;
+}
+
+/* Header text color */
+html body header *,
+html body .header *,
+html body .site-header *,
+html body .topbar *,
+html body .navbar *,
+html body .nav *,
+html body .nav-inner *{
+  color: var(--bluerensi-ink) !important;
+}
+
+/* Active menu pill (Home) */
+html body .nav-link.active{
+  background: var(--bluerensi-sky2) !important;
+  color: var(--bluerensi-ink) !important;
+  font-weight: 700 !important;
+}
+
+/* Keep CTA button strong */
+html body .btn-primary{
+  background: #3b82f6 !important;
+  color: #fff !important;
+}
+html body .btn-primary:hover{
+  background: #2563eb !important;
+}
+
+/* =========================
+   FOOTER: GREENISH
+   ========================= */
+/* Hit footer tag AND any common footer classes */
+html body footer,
+html body .footer,
+html body .site-footer,
+html body [class*="footer"]{
+  background: var(--bluerensi-green) !important;
+  background-image: none !important;
+  color: #fff !important;
+  border-top: 1px solid rgba(255,255,255,.15) !important;
+}
+
+/* Footer text + links */
+html body footer *,
+html body .footer *,
+html body .site-footer *,
+html body [class*="footer"] *{
+  color: #fff !important;
+}
+
+/* Footer link hover */
+html body footer a:hover,
+html body .footer a:hover,
+html body .site-footer a:hover,
+html body [class*="footer"] a:hover{
+  color: var(--bluerensi-mint) !important;
+}
+
+/* Footer alignment: left text, right links */
+html body .footer-inner{
+  display:flex !important;
+  justify-content:space-between !important;
+  align-items:center !important;
+  flex-wrap:wrap !important;
+}
+html body .footer-links{
+  margin-left:auto !important;
+  display:flex !important;
+  gap:20px !important;
+}
