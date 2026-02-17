@@ -19,7 +19,7 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:
 a{text-decoration:none;color:inherit}
 .container{width:min(1120px,calc(100% - 40px));margin:auto}
 
-/* ROUTING (only show one "page" at a time) */
+/* ROUTING */
 .route{display:none}
 .route.route-active{display:block}
 
@@ -48,7 +48,7 @@ a{text-decoration:none;color:inherit}
   .menu.open{display:flex}
 }
 
-/* HERO (home) */
+/* HERO */
 .hero{
   padding-top:78px;
   min-height:560px;
@@ -78,7 +78,7 @@ a{text-decoration:none;color:inherit}
 
 @media(max-width:600px){.hero-content h1{font-size:36px}}
 
-/* PAGE HERO (inside Services/Projects/About/Contact) */
+/* PAGE HERO */
 .page-hero{
   padding-top:96px;
   padding-bottom:26px;
@@ -88,7 +88,7 @@ a{text-decoration:none;color:inherit}
 .page-title{margin:0;font-size:40px}
 .page-subtitle{margin:8px 0 0;color:#475569;max-width:820px;line-height:1.6}
 
-/* SECTIONS */
+/* SECTION */
 .section{padding:46px 0}
 .title{font-size:36px;margin:0 0 10px}
 .subtitle{margin:0 0 18px;color:#475569}
@@ -112,12 +112,13 @@ a{text-decoration:none;color:inherit}
 }
 
 .list{margin:10px 0 0;padding-left:18px;color:#475569;line-height:1.7}
+.muted{color:#475569;line-height:1.6}
 
-/* TEAM */
+/* TEAM (✅ SMALLER PHOTOS) */
 .team-grid{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:18px;
+  gap:16px;
   margin-top:18px;
 }
 @media(max-width:1100px){.team-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -127,23 +128,25 @@ a{text-decoration:none;color:inherit}
 .team-card{
   background:#fff;
   border:1px solid var(--border);
-  border-radius:var(--r);
+  border-radius:16px;
   box-shadow:var(--shadow);
-  padding:14px;
-  overflow:hidden;
+  padding:12px;
   text-align:center;
 }
+
+/* small, consistent */
 .team-card img{
-  width:100%;
-  height:220px;
+  width:110px;
+  height:110px;
+  border-radius:50%;
   object-fit:cover;
   object-position:center top;
-  border-radius:14px;
   display:block;
-  margin-bottom:12px;
+  margin:6px auto 10px;
 }
-.name{font-weight:900;margin:0 0 4px}
-.role{color:#475569;font-size:14px}
+
+.name{font-weight:900;margin:0 0 4px;font-size:15px}
+.role{color:#475569;font-size:13px}
 
 /* CONTACT */
 .contact-wrap{
@@ -165,7 +168,6 @@ a{text-decoration:none;color:inherit}
 }
 .form textarea{min-height:140px;resize:vertical}
 .sent{color:#16a34a;font-weight:900}
-.muted{color:#475569;line-height:1.6}
 
 /* FOOTER */
 .footer{background:linear-gradient(90deg,var(--green),var(--green2));color:#fff;padding:10px 0}
