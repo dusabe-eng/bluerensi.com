@@ -171,6 +171,11 @@ details.card summary::-webkit-details-marker{display:none}
 .form textarea{resize:vertical;min-height:140px}
 
 /* footer */
-.footer{border-top:1px solid rgba(15,23,42,.08);padding:18px 0}
-.footer-inner{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
-.footer-links{display:flex;gap:16px}
+.footer{
+    background-color: #000;
+    color: #fff;
+    border-top: 1px solid #222;
+    padding: 18px 0;
+}
+
+
