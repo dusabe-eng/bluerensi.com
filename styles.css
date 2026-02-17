@@ -303,5 +303,19 @@ main, section, .route{
     font-size: 2.2rem;
   }
 }
+/* Sticky footer (keeps footer at bottom when content is short) */
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.route.route-active{
+  flex: 1;            /* active page grows to fill space */
+}
+
+.footer{
+  margin-top: auto;   /* pushes footer to bottom */
+}
 
 
