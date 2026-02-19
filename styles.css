@@ -440,3 +440,24 @@ details > summary::-webkit-details-marker{ display:none; }
   margin-left:auto;
 }
 .footer a:hover{color:#bff2dc}
+/* ===== WhatsApp Let's Chat button ===== */
+.lets-chat-btn{
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  background: #2EAF5D;
+  color: #ffffff;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+  z-index: 9999;
+  transition: all 0.25s ease;
+}
+
+.lets-chat-btn:hover{
+  background: #259a50;
+  transform: translateY(-2px);
+}
