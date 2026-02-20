@@ -1,117 +1,111 @@
-/* =========================
-   NAV ROUTER + MENU
-========================= */
-const routes = Array.from(document.querySelectorAll(".route"));
-const navLinks = Array.from(document.querySelectorAll("[data-route]"));
-const menu = document.querySelector(".menu");
-const navToggle = document.querySelector(".nav-toggle");
+(() => {
+  const routes = Array.from(document.querySelectorAll(".route"));
+  const navLinks = Array.from(document.querySelectorAll("[data-route]"));
+  const menu = document.querySelector(".menu");
+  const navToggle = document.querySelector(".nav-toggle");
 
-function setActiveRoute(routeId) {
-  routes.forEach(r => r.classList.toggle("route-active", r.id === routeId));
-  navLinks.forEach(l => l.classList.toggle("active", l.getAttribute("data-route") === routeId));
-  if (menu) menu.classList.remove("open");
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
+  // Mobile menu toggle
+  if (navToggle && menu) {
+    navToggle.addEventListener("click", () => menu.classList.toggle("open"));
+    document.addEventListener("click", (e) => {
+      const clickedInside = menu.contains(e.target) || navToggle.contains(e.target);
+      if (!clickedInside) menu.classList.remove("open");
+    });
+  }
 
-function getRouteFromHash() {
-  const hash = (window.location.hash || "#home").replace("#", "");
-  const exists = routes.some(r => r.id === hash);
-  return exists ? hash : "home";
-}
+  function setActiveRoute(routeId) {
+    routes.forEach((r) => r.classList.remove("route-active"));
+    const target = document.getElementById(routeId);
+    if (target) target.classList.add("route-active");
 
-window.addEventListener("hashchange", () => {
-  setActiveRoute(getRouteFromHash());
-});
+    navLinks.forEach((a) => a.classList.remove("active"));
+    navLinks
+      .filter((a) => (a.getAttribute("data-route") || "") === routeId)
+      .forEach((a) => a.classList.add("active"));
 
-navLinks.forEach(link => {
-  link.addEventListener("click", (e) => {
-    const routeId = link.getAttribute("data-route");
+    // Close mobile menu after navigation
+    if (menu) menu.classList.remove("open");
+
+    // Scroll to top when changing route
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+
+  function routeFromHash() {
+    const hash = (window.location.hash || "#home").replace("#", "");
+    const routeId = hash || "home";
+    // If hash points to route ids (home/services/projects/about/careers/contact)
+    const known = ["home", "services", "projects", "about", "careers", "contact"];
+    if (known.includes(routeId)) setActiveRoute(routeId);
+  }
+
+  // Handle clicks on any data-route links
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("[data-route]");
+    if (!a) return;
+
+    const routeId = a.getAttribute("data-route");
     if (!routeId) return;
+
+    // Only handle our SPA routes
+    const known = ["home", "services", "projects", "about", "careers", "contact"];
+    if (!known.includes(routeId)) return;
+
     e.preventDefault();
-    window.location.hash = routeId;
+    window.location.hash = `#${routeId}`;
+    setActiveRoute(routeId);
   });
-});
 
-if (navToggle) {
-  navToggle.addEventListener("click", () => {
-    menu.classList.toggle("open");
-  });
-}
+  // Hash change
+  window.addEventListener("hashchange", routeFromHash);
 
-/* init */
-setActiveRoute(getRouteFromHash());
+  // Init
+  routeFromHash();
 
-/* =========================
-   SERVICES FILTER
-========================= */
-const chips = Array.from(document.querySelectorAll(".chip"));
-const serviceItems = Array.from(document.querySelectorAll(".service-item"));
+  // ===== Services filter chips =====
+  const chips = Array.from(document.querySelectorAll(".chip"));
+  const serviceItems = Array.from(document.querySelectorAll(".service-item"));
 
-chips.forEach(chip => {
-  chip.addEventListener("click", () => {
-    chips.forEach(c => c.classList.remove("active"));
-    chip.classList.add("active");
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      chips.forEach((c) => c.classList.remove("active"));
+      chip.classList.add("active");
 
-    const filter = chip.dataset.filter;
-    serviceItems.forEach(item => {
-      const cat = item.dataset.cat;
-      item.style.display = (filter === "all" || filter === cat) ? "" : "none";
+      const filter = chip.dataset.filter;
+      serviceItems.forEach((item) => {
+        const cat = item.dataset.cat;
+        const show = filter === "all" || cat === filter;
+        item.style.display = show ? "" : "none";
+      });
     });
   });
-});
 
-/* =========================
-   CONTACT FORM DEMO
-========================= */
-const contactForm = document.getElementById("contactForm");
-const sentMsg = document.getElementById("sentMsg");
-if (contactForm) {
-  contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (sentMsg) {
+  // ===== Contact form demo =====
+  const contactForm = document.getElementById("contactForm");
+  const sentMsg = document.getElementById("sentMsg");
+  if (contactForm && sentMsg) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
       sentMsg.hidden = false;
       setTimeout(() => (sentMsg.hidden = true), 2500);
-    }
-    contactForm.reset();
+      contactForm.reset();
+    });
+  }
+
+  // ===== MV2 click/active logic =====
+  const mvCards = Array.from(document.querySelectorAll(".mv2-card"));
+  const setActiveMV = (key) => {
+    mvCards.forEach((c) => c.classList.remove("is-active"));
+    const target = mvCards.find((c) => c.dataset.mv === key);
+    if (target) target.classList.add("is-active");
+  };
+
+  mvCards.forEach((card) => {
+    card.addEventListener("click", () => setActiveMV(card.dataset.mv));
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        setActiveMV(card.dataset.mv);
+      }
+    });
   });
-}
-
-/* =========================
-   MV2 (Mission/About/Vision)
-   - hover mission/vision changes center
-   - click keeps active + moves
-========================= */
-const mvRow = document.getElementById("mv2Row");
-const mvCards = Array.from(document.querySelectorAll(".mv2-card"));
-
-function clearMvHover() {
-  if (!mvRow) return;
-  mvRow.classList.remove("hover-mission", "hover-vision");
-}
-
-mvCards.forEach(card => {
-  const key = card.dataset.mv;
-
-  // Hover behavior
-  card.addEventListener("mouseenter", () => {
-    clearMvHover();
-    if (!mvRow) return;
-    if (key === "mission") mvRow.classList.add("hover-mission");
-    if (key === "vision") mvRow.classList.add("hover-vision");
-  });
-
-  card.addEventListener("mouseleave", () => {
-    clearMvHover();
-  });
-
-  // Click behavior (active)
-  card.addEventListener("click", () => {
-    mvCards.forEach(c => c.classList.remove("is-active"));
-    card.classList.add("is-active");
-  });
-
-  // Keyboard (Enter)
-  card.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") card.click();
-  });
-});
+})();
