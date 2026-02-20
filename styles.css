@@ -208,3 +208,18 @@ a{text-decoration:none;color:inherit}
   justify-content:space-between;
   flex-wrap:wrap;
 }
+/* FORCE HOVER EFFECT (works even if HTML has no data-mv) */
+.mv2 .mv2-side:hover{
+  background: var(--sky2, #d7ecff) !important;
+  color: var(--ink, #0b2545) !important;
+  transform: translateY(-14px) rotate(-1.3deg) !important;
+  box-shadow: 0 26px 60px rgba(0,0,0,.22) !important;
+}
+.mv2 .mv2-side:hover *{
+  color: var(--ink, #0b2545) !important;
+}
+
+/* Make the RIGHT side rotate opposite (Vision) */
+.mv2 .mv2-side:last-child:hover{
+  transform: translateY(-14px) rotate(1.3deg) !important;
+}
