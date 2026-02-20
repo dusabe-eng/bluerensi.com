@@ -1,70 +1,117 @@
-// NAV TOGGLE (MOBILE)
-const navToggle = document.querySelector(".nav-toggle");
+/* =========================
+   NAV ROUTER + MENU
+========================= */
+const routes = Array.from(document.querySelectorAll(".route"));
+const navLinks = Array.from(document.querySelectorAll("[data-route]"));
 const menu = document.querySelector(".menu");
+const navToggle = document.querySelector(".nav-toggle");
 
-if (navToggle && menu) {
-  navToggle.addEventListener("click", () => menu.classList.toggle("open"));
-}
-
-// ROUTING
 function setActiveRoute(routeId) {
-  document.querySelectorAll(".route").forEach(r => r.classList.remove("route-active"));
-  const target = document.getElementById(routeId);
-  if (target) target.classList.add("route-active");
-
-  document.querySelectorAll(".nav-link").forEach(a => a.classList.remove("active"));
-  document.querySelectorAll(`[data-route="${routeId}"]`).forEach(a => a.classList.add("active"));
-
+  routes.forEach(r => r.classList.toggle("route-active", r.id === routeId));
+  navLinks.forEach(l => l.classList.toggle("active", l.getAttribute("data-route") === routeId));
   if (menu) menu.classList.remove("open");
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function getRouteFromHash() {
-  const h = (window.location.hash || "#home").replace("#", "").trim();
-  return h || "home";
+  const hash = (window.location.hash || "#home").replace("#", "");
+  const exists = routes.some(r => r.id === hash);
+  return exists ? hash : "home";
 }
 
-document.addEventListener("click", (e) => {
-  const link = e.target.closest("[data-route]");
-  if (!link) return;
-  const route = link.getAttribute("data-route");
-  if (!route) return;
-
-  e.preventDefault();
-  window.location.hash = `#${route}`;
+window.addEventListener("hashchange", () => {
+  setActiveRoute(getRouteFromHash());
 });
 
-window.addEventListener("hashchange", () => setActiveRoute(getRouteFromHash()));
+navLinks.forEach(link => {
+  link.addEventListener("click", (e) => {
+    const routeId = link.getAttribute("data-route");
+    if (!routeId) return;
+    e.preventDefault();
+    window.location.hash = routeId;
+  });
+});
 
-document.addEventListener("DOMContentLoaded", () => {
-  setActiveRoute(getRouteFromHash());
+if (navToggle) {
+  navToggle.addEventListener("click", () => {
+    menu.classList.toggle("open");
+  });
+}
 
-  // SERVICES FILTER
-  const chips = document.querySelectorAll(".chip");
-  const items = document.querySelectorAll(".service-item");
+/* init */
+setActiveRoute(getRouteFromHash());
 
-  chips.forEach(chip => {
-    chip.addEventListener("click", () => {
-      chips.forEach(c => c.classList.remove("active"));
-      chip.classList.add("active");
+/* =========================
+   SERVICES FILTER
+========================= */
+const chips = Array.from(document.querySelectorAll(".chip"));
+const serviceItems = Array.from(document.querySelectorAll(".service-item"));
 
-      const f = chip.getAttribute("data-filter");
-      items.forEach(it => {
-        const cat = it.getAttribute("data-cat");
-        it.style.display = (f === "all" || f === cat) ? "" : "none";
-      });
+chips.forEach(chip => {
+  chip.addEventListener("click", () => {
+    chips.forEach(c => c.classList.remove("active"));
+    chip.classList.add("active");
+
+    const filter = chip.dataset.filter;
+    serviceItems.forEach(item => {
+      const cat = item.dataset.cat;
+      item.style.display = (filter === "all" || filter === cat) ? "" : "none";
     });
   });
+});
 
-  // CONTACT DEMO
-  const form = document.getElementById("contactForm");
-  const sent = document.getElementById("sentMsg");
-  if (form && sent) {
-    form.addEventListener("submit", (ev) => {
-      ev.preventDefault();
-      sent.hidden = false;
-      form.reset();
-      setTimeout(() => (sent.hidden = true), 2500);
-    });
-  }
+/* =========================
+   CONTACT FORM DEMO
+========================= */
+const contactForm = document.getElementById("contactForm");
+const sentMsg = document.getElementById("sentMsg");
+if (contactForm) {
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (sentMsg) {
+      sentMsg.hidden = false;
+      setTimeout(() => (sentMsg.hidden = true), 2500);
+    }
+    contactForm.reset();
+  });
+}
+
+/* =========================
+   MV2 (Mission/About/Vision)
+   - hover mission/vision changes center
+   - click keeps active + moves
+========================= */
+const mvRow = document.getElementById("mv2Row");
+const mvCards = Array.from(document.querySelectorAll(".mv2-card"));
+
+function clearMvHover() {
+  if (!mvRow) return;
+  mvRow.classList.remove("hover-mission", "hover-vision");
+}
+
+mvCards.forEach(card => {
+  const key = card.dataset.mv;
+
+  // Hover behavior
+  card.addEventListener("mouseenter", () => {
+    clearMvHover();
+    if (!mvRow) return;
+    if (key === "mission") mvRow.classList.add("hover-mission");
+    if (key === "vision") mvRow.classList.add("hover-vision");
+  });
+
+  card.addEventListener("mouseleave", () => {
+    clearMvHover();
+  });
+
+  // Click behavior (active)
+  card.addEventListener("click", () => {
+    mvCards.forEach(c => c.classList.remove("is-active"));
+    card.classList.add("is-active");
+  });
+
+  // Keyboard (Enter)
+  card.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") card.click();
+  });
 });
