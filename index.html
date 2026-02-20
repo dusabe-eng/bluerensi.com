@@ -6,9 +6,10 @@
   <title>BLUERENSI Consult</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
 
-  <!-- TOP BAR (Working days/hours) -->
+  <!-- TOP BAR -->
   <div class="topbar">
     <div class="container topbar-inner">
       <div class="topbar-right">
@@ -32,7 +33,7 @@
       <button class="nav-toggle" id="navToggle" aria-label="Open menu">☰</button>
 
       <nav class="menu" id="menu">
-        <a class="nav-link" href="#/home" data-route="home">Home</a>
+        <a class="nav-link active" href="#/home" data-route="home">Home</a>
         <a class="nav-link" href="#/services" data-route="services">Services</a>
         <a class="nav-link" href="#/projects" data-route="projects">Projects</a>
         <a class="nav-link" href="#/about" data-route="about">About us</a>
@@ -47,18 +48,16 @@
   <!-- ROUTES -->
   <main>
 
-    <!-- HOME -->
-    <section class="route" id="route-home">
+    <!-- ✅ IMPORTANT: Home is ACTIVE by default (so you never see blank page) -->
+    <section class="route route-active" id="route-home">
       <section class="hero">
         <div class="hero-overlay"></div>
-
         <div class="container hero-content">
           <h1>Resilient civil & water engineering solutions</h1>
           <p>
             We deliver science-based hydrology and civil engineering consulting to support
             climate-resilient infrastructure, water resources management, and risk reduction.
           </p>
-
           <div class="hero-actions">
             <a class="btn btn-primary" href="#/services" data-route="services">Explore our services</a>
             <a class="btn btn-ghost" href="#/projects" data-route="projects">View projects</a>
@@ -66,10 +65,10 @@
         </div>
       </section>
 
-      <!-- MISSION / ABOUT / VISION -->
       <section class="mv2">
         <div class="mv2-row">
-          <article class="mv2-card mv2-side" data-mv="mission" tabindex="0">
+
+          <article class="mv2-card mv2-side" data-mv="mission">
             <div class="mv2-inner">
               <h2>OUR MISSION</h2>
               <p>
@@ -79,7 +78,7 @@
             </div>
           </article>
 
-          <article class="mv2-card mv2-center" data-mv="about" tabindex="0">
+          <article class="mv2-card mv2-center" data-mv="about">
             <div class="mv2-inner">
               <h2>ABOUT US</h2>
               <p>
@@ -90,7 +89,7 @@
             </div>
           </article>
 
-          <article class="mv2-card mv2-side" data-mv="vision" tabindex="0">
+          <article class="mv2-card mv2-side" data-mv="vision">
             <div class="mv2-inner">
               <h2>OUR VISION</h2>
               <p>
@@ -99,93 +98,54 @@
               </p>
             </div>
           </article>
+
         </div>
       </section>
-
     </section>
 
-    <!-- SERVICES -->
     <section class="route" id="route-services">
       <section class="page-hero">
         <div class="container">
           <h1 class="page-title">Services</h1>
-          <p class="page-subtitle">
-            Engineering services tailored for resilient infrastructure, hydrology, and risk reduction.
-          </p>
+          <p class="page-subtitle">Engineering services tailored for resilient infrastructure and hydrology.</p>
         </div>
       </section>
 
       <section class="section">
         <div class="container">
           <div class="auto-grid">
-            <div class="card">
-              <h3>Hydrology & Water Resources</h3>
-              <ul class="list">
-                <li>Catchment assessment</li>
-                <li>Flood frequency analysis</li>
-                <li>Water balance & planning</li>
-              </ul>
-            </div>
-            <div class="card">
-              <h3>Stormwater & Drainage</h3>
-              <ul class="list">
-                <li>Drainage design support</li>
-                <li>Culverts & channels</li>
-                <li>Urban runoff studies</li>
-              </ul>
-            </div>
-            <div class="card">
-              <h3>Risk & Resilience</h3>
-              <ul class="list">
-                <li>Hazard screening</li>
-                <li>Climate adaptation options</li>
-                <li>Decision-ready reporting</li>
-              </ul>
-            </div>
+            <div class="card"><h3>Hydrology & Water Resources</h3><p class="muted">Content here…</p></div>
+            <div class="card"><h3>Stormwater & Drainage</h3><p class="muted">Content here…</p></div>
+            <div class="card"><h3>Risk & Resilience</h3><p class="muted">Content here…</p></div>
           </div>
         </div>
       </section>
     </section>
 
-    <!-- PROJECTS -->
     <section class="route" id="route-projects">
       <section class="page-hero">
         <div class="container">
           <h1 class="page-title">Projects</h1>
-          <p class="page-subtitle">
-            Selected examples of work across water, infrastructure, and environmental systems.
-          </p>
+          <p class="page-subtitle">Selected examples of work across water, infrastructure, and environmental systems.</p>
         </div>
       </section>
 
       <section class="section">
         <div class="container">
           <div class="auto-grid">
-            <div class="card">
-              <h3>Project Title 1</h3>
-              <p class="muted">Short description of the project.</p>
-            </div>
-            <div class="card">
-              <h3>Project Title 2</h3>
-              <p class="muted">Short description of the project.</p>
-            </div>
-            <div class="card">
-              <h3>Project Title 3</h3>
-              <p class="muted">Short description of the project.</p>
-            </div>
+            <div class="card"><h3>Project 1</h3><p class="muted">Content here…</p></div>
+            <div class="card"><h3>Project 2</h3><p class="muted">Content here…</p></div>
+            <div class="card"><h3>Project 3</h3><p class="muted">Content here…</p></div>
           </div>
         </div>
       </section>
     </section>
 
-    <!-- ABOUT -->
     <section class="route" id="route-about">
       <section class="page-hero">
         <div class="container">
           <h1 class="page-title">About us</h1>
-          <p class="page-subtitle">
-            Who we are and how we support climate-resilient infrastructure and water resources.
-          </p>
+          <p class="page-subtitle">Who we are and how we support resilience and water resources management.</p>
         </div>
       </section>
 
@@ -193,23 +153,17 @@
         <div class="container">
           <div class="card">
             <h2 class="title">BLUERENSI Consult</h2>
-            <p class="muted">
-              BLUERENSI Consult provides science-based engineering and hydrology expertise to support
-              climate-resilient infrastructure, water resources management, and risk reduction.
-            </p>
+            <p class="muted">Put your about us content here…</p>
           </div>
         </div>
       </section>
     </section>
 
-    <!-- CAREERS -->
     <section class="route" id="route-careers">
       <section class="page-hero">
         <div class="container">
           <h1 class="page-title">Careers</h1>
-          <p class="page-subtitle">
-            Join our team — opportunities in hydrology, civil engineering, and environmental systems.
-          </p>
+          <p class="page-subtitle">Join our team — opportunities in hydrology and civil engineering.</p>
         </div>
       </section>
 
@@ -217,52 +171,24 @@
         <div class="container">
           <div class="card">
             <h3>Open Roles</h3>
-            <p class="muted">Add your vacancies here.</p>
+            <p class="muted">Put careers content here…</p>
           </div>
         </div>
       </section>
     </section>
 
-    <!-- CONTACT -->
     <section class="route" id="route-contact">
       <section class="page-hero">
         <div class="container">
           <h1 class="page-title">Contact</h1>
-          <p class="page-subtitle">
-            Tell us about your project. We’ll respond as soon as we can.
-          </p>
+          <p class="page-subtitle">Tell us about your project.</p>
         </div>
       </section>
 
       <section class="section">
         <div class="container">
-          <div class="contact-wrap">
-            <div class="card">
-              <form class="form" id="contactForm">
-                <label>
-                  Name
-                  <input type="text" required />
-                </label>
-                <label>
-                  Email
-                  <input type="email" required />
-                </label>
-                <label>
-                  Message
-                  <textarea required></textarea>
-                </label>
-                <button class="btn btn-primary" type="submit">Send</button>
-                <div class="sent" id="sentMsg" hidden>Message sent (demo).</div>
-              </form>
-            </div>
-
-            <div class="card">
-              <h3>Office</h3>
-              <p class="muted">Add address / email / phone here.</p>
-              <hr style="border:none;border-top:1px solid rgba(15,23,42,.12);margin:14px 0;">
-              <h3>Working Hours</h3>
-              <p class="muted">Monday – Friday, 08:00 AM – 05:00 PM</p>
-            </div>
+          <div class="card">
+            <p class="muted">Put contact content here…</p>
           </div>
         </div>
       </section>
@@ -270,7 +196,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-inner">
       <div>© 2026 BLUERENSI Consult. All rights reserved.</div>
@@ -283,6 +208,7 @@
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <!-- ✅ IMPORTANT: use defer so JS loads AFTER HTML -->
+  <script src="app.js" defer></script>
 </body>
 </html>
