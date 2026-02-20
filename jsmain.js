@@ -1,124 +1,83 @@
-// ============================
-// ROUTER (works with .route + data-route)
-// ============================
-function showRoute(routeId) {
-  const routes = document.querySelectorAll(".route");
-  routes.forEach(r => r.classList.remove("route-active"));
+// ================== NAV TOGGLE (MOBILE) ==================
+const navToggle = document.querySelector(".nav-toggle");
+const menu = document.querySelector(".menu");
 
+if (navToggle && menu) {
+  navToggle.addEventListener("click", () => {
+    menu.classList.toggle("open");
+  });
+}
+
+// ================== ROUTING (HASH PAGES) ==================
+function setActiveRoute(routeId) {
+  // show/hide routes
+  document.querySelectorAll(".route").forEach(r => r.classList.remove("route-active"));
   const target = document.getElementById(routeId);
   if (target) target.classList.add("route-active");
 
-  // active nav link highlight
-  document.querySelectorAll(".nav-link").forEach(a => {
-    a.classList.toggle("active", a.dataset.route === routeId);
-  });
+  // active menu link
+  document.querySelectorAll(".nav-link").forEach(a => a.classList.remove("active"));
+  document.querySelectorAll(`[data-route="${routeId}"]`).forEach(a => a.classList.add("active"));
 
-  // close mobile menu if open
-  const menu = document.querySelector(".menu");
+  // close menu on mobile
   if (menu) menu.classList.remove("open");
 
-  // scroll to top
+  // scroll top for page routes (keeps home scrolling natural)
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function getRouteFromHash() {
-  const hash = (window.location.hash || "#home").replace("#", "");
-  return hash || "home";
+  const h = (window.location.hash || "#home").replace("#", "").trim();
+  return h || "home";
 }
 
-// handle clicks on any link with data-route
+// Click handling (prevent weird behaviour)
 document.addEventListener("click", (e) => {
   const link = e.target.closest("[data-route]");
   if (!link) return;
 
-  const routeId = link.dataset.route;
-  if (!routeId) return;
+  const route = link.getAttribute("data-route");
+  if (!route) return;
 
   e.preventDefault();
-  window.location.hash = `#${routeId}`;
-  showRoute(routeId);
+  window.location.hash = `#${route}`;
 });
 
-// on load
-window.addEventListener("DOMContentLoaded", () => {
-  // menu toggle
-  const toggle = document.querySelector(".nav-toggle");
-  const menu = document.querySelector(".menu");
-  if (toggle && menu) {
-    toggle.addEventListener("click", () => menu.classList.toggle("open"));
-  }
-
-  // initial route
-  showRoute(getRouteFromHash());
-
-  // services filter
-  initServiceFilter();
-
-  // contact form demo
-  initContactForm();
-
-  // mv2 (mission/about/vision click animation)
-  initMV2();
-});
-
-// handle manual hash change (back/forward)
+// React on hash change
 window.addEventListener("hashchange", () => {
-  showRoute(getRouteFromHash());
+  setActiveRoute(getRouteFromHash());
 });
 
-// ============================
-// SERVICES FILTER
-// ============================
-function initServiceFilter() {
+// Start
+document.addEventListener("DOMContentLoaded", () => {
+  setActiveRoute(getRouteFromHash());
+
+  // ================== SERVICES FILTER ==================
   const chips = document.querySelectorAll(".chip");
   const items = document.querySelectorAll(".service-item");
 
-  if (!chips.length || !items.length) return;
+  chips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      chips.forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
 
-  chips.forEach(btn => {
-    btn.addEventListener("click", () => {
-      chips.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const f = btn.dataset.filter;
-
-      items.forEach(item => {
-        const cat = item.dataset.cat;
-        const show = (f === "all" || f === cat);
-        item.style.display = show ? "" : "none";
+      const f = chip.getAttribute("data-filter");
+      items.forEach(it => {
+        const cat = it.getAttribute("data-cat");
+        it.style.display = (f === "all" || f === cat) ? "" : "none";
       });
     });
   });
-}
 
-// ============================
-// CONTACT FORM DEMO
-// ============================
-function initContactForm() {
+  // ================== CONTACT DEMO ==================
   const form = document.getElementById("contactForm");
-  const msg = document.getElementById("sentMsg");
-  if (!form || !msg) return;
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    msg.hidden = false;
-    setTimeout(() => (msg.hidden = true), 2500);
-    form.reset();
-  });
-}
-
-// ============================
-// MISSION / ABOUT / VISION INTERACTION
-// - Clicking changes colors (CSS) + moves (CSS transform)
-// ============================
-function initMV2() {
-  const cards = document.querySelectorAll(".mv2-card");
-  if (!cards.length) return;
-
-  cards.forEach(card => {
-    card.addEventListener("click", () => {
-      cards.forEach(c => c.classList.remove("is-active"));
-      card.classList.add("is-active");
+  const sent = document.getElementById("sentMsg");
+  if (form && sent) {
+    form.addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      sent.hidden = false;
+      form.reset();
+      setTimeout(() => (sent.hidden = true), 2500);
     });
-  });
-}
+  }
+});
