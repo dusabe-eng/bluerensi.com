@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BLUERENSI Consult</title>
-  <link rel="stylesheet" href="./styles.css?v=2026-fixed-1">
+  <link rel="stylesheet" href="./styles.css?v=2026-5">
 </head>
 
 <body>
@@ -36,15 +36,13 @@
 
 <!-- ================= HOME ================= -->
 <main id="home" class="route route-active">
-
   <section class="hero">
     <div class="hero-overlay"></div>
-
     <div class="container hero-content">
       <h1>Resilient civil &amp; water engineering solutions</h1>
       <p>
-        We deliver science-based hydrology and civil engineering consulting to support climate-resilient infrastructure,
-        water resources management, and risk reduction.
+        We deliver science-based hydrology and civil engineering consulting to support
+        climate-resilient infrastructure, water resources management, and risk reduction.
       </p>
       <div class="hero-actions">
         <a href="#services" class="btn btn-primary" data-route="services">Explore our services</a>
@@ -53,11 +51,11 @@
     </div>
   </section>
 
-  <!-- ✅ Mission / About / Vision (Strong-style) -->
+  <!-- ===== MISSION / ABOUT / VISION (3-block design) ===== -->
   <section class="mv2">
     <div class="mv2-row">
 
-      <article class="mv2-panel mv2-side mv2-mission">
+      <article class="mv2-card mv2-side" data-mv="mission" role="button" tabindex="0" aria-label="Our mission">
         <div class="mv2-inner">
           <h2>OUR MISSION</h2>
           <p>
@@ -68,7 +66,7 @@
         </div>
       </article>
 
-      <article class="mv2-panel mv2-center">
+      <article class="mv2-card mv2-center" data-mv="about" role="button" tabindex="0" aria-label="About us">
         <div class="mv2-inner">
           <h2>ABOUT US</h2>
           <p>
@@ -80,7 +78,7 @@
         </div>
       </article>
 
-      <article class="mv2-panel mv2-side mv2-vision">
+      <article class="mv2-card mv2-side" data-mv="vision" role="button" tabindex="0" aria-label="Our vision">
         <div class="mv2-inner">
           <h2>OUR VISION</h2>
           <p>
@@ -92,7 +90,6 @@
 
     </div>
   </section>
-
 </main>
 
 <!-- ================= SERVICES ================= -->
@@ -258,6 +255,7 @@
       <p class="page-subtitle">Examples of work types we deliver.</p>
     </div>
   </section>
+
   <section class="section">
     <div class="container">
       <div class="auto-grid">
@@ -328,7 +326,9 @@
   <section class="page-hero">
     <div class="container">
       <h1 class="page-title">Careers</h1>
-      <p class="page-subtitle">Join us in delivering science-based, climate-resilient engineering solutions.</p>
+      <p class="page-subtitle">
+        Join us in delivering science-based, climate-resilient engineering solutions.
+      </p>
     </div>
   </section>
 
@@ -340,7 +340,8 @@
           <h3>Work with BLUERENSI Consult</h3>
           <p class="muted">
             We are a growing consultancy working across civil engineering, water resources,
-            hydrology, and climate resilience.
+            hydrology, and climate resilience. We welcome motivated professionals and
+            early-career engineers who want to contribute to impactful projects.
           </p>
         </div>
 
@@ -366,8 +367,13 @@
 
         <div class="card">
           <h3>Get in Touch</h3>
-          <p class="muted">Interested in working with us? Send your CV and a short motivation to:</p>
+          <p class="muted">
+            Interested in working with us? Send your CV and a short motivation to:
+          </p>
           <p><strong>info@bluerensi.com</strong></p>
+          <p class="muted">
+            We welcome expressions of interest even when no positions are currently advertised.
+          </p>
         </div>
 
       </div>
@@ -393,35 +399,40 @@
         <button class="btn btn-primary" type="submit">Send</button>
         <div id="sentMsg" class="sent" hidden>✅ Message sent (demo)</div>
       </form>
-<div class="contact-cards">
-  <div class="card">
-    <h3>BLUERENSI Consult</h3>
-    <p class="muted">Email: info@bluerensi.com</p>
-    <p class="muted">Phone: <a href="tel:+250788333074">+250 788 333 074</a></p>
-    <p class="muted">Location: Rwanda</p>
-  </div>
 
-  <div class="card hours-card">
-    <h3>Working Hours</h3>
+      <!-- Right column: contact + working hours -->
+      <div class="contact-cards">
 
-    <div class="hours-row">
-      <span class="hours-ico" aria-hidden="true">📅</span>
-      <div class="hours-text">
-        <div class="hours-title">Monday – Friday</div>
-        <div class="hours-sub">Closed on weekends & public holidays</div>
+        <div class="card">
+          <h3>BLUERENSI Consult</h3>
+          <p class="muted">Email: info@bluerensi.com</p>
+          <p class="muted">Phone: <a href="tel:+250788333074">+250 788 333 074</a></p>
+          <p class="muted">Location: Rwanda</p>
+        </div>
+
+        <div class="card hours-card">
+          <h3>Working Hours</h3>
+
+          <div class="hours-row">
+            <div class="hours-ico">📅</div>
+            <div>
+              <div class="hours-title">Monday – Friday</div>
+              <div class="hours-sub">Open on weekdays</div>
+            </div>
+          </div>
+
+          <div class="hours-row">
+            <div class="hours-ico">⏰</div>
+            <div>
+              <div class="hours-title">08:00 AM – 05:00 PM</div>
+              <div class="hours-sub">Local time (Rwanda)</div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </div>
-
-    <div class="hours-row">
-      <span class="hours-ico" aria-hidden="true">🕒</span>
-      <div class="hours-text">
-        <div class="hours-title">08:00 AM – 05:00 PM</div>
-        <div class="hours-sub">Local time (Rwanda)</div>
-      </div>
-    </div>
-  </div>
-</div>
-
   </section>
 </main>
 
@@ -437,7 +448,7 @@
   </div>
 </footer>
 
-<script src="./jsmain.js?v=2026-fixed-1"></script>
+<script src="./jsmain.js?v=2026-5"></script>
 
 <!-- ===== TAWK.TO LIVE CHAT ===== -->
 <script type="text/javascript">
@@ -456,4 +467,3 @@ s0.parentNode.insertBefore(s1,s0);
 
 </body>
 </html>
-
