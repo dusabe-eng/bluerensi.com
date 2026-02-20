@@ -1,28 +1,21 @@
-// ================== NAV TOGGLE (MOBILE) ==================
+// NAV TOGGLE (MOBILE)
 const navToggle = document.querySelector(".nav-toggle");
 const menu = document.querySelector(".menu");
 
 if (navToggle && menu) {
-  navToggle.addEventListener("click", () => {
-    menu.classList.toggle("open");
-  });
+  navToggle.addEventListener("click", () => menu.classList.toggle("open"));
 }
 
-// ================== ROUTING (HASH PAGES) ==================
+// ROUTING
 function setActiveRoute(routeId) {
-  // show/hide routes
   document.querySelectorAll(".route").forEach(r => r.classList.remove("route-active"));
   const target = document.getElementById(routeId);
   if (target) target.classList.add("route-active");
 
-  // active menu link
   document.querySelectorAll(".nav-link").forEach(a => a.classList.remove("active"));
   document.querySelectorAll(`[data-route="${routeId}"]`).forEach(a => a.classList.add("active"));
 
-  // close menu on mobile
   if (menu) menu.classList.remove("open");
-
-  // scroll top for page routes (keeps home scrolling natural)
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -31,11 +24,9 @@ function getRouteFromHash() {
   return h || "home";
 }
 
-// Click handling (prevent weird behaviour)
 document.addEventListener("click", (e) => {
   const link = e.target.closest("[data-route]");
   if (!link) return;
-
   const route = link.getAttribute("data-route");
   if (!route) return;
 
@@ -43,16 +34,12 @@ document.addEventListener("click", (e) => {
   window.location.hash = `#${route}`;
 });
 
-// React on hash change
-window.addEventListener("hashchange", () => {
-  setActiveRoute(getRouteFromHash());
-});
+window.addEventListener("hashchange", () => setActiveRoute(getRouteFromHash()));
 
-// Start
 document.addEventListener("DOMContentLoaded", () => {
   setActiveRoute(getRouteFromHash());
 
-  // ================== SERVICES FILTER ==================
+  // SERVICES FILTER
   const chips = document.querySelectorAll(".chip");
   const items = document.querySelectorAll(".service-item");
 
@@ -69,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ================== CONTACT DEMO ==================
+  // CONTACT DEMO
   const form = document.getElementById("contactForm");
   const sent = document.getElementById("sentMsg");
   if (form && sent) {
