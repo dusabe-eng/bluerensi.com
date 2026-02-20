@@ -1,111 +1,40 @@
-(() => {
-  const routes = Array.from(document.querySelectorAll(".route"));
-  const navLinks = Array.from(document.querySelectorAll("[data-route]"));
-  const menu = document.querySelector(".menu");
-  const navToggle = document.querySelector(".nav-toggle");
+// Mobile menu toggle
+const navToggle = document.getElementById("navToggle");
+const menu = document.getElementById("menu");
 
-  // Mobile menu toggle
-  if (navToggle && menu) {
-    navToggle.addEventListener("click", () => menu.classList.toggle("open"));
-    document.addEventListener("click", (e) => {
-      const clickedInside = menu.contains(e.target) || navToggle.contains(e.target);
-      if (!clickedInside) menu.classList.remove("open");
-    });
-  }
-
-  function setActiveRoute(routeId) {
-    routes.forEach((r) => r.classList.remove("route-active"));
-    const target = document.getElementById(routeId);
-    if (target) target.classList.add("route-active");
-
-    navLinks.forEach((a) => a.classList.remove("active"));
-    navLinks
-      .filter((a) => (a.getAttribute("data-route") || "") === routeId)
-      .forEach((a) => a.classList.add("active"));
-
-    // Close mobile menu after navigation
-    if (menu) menu.classList.remove("open");
-
-    // Scroll to top when changing route
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }
-
-  function routeFromHash() {
-    const hash = (window.location.hash || "#home").replace("#", "");
-    const routeId = hash || "home";
-    // If hash points to route ids (home/services/projects/about/careers/contact)
-    const known = ["home", "services", "projects", "about", "careers", "contact"];
-    if (known.includes(routeId)) setActiveRoute(routeId);
-  }
-
-  // Handle clicks on any data-route links
-  document.addEventListener("click", (e) => {
-    const a = e.target.closest("[data-route]");
-    if (!a) return;
-
-    const routeId = a.getAttribute("data-route");
-    if (!routeId) return;
-
-    // Only handle our SPA routes
-    const known = ["home", "services", "projects", "about", "careers", "contact"];
-    if (!known.includes(routeId)) return;
-
-    e.preventDefault();
-    window.location.hash = `#${routeId}`;
-    setActiveRoute(routeId);
+if (navToggle && menu) {
+  navToggle.addEventListener("click", () => {
+    const open = menu.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", String(open));
   });
 
-  // Hash change
-  window.addEventListener("hashchange", routeFromHash);
-
-  // Init
-  routeFromHash();
-
-  // ===== Services filter chips =====
-  const chips = Array.from(document.querySelectorAll(".chip"));
-  const serviceItems = Array.from(document.querySelectorAll(".service-item"));
-
-  chips.forEach((chip) => {
-    chip.addEventListener("click", () => {
-      chips.forEach((c) => c.classList.remove("active"));
-      chip.classList.add("active");
-
-      const filter = chip.dataset.filter;
-      serviceItems.forEach((item) => {
-        const cat = item.dataset.cat;
-        const show = filter === "all" || cat === filter;
-        item.style.display = show ? "" : "none";
-      });
+  // close menu after clicking a link (mobile)
+  menu.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => {
+      menu.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
     });
   });
+}
 
-  // ===== Contact form demo =====
-  const contactForm = document.getElementById("contactForm");
-  const sentMsg = document.getElementById("sentMsg");
-  if (contactForm && sentMsg) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      sentMsg.hidden = false;
-      setTimeout(() => (sentMsg.hidden = true), 2500);
-      contactForm.reset();
-    });
+// Active nav link on scroll
+const links = Array.from(document.querySelectorAll(".nav-link"));
+const sections = links
+  .map(l => document.querySelector(l.getAttribute("href")))
+  .filter(Boolean);
+
+function setActiveLink() {
+  const scrollY = window.scrollY + 140; // offset for topbar+nav
+  let current = sections[0];
+
+  for (const sec of sections) {
+    if (sec.offsetTop <= scrollY) current = sec;
   }
 
-  // ===== MV2 click/active logic =====
-  const mvCards = Array.from(document.querySelectorAll(".mv2-card"));
-  const setActiveMV = (key) => {
-    mvCards.forEach((c) => c.classList.remove("is-active"));
-    const target = mvCards.find((c) => c.dataset.mv === key);
-    if (target) target.classList.add("is-active");
-  };
+  links.forEach(l => l.classList.remove("active"));
+  const active = links.find(l => l.getAttribute("href") === `#${current.id}`);
+  if (active) active.classList.add("active");
+}
 
-  mvCards.forEach((card) => {
-    card.addEventListener("click", () => setActiveMV(card.dataset.mv));
-    card.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        setActiveMV(card.dataset.mv);
-      }
-    });
-  });
-})();
+window.addEventListener("scroll", setActiveLink, { passive: true });
+window.addEventListener("load", setActiveLink);
