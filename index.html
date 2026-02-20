@@ -5,198 +5,142 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>BLUERENSI Consult</title>
 
-  <!-- cache-bust so changes actually show -->
-  <link rel="stylesheet" href="./styles.css?v=1" />
-  <script src="./jsmain.js?v=1" defer></script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="jsmain.js" defer></script>
 </head>
 
 <body>
-  <!-- TOP BAR (Working hours) -->
+  <!-- TOP BAR (working hours) -->
   <div class="topbar">
     <div class="container topbar-inner">
+      <div></div>
       <div class="topbar-right">
-        <span class="topchip">🗓️ Monday – Friday</span>
-        <span class="topchip">⏰ 08:00 AM – 05:00 PM</span>
+        <span class="topchip">🗓️ <b>Monday – Friday</b></span>
+        <span class="topchip">⏰ <b>08:00 AM – 05:00 PM</b></span>
       </div>
     </div>
   </div>
 
-  <!-- HEADER -->
+  <!-- NAV -->
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="#home" aria-label="BLUERENSI Consult Home">
-        <img class="logo" src="./logo.png" alt="BLUERENSI logo" />
+        <img class="logo" src="logo.png" alt="BLUERENSI logo" />
         <div>
           <div class="brand-name">BLUERENSI</div>
           <div class="brand-sub">CONSULT</div>
         </div>
       </a>
 
-      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
-
-      <nav class="menu" id="navMenu">
-        <a class="nav-link active" href="#home">Home</a>
+      <nav class="menu" aria-label="Primary">
+        <a class="nav-link" href="#home">Home</a>
         <a class="nav-link" href="#services">Services</a>
         <a class="nav-link" href="#projects">Projects</a>
         <a class="nav-link" href="#about">About us</a>
         <a class="nav-link" href="#careers">Careers</a>
         <a class="nav-link" href="#contact">Contact</a>
-        <a class="btn btn-primary" href="#contact">Request a consultation</a>
       </nav>
+
+      <a class="cta" href="#contact">Request a consultation</a>
     </div>
   </header>
 
-  <!-- HOME / HERO -->
-  <main id="home">
-    <section class="hero" aria-label="Hero">
-      <div class="hero-overlay"></div>
-      <div class="container hero-content">
+  <!-- HERO -->
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-bg" style="background-image:url('image1.jpg')"></div>
+      <div class="container hero-inner">
         <h1>Resilient civil &amp; water engineering<br/>solutions</h1>
         <p>
-          We deliver science-based hydrology and civil engineering consulting to support climate-resilient
-          infrastructure, water resources management, and risk reduction.
+          We deliver science-based hydrology and civil engineering consulting to support
+          climate-resilient infrastructure, water resources management, and risk reduction.
         </p>
+
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#services">Explore our services</a>
-          <a class="btn btn-ghost" href="#projects">View projects</a>
+          <a class="btn primary" href="#services">Explore our services</a>
+          <a class="btn ghost" href="#projects">View projects</a>
         </div>
       </div>
     </section>
 
-    <!-- Mission / About / Vision -->
-    <section class="mv2" aria-label="Mission Vision About">
-      <div class="mv2-row">
-        <article class="mv2-card mv2-side" data-mv="mission" tabindex="0">
-          <div class="mv2-inner">
-            <h2>Our mission</h2>
-            <p>
-              To deliver resilient, science-based civil and water engineering solutions that support sustainable
-              infrastructure, environmental protection, and climate adaptation.
-            </p>
-          </div>
+    <!-- MISSION / ABOUT / VISION -->
+    <section class="mv-wrap" aria-label="Mission About Vision">
+      <div class="container mv-grid">
+        <article class="mv-block mv-left">
+          <h3>OUR MISSION</h3>
+          <p>
+            To deliver resilient, science-based civil and water engineering solutions that support
+            sustainable infrastructure, environmental protection, and climate adaptation.
+          </p>
         </article>
 
-        <article class="mv2-card mv2-center" data-mv="about" tabindex="0">
-          <div class="mv2-inner">
-            <h2>About us</h2>
-            <p>
-              BLUERENSI Consult provides practical, science-driven engineering and hydrology expertise to support
-              climate-resilient infrastructure, water resources management, and risk reduction.
-            </p>
-            <a class="mv2-link" href="#about">Learn more →</a>
-          </div>
+        <article class="mv-block mv-center">
+          <h3>ABOUT US</h3>
+          <p>
+            BLUERENSI Consult provides practical, science-driven engineering and hydrology expertise to support
+            climate-resilient infrastructure, water resources management, and risk reduction.
+          </p>
+          <a class="link" href="#about">Learn more →</a>
         </article>
 
-        <article class="mv2-card mv2-side" data-mv="vision" tabindex="0">
-          <div class="mv2-inner">
-            <h2>Our vision</h2>
-            <p>
-              To be a trusted engineering consultancy driving innovation and resilience in water, infrastructure,
-              and environmental systems across the region.
-            </p>
-          </div>
+        <article class="mv-block mv-right">
+          <h3>OUR VISION</h3>
+          <p>
+            To be a trusted engineering consultancy driving innovation and resilience in water,
+            infrastructure, and environmental systems across the region.
+          </p>
         </article>
       </div>
     </section>
 
-    <!-- SECTIONS (click menu = scroll here) -->
+    <!-- SECTIONS -->
     <section id="services" class="section">
       <div class="container">
-        <h2 class="title">Services</h2>
-        <p class="subtitle">Engineering services tailored for resilient infrastructure and hydrology.</p>
+        <h2>Services</h2>
+        <p class="muted">Engineering services tailored for resilient infrastructure and hydrology.</p>
 
-        <div class="auto-grid">
+        <div class="cards">
           <div class="card">
-            <h3>Stormwater &amp; drainage</h3>
-            <p class="muted">Catchment assessment, culverts, channels, and stormwater design support.</p>
+            <h4>Hydrology &amp; Water Resources</h4>
+            <p>Catchment assessment, rainfall-runoff modelling, and water resources planning.</p>
           </div>
           <div class="card">
-            <h3>Flood risk &amp; planning</h3>
-            <p class="muted">Flood frequency analysis, mapping, and planning recommendations.</p>
+            <h4>Stormwater &amp; Drainage</h4>
+            <p>Culverts, channels, and stormwater design support.</p>
           </div>
           <div class="card">
-            <h3>Technical reporting</h3>
-            <p class="muted">Clear, decision-ready reports to support permits, designs, and implementation.</p>
+            <h4>Flood Risk &amp; Planning</h4>
+            <p>Flood frequency analysis, mapping, and planning recommendations.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section section-soft">
+    <section id="projects" class="section alt">
       <div class="container">
-        <h2 class="title">Projects</h2>
-        <p class="subtitle">Selected work across water, infrastructure, and environmental systems.</p>
-
-        <div class="auto-grid">
-          <div class="card">
-            <h3>Hydrology assessments</h3>
-            <p class="muted">Rainfall/runoff analyses, flow estimates, and design support.</p>
-          </div>
-          <div class="card">
-            <h3>Watershed planning</h3>
-            <p class="muted">Catchment diagnostics and practical mitigation recommendations.</p>
-          </div>
-          <div class="card">
-            <h3>GIS &amp; mapping</h3>
-            <p class="muted">Risk maps, suitability analysis, and decision-support visuals.</p>
-          </div>
-        </div>
+        <h2>Projects</h2>
+        <p class="muted">Selected projects will appear here.</p>
       </div>
     </section>
 
     <section id="about" class="section">
       <div class="container">
-        <h2 class="title">About us</h2>
-        <p class="subtitle">
-          We combine engineering practice with science-based methods to support resilient design and planning.
-        </p>
-
-        <div class="card">
-          <p class="muted">
-            Add your longer “About” text here (company background, approach, values, and experience).
-          </p>
-        </div>
+        <h2>About us</h2>
+        <p class="muted">Add more about your company here.</p>
       </div>
     </section>
 
-    <section id="careers" class="section section-soft">
+    <section id="careers" class="section alt">
       <div class="container">
-        <h2 class="title">Careers</h2>
-        <p class="subtitle">Work with us on projects that improve resilience and sustainability.</p>
-
-        <div class="card">
-          <p class="muted">Add your open positions / internship info here.</p>
-        </div>
+        <h2>Careers</h2>
+        <p class="muted">Career opportunities will appear here.</p>
       </div>
     </section>
 
     <section id="contact" class="section">
       <div class="container">
-        <h2 class="title">Contact</h2>
-        <p class="subtitle">Tell us about your project and we’ll get back to you.</p>
-
-        <div class="contact-wrap">
-          <form class="card form" onsubmit="return false;">
-            <label>
-              Full name
-              <input type="text" placeholder="Your name" />
-            </label>
-            <label>
-              Email
-              <input type="email" placeholder="you@example.com" />
-            </label>
-            <label>
-              Message
-              <textarea placeholder="How can we help?"></textarea>
-            </label>
-            <button class="btn btn-primary" type="button">Send message</button>
-          </form>
-
-          <div class="card">
-            <h3>BLUERENSI Consult</h3>
-            <p class="muted">Add address, phone, email, and any extra contact info here.</p>
-          </div>
-        </div>
+        <h2>Contact</h2>
+        <p class="muted">Contact details and a form can go here.</p>
       </div>
     </section>
   </main>
