@@ -522,3 +522,96 @@ details > summary::-webkit-details-marker{ display:none; }
   background: #259a50;
   transform: translateY(-2px);
 }
+/* =========================================================
+   MISSION / ABOUT / VISION (REFERENCE STYLE: dark–tall center–dark)
+   ========================================================= */
+
+.mv2{
+  padding: 0;
+  background: #ffffff;
+}
+
+/* Full-width row like the reference */
+.mv2-row{
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+}
+
+/* Side panels */
+.mv2-side{
+  flex: 1 1 0;
+  background: #1f2a2f;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  min-height: 280px;
+}
+
+/* Center panel (taller + overlaps upward) */
+.mv2-center{
+  flex: 0 0 380px;              /* fixed center width like reference */
+  background: #ff6a2b;           /* ORANGE like reference */
+  color: #ffffff;
+  position: relative;
+  z-index: 3;
+  margin-top: -80px;             /* pull upward */
+  margin-bottom: -40px;          /* extend downward */
+  display: flex;
+  align-items: center;
+  box-shadow: 0 22px 55px rgba(0,0,0,.25);
+}
+
+/* Inner spacing */
+.mv2-inner{
+  padding: 54px 44px;
+}
+
+/* Titles */
+.mv2 h2{
+  margin: 0 0 18px;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Body text */
+.mv2 p{
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.9;
+  opacity: 0.95;
+}
+
+/* Link */
+.mv2-link{
+  display: inline-block;
+  margin-top: 18px;
+  font-weight: 900;
+  text-decoration: none;
+  color: #ffffff;
+  opacity: .95;
+}
+.mv2-link:hover{
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 980px){
+  .mv2-row{
+    flex-direction: column;
+    width: min(900px, calc(100% - 40px));
+  }
+
+  .mv2-center{
+    flex: 1 1 auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    box-shadow: 0 16px 40px rgba(0,0,0,.18);
+  }
+}
