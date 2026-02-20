@@ -1,117 +1,124 @@
-// jsmain.js (clean - no duplicates)
+// ============================
+// ROUTER (works with .route + data-route)
+// ============================
+function showRoute(routeId) {
+  const routes = document.querySelectorAll(".route");
+  routes.forEach(r => r.classList.remove("route-active"));
 
-document.addEventListener("DOMContentLoaded", () => {
-  // ---------- Helpers ----------
-  const $ = (sel, root = document) => root.querySelector(sel);
-  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const target = document.getElementById(routeId);
+  if (target) target.classList.add("route-active");
 
-  // ---------- Mobile menu toggle ----------
-  const menu = $(".menu");
-  const toggle = $(".nav-toggle");
-
-  toggle?.addEventListener("click", () => menu?.classList.toggle("open"));
-
-  // Close menu when clicking any nav link (mobile)
-  $$(".menu .nav-link").forEach(a => {
-    a.addEventListener("click", () => menu?.classList.remove("open"));
+  // active nav link highlight
+  document.querySelectorAll(".nav-link").forEach(a => {
+    a.classList.toggle("active", a.dataset.route === routeId);
   });
 
-  // ---------- Routing ----------
-  const routes = $$(".route");
+  // close mobile menu if open
+  const menu = document.querySelector(".menu");
+  if (menu) menu.classList.remove("open");
 
-  function showRoute(name) {
-    // show the route
-    routes.forEach(r => r.classList.toggle("route-active", r.id === name));
+  // scroll to top
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
-    // active nav style
-    $$(".nav-link").forEach(a => {
-      a.classList.toggle("active", a.dataset.route === name);
-    });
+function getRouteFromHash() {
+  const hash = (window.location.hash || "#home").replace("#", "");
+  return hash || "home";
+}
 
-    // close mobile menu
-    menu?.classList.remove("open");
+// handle clicks on any link with data-route
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("[data-route]");
+  if (!link) return;
 
-    // scroll top
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const routeId = link.dataset.route;
+  if (!routeId) return;
 
-    // AFTER route becomes visible, init services features (if services is opened)
-    if (name === "services") {
-      initServiceFilters();
-      initServiceAccordion();
-    }
+  e.preventDefault();
+  window.location.hash = `#${routeId}`;
+  showRoute(routeId);
+});
+
+// on load
+window.addEventListener("DOMContentLoaded", () => {
+  // menu toggle
+  const toggle = document.querySelector(".nav-toggle");
+  const menu = document.querySelector(".menu");
+  if (toggle && menu) {
+    toggle.addEventListener("click", () => menu.classList.toggle("open"));
   }
-
-  // click routing for any [data-route]
-  $$("[data-route]").forEach(a => {
-    a.addEventListener("click", (e) => {
-      const name = a.dataset.route;
-      if (!name) return;
-      e.preventDefault();
-      history.pushState({ route: name }, "", `#${name}`);
-      showRoute(name);
-    });
-  });
-
-  // back/forward
-  window.addEventListener("popstate", () => {
-    const hash = (location.hash || "#home").replace("#", "").trim();
-    showRoute(document.getElementById(hash) ? hash : "home");
-  });
 
   // initial route
-  const start = (location.hash || "#home").replace("#", "").trim();
-  showRoute(document.getElementById(start) ? start : "home");
+  showRoute(getRouteFromHash());
 
-  // ---------- Services: Filter chips ----------
-  function initServiceFilters() {
-    const chips = $$(".chip");
-    const items = $$(".service-item");
-    if (!chips.length || !items.length) return;
+  // services filter
+  initServiceFilter();
 
-    // prevent double-binding if user opens services multiple times
-    chips.forEach(btn => {
-      if (btn.dataset.bound === "1") return;
-      btn.dataset.bound = "1";
+  // contact form demo
+  initContactForm();
 
-      btn.addEventListener("click", () => {
-        chips.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        const f = btn.dataset.filter || "all";
-        items.forEach(it => {
-          const cat = it.dataset.cat || "";
-          it.style.display = (f === "all" || f === cat) ? "" : "none";
-        });
-      });
-    });
-  }
-
-  // ---------- Services: Accordion (only one open) ----------
-  function initServiceAccordion() {
-    const detailsList = $$(".service-details");
-    if (!detailsList.length) return;
-
-    detailsList.forEach(d => {
-      if (d.dataset.bound === "1") return;
-      d.dataset.bound = "1";
-
-      d.addEventListener("toggle", () => {
-        if (!d.open) return;
-        detailsList.forEach(other => {
-          if (other !== d) other.open = false;
-        });
-      });
-    });
-  }
-
-  // ---------- Contact form demo ----------
-  const form = $("#contactForm");
-  const msg = $("#sentMsg");
-
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (msg) msg.hidden = false;
-    form.reset();
-    setTimeout(() => { if (msg) msg.hidden = true; }, 2500);
-  });
+  // mv2 (mission/about/vision click animation)
+  initMV2();
 });
+
+// handle manual hash change (back/forward)
+window.addEventListener("hashchange", () => {
+  showRoute(getRouteFromHash());
+});
+
+// ============================
+// SERVICES FILTER
+// ============================
+function initServiceFilter() {
+  const chips = document.querySelectorAll(".chip");
+  const items = document.querySelectorAll(".service-item");
+
+  if (!chips.length || !items.length) return;
+
+  chips.forEach(btn => {
+    btn.addEventListener("click", () => {
+      chips.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const f = btn.dataset.filter;
+
+      items.forEach(item => {
+        const cat = item.dataset.cat;
+        const show = (f === "all" || f === cat);
+        item.style.display = show ? "" : "none";
+      });
+    });
+  });
+}
+
+// ============================
+// CONTACT FORM DEMO
+// ============================
+function initContactForm() {
+  const form = document.getElementById("contactForm");
+  const msg = document.getElementById("sentMsg");
+  if (!form || !msg) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    msg.hidden = false;
+    setTimeout(() => (msg.hidden = true), 2500);
+    form.reset();
+  });
+}
+
+// ============================
+// MISSION / ABOUT / VISION INTERACTION
+// - Clicking changes colors (CSS) + moves (CSS transform)
+// ============================
+function initMV2() {
+  const cards = document.querySelectorAll(".mv2-card");
+  if (!cards.length) return;
+
+  cards.forEach(card => {
+    card.addEventListener("click", () => {
+      cards.forEach(c => c.classList.remove("is-active"));
+      card.classList.add("is-active");
+    });
+  });
+}
