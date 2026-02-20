@@ -413,3 +413,52 @@ details > summary::-webkit-details-marker{ display:none; }
   margin-left:auto;
 }
 .footer a:hover{color:#bff2dc}
+/* Contact cards (company + working hours) */
+.contact-cards{
+  display:grid;
+  gap:18px;
+}
+
+/* Working hours card */
+.hours-card h3{
+  margin:0 0 10px;
+}
+
+.hours-row{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:12px 0;
+  border-top:1px solid rgba(15,23,42,.08);
+}
+
+.hours-row:first-of-type{
+  border-top:none;
+  padding-top:0;
+}
+
+.hours-ico{
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: var(--sky);
+  border:1px solid rgba(11,58,117,.16);
+  flex:0 0 auto;
+  font-size:18px;
+}
+
+.hours-title{
+  font-weight:900;
+  color: var(--ink);
+  line-height:1.2;
+}
+
+.hours-sub{
+  margin-top:6px;
+  color:#475569;
+  font-size:14px;
+  line-height:1.4;
+}
