@@ -26,15 +26,40 @@ body{
 a{text-decoration:none;color:inherit}
 .container{width:min(1120px,calc(100% - 40px));margin:auto}
 
+/* ===== TOPBAR (WORKING HOURS) ===== */
+.topbar{
+  position:fixed;
+  inset:0 0 auto 0;
+  height:34px;
+  background:#0b2545;
+  color:#fff;
+  z-index:10000;
+  display:flex;
+  align-items:center;
+}
+.topbar-inner{
+  display:flex;
+  justify-content:flex-end;
+  gap:22px;
+  font-size:13px;
+  opacity:.95;
+}
+.topbar-item{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.topbar-ico{opacity:.95}
+
 /* ROUTING */
 .route{display:none}
-.route.route-active{display:block;flex:1}
+.route.route-active{
+  display:block;
+  flex:1;
+}
 
 /* HEADER */
 .nav{
   position:fixed;
-  inset:0 0 auto 0;
-  z-index:999;
+  top:34px; /* below topbar */
+  left:0; right:0;
+  z-index:9999;
   background:var(--sky);
   border-bottom:1px solid rgba(11,58,117,.18)
 }
@@ -87,7 +112,7 @@ a{text-decoration:none;color:inherit}
 
 /* HERO */
 .hero{
-  padding-top:78px;
+  padding-top:calc(34px + 74px); /* topbar + nav */
   min-height:560px;
   position:relative;
   overflow:hidden;
@@ -100,6 +125,7 @@ a{text-decoration:none;color:inherit}
   background-position:center;
   transform:scale(1.05);
   z-index:0;
+  pointer-events:none; /* ✅ IMPORTANT: don’t block nav clicks */
 }
 .hero::before{
   background-image:url("./image1.jpg");
@@ -114,7 +140,8 @@ a{text-decoration:none;color:inherit}
 .hero-overlay{
   position:absolute;inset:0;
   background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,.22));
-  z-index:1
+  z-index:1;
+  pointer-events:none; /* ✅ IMPORTANT */
 }
 .hero-content{
   position:relative;
@@ -134,7 +161,7 @@ a{text-decoration:none;color:inherit}
 
 /* PAGE HERO */
 .page-hero{
-  padding-top:96px;
+  padding-top:calc(34px + 90px);
   padding-bottom:26px;
   background:linear-gradient(180deg,#f4fbff,#ffffff);
   border-bottom:1px solid rgba(15,23,42,.06);
@@ -219,37 +246,29 @@ a{text-decoration:none;color:inherit}
 .form textarea{min-height:140px;resize:vertical}
 .sent{color:#16a34a;font-weight:900}
 
-/* separator + working hours */
-.sep{
-  border:0;
-  height:1px;
-  background:rgba(15,23,42,.10);
-  margin:16px 0;
-}
-.hours-box h4{margin:0 0 10px;font-size:16px}
-.hours-row{display:flex;align-items:center;gap:10px;color:#334155;margin:8px 0}
-.hours-ico{width:26px;height:26px;display:flex;align-items:center;justify-content:center;background:var(--sky2);border-radius:999px}
-
 /* =========================================================
-   MISSION / ABOUT / VISION (REFERENCE STYLE + HOVER + CLICK)
+   MISSION / ABOUT / VISION (YOUR DESIGN + HOVER/CICK EFFECTS)
 ========================================================= */
 .mv2{
   background:#fff;
-  padding: 0 0 30px;
+  padding:0;
+  margin-top:-40px;
+  padding-bottom:40px;
 }
-
 .mv2-row{
   width:min(1120px,calc(100% - 40px));
-  margin: 0 auto;
+  margin:0 auto;
   display:flex;
   align-items:stretch;
   justify-content:center;
+  gap:0;
 }
 
-/* base card */
 .mv2-card{
+  cursor:pointer;
   transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
-  user-select:none;
+  will-change: transform;
+  outline:none;
 }
 
 /* side blocks */
@@ -259,17 +278,17 @@ a{text-decoration:none;color:inherit}
   color:#fff;
   display:flex;
   align-items:center;
-  min-height:280px;
+  min-height:300px;
 }
 
-/* center tall block SKY BLUE */
+/* center tall block (SKY BLUE) */
 .mv2-center{
   flex:0 0 380px;
   background: var(--sky2);
   color: var(--ink);
   position:relative;
   z-index:3;
-  margin-top:-80px;
+  margin-top:-90px;
   margin-bottom:-40px;
   display:flex;
   align-items:center;
@@ -301,39 +320,29 @@ a{text-decoration:none;color:inherit}
 }
 .mv2-link:hover{opacity:1;text-decoration:underline}
 
-/* Hover effect: side panel lifts + rotates a bit + becomes SKY BLUE like center */
-.mv2-side:hover{
-  transform: translateY(-10px) rotate(-1deg);
+/* ===== HOVER EFFECT (Mission/Vision become like center + rotate) ===== */
+.mv2-side:hover,
+.mv2-side:focus{
   background: var(--sky2);
   color: var(--ink);
-  box-shadow: 0 20px 50px rgba(0,0,0,.18);
+  transform: translateY(-10px) rotate(-1deg);
+  box-shadow: 0 22px 55px rgba(0,0,0,.18);
 }
 
-/* When hovering side, center reacts a bit */
-.mv2-row.hover-mission .mv2-center,
-.mv2-row.hover-vision .mv2-center{
-  background: #c7e6ff; /* slightly different sky for reaction */
-}
-
-/* Click active: keep highlight */
+/* ===== CLICKED ACTIVE STATE ===== */
 .mv2-card.is-active{
-  transform: translateY(-14px);
+  background: var(--sky2);
+  color: var(--ink);
+  transform: translateY(-14px) rotate(-1deg);
   box-shadow: 0 26px 70px rgba(0,0,0,.22);
 }
 
-/* if mission/vision active, keep them sky */
-.mv2-card[data-mv="mission"].is-active,
-.mv2-card[data-mv="vision"].is-active{
-  background: var(--sky2);
-  color: var(--ink);
+/* keep center always “strong” */
+.mv2-center.is-active{
+  transform: translateY(-12px);
 }
 
-/* About active just slightly stronger shadow */
-.mv2-card[data-mv="about"].is-active{
-  box-shadow: 0 30px 80px rgba(0,0,0,.22);
-}
-
-/* Responsive */
+/* Responsive stack */
 @media(max-width:980px){
   .mv2-row{flex-direction:column}
   .mv2-center{
@@ -341,11 +350,16 @@ a{text-decoration:none;color:inherit}
     margin-top:0;
     margin-bottom:0;
   }
-  .mv2-side:hover{ transform: translateY(-6px); }
+  .mv2-side,.mv2-center{min-height:auto}
+  .mv2-card.is-active,
+  .mv2-side:hover,
+  .mv2-side:focus{
+    transform:none;
+  }
 }
 
 /* =========================
-   SERVICES
+   SERVICES (CLEAN + PREMIUM)
 ========================= */
 .services-layout{
   padding: 96px 0 72px;
@@ -367,6 +381,7 @@ a{text-decoration:none;color:inherit}
   flex-wrap:wrap;
   margin: 10px 0 34px;
 }
+
 .chip{
   border: 1px solid rgba(15,23,42,.14);
   background:#fff;
@@ -378,7 +393,11 @@ a{text-decoration:none;color:inherit}
   transition: transform .15s ease, background .15s ease, border-color .15s ease;
 }
 .chip:hover{ transform: translateY(-1px); }
-.chip.active{ background: var(--blue); border-color: var(--blue); color:#fff; }
+.chip.active{
+  background: var(--blue);
+  border-color: var(--blue);
+  color:#fff;
+}
 
 .services-grid{
   max-width: 1120px;
