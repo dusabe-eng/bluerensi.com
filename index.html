@@ -34,14 +34,15 @@
   </div>
 </header>
 
-<!-- ================= HOME (HERO + MISSION/VISION) ================= -->
+<!-- ================= HOME ================= -->
 <main id="home" class="route route-active">
   <section class="hero">
     <div class="hero-overlay"></div>
     <div class="container hero-content">
       <h1>Resilient civil &amp; water engineering solutions</h1>
       <p>
-We deliver science-based hydrology and civil engineering consulting to support climate-resilient infrastructure, water resources management, and risk reduction.
+        We deliver science-based hydrology and civil engineering consulting to support climate-resilient infrastructure,
+        water resources management, and risk reduction.
       </p>
       <div class="hero-actions">
         <a href="#services" class="btn btn-primary" data-route="services">Explore our services</a>
@@ -50,43 +51,44 @@ We deliver science-based hydrology and civil engineering consulting to support c
     </div>
   </section>
 
-  <!-- ================= MISSION / ABOUT / VISION (REFERENCE STYLE) ================= -->
-<section class="mv2">
-  <div class="mv2-row">
+  <!-- ================= MISSION / ABOUT / VISION (REFERENCE STYLE + CLICK ANIMATIONS) ================= -->
+  <section class="mv2">
+    <div class="mv2-row">
 
-    <div class="mv2-side">
-      <div class="mv2-inner">
-        <h2>OUR MISSION</h2>
-        <p>
-          To deliver resilient, science-based civil and water engineering solutions
-          that support sustainable infrastructure, environmental protection, and climate adaptation.
-        </p>
-      </div>
+      <article class="mv2-side mv2-card" data-mv="mission">
+        <div class="mv2-inner">
+          <h2>OUR MISSION</h2>
+          <p>
+            To deliver resilient, science-based civil and water engineering solutions
+            that support sustainable infrastructure, environmental protection, and climate adaptation.
+          </p>
+        </div>
+      </article>
+
+      <article class="mv2-center mv2-card is-active" data-mv="about">
+        <div class="mv2-inner">
+          <h2>ABOUT US</h2>
+          <p>
+            BLUERENSI Consult provides practical, science-driven engineering and hydrology expertise
+            to support climate-resilient infrastructure, water resources management, and risk reduction.
+          </p>
+          <a href="#about" data-route="about" class="mv2-link">Learn more →</a>
+        </div>
+      </article>
+
+      <article class="mv2-side mv2-card" data-mv="vision">
+        <div class="mv2-inner">
+          <h2>OUR VISION</h2>
+          <p>
+            To be a trusted engineering consultancy driving innovation and resilience
+            in water, infrastructure, and environmental systems across the region.
+          </p>
+        </div>
+      </article>
+
     </div>
-
-    <div class="mv2-center">
-      <div class="mv2-inner">
-        <h2>ABOUT US</h2>
-        <p>
-          BLUERENSI Consult provides practical, science-driven engineering and hydrology expertise
-          to support climate-resilient infrastructure, water resources management, and risk reduction.
-        </p>
-        <a href="#about" data-route="about" class="mv2-link">Learn more →</a>
-      </div>
-    </div>
-
-    <div class="mv2-side">
-      <div class="mv2-inner">
-        <h2>OUR VISION</h2>
-        <p>
-          To be a trusted engineering consultancy driving innovation and resilience
-          in water, infrastructure, and environmental systems across the region.
-        </p>
-      </div>
-    </div>
-
-  </div>
-</section>
+  </section>
+</main>
 
 <!-- ================= SERVICES ================= -->
 <section id="services" class="route">
@@ -94,7 +96,6 @@ We deliver science-based hydrology and civil engineering consulting to support c
     <div class="container">
       <h2 class="services-title">Our Services</h2>
 
-      <!-- Selection / filter -->
       <div class="service-filters">
         <button class="chip active" data-filter="all">All</button>
         <button class="chip" data-filter="civil">Civil</button>
@@ -107,7 +108,6 @@ We deliver science-based hydrology and civil engineering consulting to support c
 
       <div class="services-grid">
 
-        <!-- Civil -->
         <div class="service-item" data-cat="civil">
           <details class="service-details" open>
             <summary class="service-summary">
@@ -130,7 +130,6 @@ We deliver science-based hydrology and civil engineering consulting to support c
           </details>
         </div>
 
-        <!-- Hydrology -->
         <div class="service-item" data-cat="hydro">
           <details class="service-details">
             <summary class="service-summary">
@@ -153,7 +152,6 @@ We deliver science-based hydrology and civil engineering consulting to support c
           </details>
         </div>
 
-        <!-- Environment -->
         <div class="service-item" data-cat="env">
           <details class="service-details">
             <summary class="service-summary">
@@ -176,7 +174,6 @@ We deliver science-based hydrology and civil engineering consulting to support c
           </details>
         </div>
 
-        <!-- WASH -->
         <div class="service-item" data-cat="wash">
           <details class="service-details">
             <summary class="service-summary">
@@ -199,7 +196,6 @@ We deliver science-based hydrology and civil engineering consulting to support c
           </details>
         </div>
 
-        <!-- GIS -->
         <div class="service-item" data-cat="gis">
           <details class="service-details">
             <summary class="service-summary">
@@ -222,7 +218,6 @@ We deliver science-based hydrology and civil engineering consulting to support c
           </details>
         </div>
 
-        <!-- Advisory -->
         <div class="service-item" data-cat="advisory">
           <details class="service-details">
             <summary class="service-summary">
@@ -279,7 +274,7 @@ We deliver science-based hydrology and civil engineering consulting to support c
   </section>
 </main>
 
-<!-- ================= ABOUT (TEAM SMALL) ================= -->
+<!-- ================= ABOUT ================= -->
 <main id="about" class="route">
   <section class="page-hero">
     <div class="container">
@@ -403,12 +398,12 @@ We deliver science-based hydrology and civil engineering consulting to support c
         <div id="sentMsg" class="sent" hidden>✅ Message sent (demo)</div>
       </form>
 
-<div class="card">
-  <h3>BLUERENSI Consult</h3>
-  <p class="muted">Email: info@bluerensi.com</p>
-  <p class="muted">Phone: <a href="tel:+250788333074">+250 788 333 074</a></p>
-  <p class="muted">Location: Rwanda</p>
-</div>
+      <div class="card">
+        <h3>BLUERENSI Consult</h3>
+        <p class="muted">Email: info@bluerensi.com</p>
+        <p class="muted">Phone: <a href="tel:+250788333074">+250 788 333 074</a></p>
+        <p class="muted">Location: Rwanda</p>
+      </div>
     </div>
   </section>
 </main>
@@ -444,4 +439,3 @@ s0.parentNode.insertBefore(s1,s0);
 
 </body>
 </html>
-
