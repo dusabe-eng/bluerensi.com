@@ -97,11 +97,16 @@ a{text-decoration:none;color:inherit}
 .hero p{color:rgba(255,255,255,.9)}
 
 /* =========================================================
-   MISSION / ABOUT / VISION (FINAL WORKING VERSION)
+   MISSION / ABOUT / VISION (WORKING HOVER + ROTATE + SKY BLUE)
 ========================================================= */
+
+/* Make sure MV section is ABOVE hero overlay */
 .mv2{
+  position: relative;
+  z-index: 50;              /* IMPORTANT: above hero overlay */
   background:#fff;
-  margin-top:-60px;
+  padding: 90px 0 120px;    /* makes home page taller/scrollable */
+  margin-top: 0;            /* remove negative pull */
 }
 
 .mv2-row{
@@ -111,35 +116,34 @@ a{text-decoration:none;color:inherit}
   align-items:stretch;
 }
 
-/* COMMON CARD */
+/* Shared card */
 .mv2-card{
-  transition:all .35s ease;
+  transition: transform .35s ease, box-shadow .35s ease, background .35s ease, color .35s ease;
   cursor:pointer;
 }
 
-/* SIDE CARDS */
+/* Side cards */
 .mv2-side{
   flex:1;
-  background:var(--dark);
+  background: var(--dark, #1f2a2f);
   color:#fff;
   display:flex;
   align-items:center;
   min-height:300px;
 }
 
-/* CENTER CARD */
+/* Center card (always SKY BLUE) */
 .mv2-center{
   flex:0 0 380px;
-  background:var(--sky2);
-  color:var(--ink);
-  position:relative;
-  z-index:5;
-  margin-top:-90px;
-  margin-bottom:-50px;
-  box-shadow:0 26px 60px rgba(0,0,0,.25);
+  background: var(--sky2, #d7ecff);
+  color: var(--ink, #0b2545);
+  position: relative;
+  z-index: 5;
+  transform: translateY(-80px);  /* overlap effect WITHOUT breaking hover */
+  box-shadow: 0 26px 60px rgba(0,0,0,.22);
 }
 
-.mv2-inner{padding:56px 46px}
+.mv2-inner{ padding:56px 46px; }
 
 .mv2 h2{
   margin:0 0 18px;
@@ -157,8 +161,40 @@ a{text-decoration:none;color:inherit}
   display:inline-block;
   margin-top:20px;
   font-weight:900;
+  color: inherit;
 }
 
+/* ✅ HOVER: Mission/Vision rotate + become SKY BLUE (like center) */
+.mv2-side:hover{
+  background: var(--sky2, #d7ecff);
+  color: var(--ink, #0b2545);
+  transform: translateY(-14px) rotate(-1.3deg);
+  box-shadow: 0 26px 60px rgba(0,0,0,.22);
+}
+.mv2-side:hover *{
+  color: var(--ink, #0b2545);
+}
+
+/* Vision rotates opposite direction */
+.mv2-row .mv2-side:last-child:hover{
+  transform: translateY(-14px) rotate(1.3deg);
+}
+
+/* Optional: center small hover */
+.mv2-center:hover{
+  transform: translateY(-90px);
+}
+
+/* Responsive */
+@media(max-width:980px){
+  .mv2-row{ flex-direction:column; }
+  .mv2-center{
+    flex: 1 1 auto;
+    transform: none;
+    margin: 0;
+  }
+  .mv2-side:hover{ transform:none; }
+}
 /* =========================================================
    🔥 HOVER EFFECT (THIS WAS MISSING)
 ========================================================= */
@@ -223,3 +259,4 @@ a{text-decoration:none;color:inherit}
 .mv2 .mv2-side:last-child:hover{
   transform: translateY(-14px) rotate(1.3deg) !important;
 }
+
