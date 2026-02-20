@@ -18,7 +18,6 @@
 
       --border:rgba(15,23,42,.12);
 
-      /* fixed header heights */
       --topbar-h:36px;
       --nav-h:72px;
     }
@@ -31,26 +30,26 @@
       color:var(--ink);
       background:#fff;
       min-height:100vh;
+      overflow-x:hidden;
     }
     a{text-decoration:none;color:inherit}
     .container{width:min(1120px,calc(100% - 40px));margin:auto}
 
-    /* IMPORTANT: anchor offset for fixed header */
+    /* anchor offset */
     section[id]{scroll-margin-top: calc(var(--topbar-h) + var(--nav-h) + 18px);}
 
-    /* =========================
-       TOPBAR (working hours)
-    ========================== */
+    /* ===== TOPBAR (working hours) ===== */
     .topbar{
       position:fixed;
       inset:0 0 auto 0;
       height:var(--topbar-h);
-      z-index:2000;
+      z-index:5000;                 /* HIGH */
       background:#0b2f36;
       color:#fff;
       display:flex;
       align-items:center;
       font-size:13px;
+      pointer-events:auto;          /* allow clicks */
     }
     .topbar .container{
       display:flex;
@@ -73,17 +72,16 @@
       font-size:12px;
     }
 
-    /* =========================
-       NAV
-    ========================== */
-    .nav{
+    /* ===== NAV ===== */
+    header.nav{
       position:fixed;
       top:var(--topbar-h);
       left:0;right:0;
       height:var(--nav-h);
-      z-index:1900;
+      z-index:4500;                 /* HIGH */
       background:var(--sky);
       border-bottom:1px solid rgba(11,58,117,.18);
+      pointer-events:auto;
     }
     .nav-inner{
       height:var(--nav-h);
@@ -98,13 +96,17 @@
     .brand-name{font-weight:900;letter-spacing:.3px}
     .brand-sub{font-size:12px;opacity:.75}
 
-    .menu{display:flex;gap:18px;align-items:center}
+    nav.menu{display:flex;gap:18px;align-items:center}
     .nav-link{
       padding:10px 14px;
       border-radius:999px;
-      font-weight:700;
+      font-weight:800;
       cursor:pointer;
       display:inline-block;
+      user-select:none;
+      pointer-events:auto;          /* important */
+      position:relative;
+      z-index:1;
     }
     .nav-link:hover{background:rgba(255,255,255,.65)}
     .nav-link.active{background:var(--sky2)}
@@ -124,7 +126,7 @@
     }
     @media(max-width:900px){
       .nav-toggle{display:block}
-      .menu{
+      nav.menu{
         display:none;
         position:absolute;
         top:calc(var(--nav-h) - 6px);
@@ -136,19 +138,20 @@
         padding:10px;
         min-width:190px;
         box-shadow:0 18px 55px rgba(15,23,42,.10);
+        z-index:4600;
       }
-      .menu.open{display:flex}
+      nav.menu.open{display:flex}
     }
 
-    /* =========================
-       HERO
-    ========================== */
+    /* ===== HERO ===== */
     .hero{
       padding-top: calc(var(--topbar-h) + var(--nav-h));
       min-height:560px;
       position:relative;
       overflow:hidden;
+      z-index:1;
     }
+
     .hero::before,.hero::after{
       content:"";
       position:absolute;
@@ -157,6 +160,7 @@
       background-position:center;
       transform:scale(1.05);
       z-index:0;
+      pointer-events:none;          /* IMPORTANT: do not block clicks */
     }
     .hero::before{
       background-image:url("./image1.jpg");
@@ -168,11 +172,14 @@
       animation:fade2 12s infinite, zoom 18s infinite;
       opacity:0
     }
+
     .hero-overlay{
       position:absolute;inset:0;
       background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,.22));
-      z-index:1
+      z-index:1;
+      pointer-events:none;          /* IMPORTANT */
     }
+
     .hero-content{
       position:relative;
       z-index:2;
@@ -195,9 +202,7 @@
     @keyframes zoom{0%{transform:scale(1.05)}50%{transform:scale(1.12)}100%{transform:scale(1.05)}}
     @media(max-width:600px){.hero-content h1{font-size:36px}}
 
-    /* =========================
-       MISSION / ABOUT / VISION
-    ========================== */
+    /* ===== Mission/About/Vision ===== */
     .mv2{
       background:#fff;
       padding: 38px 0 10px;
@@ -219,6 +224,7 @@
       display:flex;
       align-items:center;
       min-height:280px;
+      transition: transform .22s ease, box-shadow .22s ease, background .22s ease, color .22s ease;
     }
     .mv2-center{
       flex:0 0 380px;
@@ -241,17 +247,8 @@
       text-transform:uppercase;
     }
     .mv2 p{margin:0;font-size:16px;line-height:1.9;opacity:.95;}
-    .mv2-link{
-      display:inline-block;
-      margin-top:18px;
-      font-weight:900;
-      color:inherit;
-    }
+    .mv2-link{display:inline-block;margin-top:18px;font-weight:900;color:inherit;}
 
-    /* hover mission/vision become sky */
-    .mv2-side{
-      transition: transform .22s ease, box-shadow .22s ease, background .22s ease, color .22s ease;
-    }
     .mv2-side:hover{
       transform: translateY(-6px);
       box-shadow: 0 18px 42px rgba(0,0,0,.18);
@@ -266,38 +263,26 @@
       .mv2-side:hover{transform:none}
     }
 
-    /* =========================
-       SECTIONS (FIX BIG WHITE SPACE)
-    ========================== */
+    /* ===== Sections ===== */
     .section{
-      padding: 40px 0;           /* reduced */
-      margin:0;                  /* ensure no extra space */
+      padding: 44px 0;
+      margin:0;
+      position:relative;
+      z-index:3;
+      background:#fff;
     }
-    .section + .section{
-      border-top:1px solid rgba(15,23,42,.06);
-    }
-    .title{
-      font-size:34px;
-      margin:0 0 8px;            /* small gap */
-      line-height:1.15;
-    }
-    .subtitle{
-      margin:0;                  /* remove large gaps */
-      color:#475569;
-      max-width:760px;
-      line-height:1.6;
-    }
+    .section + .section{border-top:1px solid rgba(15,23,42,.06);}
+    .title{font-size:34px;margin:0 0 8px;line-height:1.15;}
+    .subtitle{margin:0;color:#475569;max-width:760px;line-height:1.6;}
 
-    /* =========================
-       FOOTER
-    ========================== */
+    /* ===== Footer ===== */
     .footer{
       background:linear-gradient(90deg,var(--green),var(--green2));
       color:#fff;
       padding:14px 0;
       margin-top:30px;
       position:relative;
-      z-index:2;
+      z-index:3;
     }
     .footer-inner{
       display:flex;
@@ -306,17 +291,13 @@
       gap:12px;
       flex-wrap:wrap;
     }
-    .footer-links{
-      display:flex;
-      gap:18px;
-      margin-left:auto;
-    }
+    .footer-links{display:flex;gap:18px;margin-left:auto;}
     .footer a:hover{color:#bff2dc}
   </style>
 </head>
 
 <body>
-
+  <!-- top bar -->
   <div class="topbar">
     <div class="container">
       <div class="topbar-item"><span class="topbar-ico">📅</span><span>Monday – Friday</span></div>
@@ -324,6 +305,7 @@
     </div>
   </div>
 
+  <!-- nav -->
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="#home">
@@ -349,6 +331,7 @@
     </div>
   </header>
 
+  <!-- hero -->
   <section id="home" class="hero">
     <div class="hero-overlay"></div>
     <div class="container hero-content">
@@ -364,6 +347,7 @@
     </div>
   </section>
 
+  <!-- mission/about/vision -->
   <section class="mv2">
     <div class="mv2-row">
       <article class="mv2-side">
@@ -399,38 +383,39 @@
     </div>
   </section>
 
+  <!-- content sections -->
   <section id="services" class="section">
     <div class="container">
       <h2 class="title">Services</h2>
-      <p class="subtitle">Your services content goes here.</p>
+      <p class="subtitle">Put your Services content here (cards, text, images...).</p>
     </div>
   </section>
 
   <section id="projects" class="section">
     <div class="container">
       <h2 class="title">Projects</h2>
-      <p class="subtitle">Your projects content goes here.</p>
+      <p class="subtitle">Put your Projects content here.</p>
     </div>
   </section>
 
   <section id="about" class="section">
     <div class="container">
       <h2 class="title">About us</h2>
-      <p class="subtitle">Add more about your company here.</p>
+      <p class="subtitle">Put your About us content here.</p>
     </div>
   </section>
 
   <section id="careers" class="section">
     <div class="container">
       <h2 class="title">Careers</h2>
-      <p class="subtitle">Careers content goes here.</p>
+      <p class="subtitle">Put your Careers content here.</p>
     </div>
   </section>
 
   <section id="contact" class="section">
     <div class="container">
       <h2 class="title">Contact</h2>
-      <p class="subtitle">Contact content goes here.</p>
+      <p class="subtitle">Put your Contact content here.</p>
     </div>
   </section>
 
@@ -447,6 +432,7 @@
   </footer>
 
   <script>
+    // mobile menu
     const navToggle = document.getElementById('navToggle');
     const menu = document.getElementById('menu');
     navToggle?.addEventListener('click', () => menu.classList.toggle('open'));
@@ -458,6 +444,7 @@
       return topbar + nav + 18;
     }
 
+    // smooth scroll (works even if overlays exist)
     function scrollToId(hash){
       const el = document.querySelector(hash);
       if(!el) return;
@@ -465,6 +452,7 @@
       window.scrollTo({ top:y, behavior:'smooth' });
     }
 
+    // intercept ALL hash clicks
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click',(e)=>{
         const hash = a.getAttribute('href');
@@ -472,9 +460,11 @@
         e.preventDefault();
         scrollToId(hash);
         menu.classList.remove('open');
+        history.replaceState(null, "", hash);
       });
     });
 
+    // active nav highlight
     const links = [...document.querySelectorAll('.nav-link')];
     const sections = links.map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
 
@@ -489,11 +479,10 @@
         l.classList.toggle('active', id === current);
       });
     }
-
     window.addEventListener('scroll', setActive, {passive:true});
     window.addEventListener('load', ()=>{
       setActive();
-      if(location.hash) setTimeout(()=>scrollToId(location.hash), 60);
+      if(location.hash) setTimeout(()=>scrollToId(location.hash), 50);
     });
   </script>
 </body>
