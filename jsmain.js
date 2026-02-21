@@ -85,3 +85,65 @@
     });
   }
 })();
+// =========================
+// bp Partners slider (auto + alternating direction)
+// =========================
+(() => {
+  const shell = document.getElementById("bpShell");
+  if (!shell) return;
+
+  const slides = Array.from(shell.querySelectorAll(".bp-slide"));
+  const dots = Array.from(shell.querySelectorAll(".bp-dot"));
+  const prev = shell.querySelector(".bp-prev");
+  const next = shell.querySelector(".bp-next");
+
+  let i = 0;
+  let timer = null;
+  let paused = false;
+  let dir = "left";
+
+  const clearEnter = (s) => s.classList.remove("enter-left","enter-right");
+
+  const show = (idx) => {
+    i = (idx + slides.length) % slides.length;
+
+    slides.forEach((s, k) => {
+      s.classList.remove("is-active");
+      clearEnter(s);
+      if (k === i) {
+        // alternate entry direction
+        dir = dir === "left" ? "right" : "left";
+        s.classList.add(dir === "left" ? "enter-left" : "enter-right");
+        void s.offsetWidth; // reflow for animation
+        s.classList.add("is-active");
+      }
+    });
+
+    dots.forEach((d, k) => d.classList.toggle("is-on", k === i));
+  };
+
+  const start = () => {
+    stop();
+    timer = setInterval(() => {
+      if (!paused) show(i + 1);
+    }, 3000);
+  };
+
+  const stop = () => {
+    if (timer) clearInterval(timer);
+    timer = null;
+  };
+
+  next?.addEventListener("click", () => show(i + 1));
+  prev?.addEventListener("click", () => show(i - 1));
+
+  dots.forEach((d, k) => d.addEventListener("click", () => show(k)));
+
+  shell.addEventListener("mouseenter", () => paused = true);
+  shell.addEventListener("mouseleave", () => paused = false);
+
+  // init
+  slides.forEach(s => clearEnter(s));
+  slides[0]?.classList.add("is-active");
+  start();
+})();
