@@ -9,7 +9,7 @@
 
     navLinks.forEach(a => {
       const isActive = a.getAttribute("data-route") === routeId;
-      a.classList.toggle("active", isActive);
+      if (a.classList.contains("nav-link")) a.classList.toggle("active", isActive);
     });
 
     // Close mobile menu after navigation
@@ -23,7 +23,7 @@
     showRoute(exists ? id : "home");
   }
 
-  // Handle clicks (prevents weird behavior)
+  // Navigation clicks
   navLinks.forEach(a => {
     a.addEventListener("click", (e) => {
       const id = a.getAttribute("data-route");
@@ -34,11 +34,23 @@
     });
   });
 
-  // Mobile menu
+  // Mobile menu toggle
   if (toggle && menu) {
     toggle.addEventListener("click", () => {
       const open = menu.classList.toggle("open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  }
+
+  // Contact form demo
+  const form = document.getElementById("contactForm");
+  const sentMsg = document.getElementById("sentMsg");
+  if (form && sentMsg) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      sentMsg.hidden = false;
+      setTimeout(() => (sentMsg.hidden = true), 2500);
+      form.reset();
     });
   }
 
