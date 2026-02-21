@@ -4,6 +4,7 @@
   // Mobile menu
   const menu = document.querySelector(".menu");
   const toggle = document.querySelector(".nav-toggle");
+
   if (toggle && menu) {
     toggle.addEventListener("click", () => {
       menu.classList.toggle("open");
@@ -11,7 +12,6 @@
     });
   }
 
-  // Smooth scroll
   function scrollToSection(id) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -19,26 +19,22 @@
     window.scrollTo({ top: y, behavior: "smooth" });
   }
 
-  // Click nav + buttons with data-route
-  const clickable = Array.from(document.querySelectorAll(".nav-link, a[data-route], .btn[data-route]"));
-  clickable.forEach((link) => {
+  // Nav click
+  document.querySelectorAll("[data-route], .nav-link").forEach((link) => {
     link.addEventListener("click", (e) => {
       const id = link.getAttribute("data-route") || (link.getAttribute("href") || "").replace("#", "");
-      if (!id) return;
-
-      const target = document.getElementById(id);
-      if (!target) return;
+      if (!id || !document.getElementById(id)) return;
 
       e.preventDefault();
       history.pushState(null, "", `#${id}`);
       scrollToSection(id);
 
-      if (menu) menu.classList.remove("open");
-      if (toggle) toggle.setAttribute("aria-expanded", "false");
+      menu?.classList.remove("open");
+      toggle?.setAttribute("aria-expanded", "false");
     });
   });
 
-  // Active nav while scrolling
+  // Active nav on scroll
   const sectionIds = ["home","services","projects","about","careers","contact"];
   const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
@@ -68,21 +64,6 @@
   window.addEventListener("popstate", () => {
     const id = (location.hash || "#home").replace("#", "");
     scrollToSection(id);
-  });
-
-  // Services filter
-  const chips = Array.from(document.querySelectorAll(".chip"));
-  const items = Array.from(document.querySelectorAll(".service-item"));
-  chips.forEach((chip) => {
-    chip.addEventListener("click", () => {
-      chips.forEach(c => c.classList.remove("active"));
-      chip.classList.add("active");
-      const f = chip.dataset.filter;
-      items.forEach(it => {
-        const cat = it.dataset.cat;
-        it.style.display = (f === "all" || cat === f) ? "" : "none";
-      });
-    });
   });
 
   // Contact form demo
@@ -143,7 +124,6 @@
     shell.addEventListener("mouseenter", () => paused = true);
     shell.addEventListener("mouseleave", () => paused = false);
 
-    slides[0]?.classList.add("is-active");
     start();
   }
 })();
