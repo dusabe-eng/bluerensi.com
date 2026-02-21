@@ -329,26 +329,79 @@ a{text-decoration:none;color:inherit}
   .contact-cta{text-align:left}
 }
 
-/* HOME FEATURES */
-.home-features{padding:56px 0}
-.feature-grid{
+/* =========================
+   OUR PARTNERS (HOME)
+   ========================= */
+.home-partners{
+  padding: 56px 0 26px;
+  background: linear-gradient(180deg, #ffffff, var(--sky));
+  border-top: 1px solid rgba(15,23,42,.06);
+}
+
+.partners-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+
+.partners-title{
+  margin:0;
+  font-size:28px;
+  font-weight:950;
+  letter-spacing:.2px;
+}
+
+.partners-sub{
+  margin:0;
+  max-width:720px;
+  color:#475569;
+  line-height:1.6;
+}
+
+.partners-grid{
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap:18px;
 }
-.feature-card{
-  border:1px solid var(--border);
-  border-radius:20px;
+
+.partner-card{
   background:#fff;
-  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+  border-radius:22px;
   padding:18px;
-  transition:transform .2s ease, box-shadow .2s ease;
+  box-shadow: var(--shadow);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
-.feature-card:hover{transform: translateY(-4px); box-shadow:var(--shadow2)}
-.feature-ico{font-size:22px}
-.feature-card h3{margin:10px 0 6px}
-.muted{color:#475569; line-height:1.6}
-@media(max-width:900px){.feature-grid{grid-template-columns:1fr}}
+
+.partner-card:hover{
+  transform: translateY(-4px);
+  box-shadow: var(--shadow2);
+}
+
+.partner-ico{
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.partner-card h3{
+  margin:0 0 6px;
+}
+
+@media(max-width:900px){
+  .partners-grid{grid-template-columns:1fr}
+  .partners-head{align-items:flex-start}
+}
+
+/* CONTACT STRIP (still same, but now below partners) */
+.home-contact-strip{
+  border-top:1px solid rgba(15,23,42,.08);
+  border-bottom:1px solid rgba(15,23,42,.08);
+  background:linear-gradient(180deg,#fff,var(--sky));
+  padding:22px 0;
+}
 
 /* PAGE HERO */
 .page-hero{
@@ -508,3 +561,4 @@ a{text-decoration:none;color:inherit}
 }
 .footer-links{display:flex; gap:18px; margin-left:auto}
 .footer a:hover{color:#bff2dc}
+
