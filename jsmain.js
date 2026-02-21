@@ -1,6 +1,38 @@
 (() => {
+  const routes = Array.from(document.querySelectorAll(".route"));
+  const navLinks = Array.from(document.querySelectorAll("[data-route]"));
   const toggle = document.querySelector(".nav-toggle");
   const menu = document.querySelector(".menu");
+
+  function showRoute(routeId) {
+    routes.forEach(r => r.classList.toggle("route-active", r.id === routeId));
+
+    navLinks.forEach(a => {
+      const isActive = a.getAttribute("data-route") === routeId;
+      a.classList.toggle("active", isActive);
+    });
+
+    // Close mobile menu after navigation
+    if (menu) menu.classList.remove("open");
+    if (toggle) toggle.setAttribute("aria-expanded", "false");
+  }
+
+  function routeFromHash() {
+    const id = (location.hash || "#home").replace("#", "");
+    const exists = routes.some(r => r.id === id);
+    showRoute(exists ? id : "home");
+  }
+
+  // Handle clicks (prevents weird behavior)
+  navLinks.forEach(a => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("data-route");
+      if (!id) return;
+      e.preventDefault();
+      history.pushState(null, "", `#${id}`);
+      routeFromHash();
+    });
+  });
 
   // Mobile menu
   if (toggle && menu) {
@@ -8,43 +40,11 @@
       const open = menu.classList.toggle("open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
-
-    // Close menu after clicking a link (mobile)
-    menu.addEventListener("click", (e) => {
-      const a = e.target.closest("a");
-      if (a && menu.classList.contains("open")) {
-        menu.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
-      }
-    });
   }
 
-  // Active link highlight (based on scroll position)
-  const links = Array.from(document.querySelectorAll(".nav-link"));
-  const sections = ["home","services","projects","about","careers","contact"]
-    .map(id => document.getElementById(id))
-    .filter(Boolean);
+  window.addEventListener("popstate", routeFromHash);
+  window.addEventListener("hashchange", routeFromHash);
 
-  function setActive(id) {
-    links.forEach(a => {
-      const href = a.getAttribute("href");
-      a.classList.toggle("active", href === `#${id}`);
-    });
-  }
-
-  const obs = new IntersectionObserver((entries) => {
-    const visible = entries
-      .filter(en => en.isIntersecting)
-      .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-    if (visible?.target?.id) setActive(visible.target.id);
-  }, { root: null, threshold: [0.2, 0.35, 0.5, 0.7] });
-
-  sections.forEach(sec => obs.observe(sec));
-
-  // If page opens with a hash
-  if (location.hash) {
-    const el = document.querySelector(location.hash);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  }
+  // Initial load
+  routeFromHash();
 })();
