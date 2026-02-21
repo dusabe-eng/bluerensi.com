@@ -108,86 +108,83 @@
       </div>
     </section>
 
-    <!-- ✅ OUR PARTNERS (MOVING + ALTERNATING) -->
-    <section class="partners">
-      <div class="container">
+   <section class="partners" id="partners">
+  <div class="container">
+    <div class="partners-head">
+      <h2 class="partners-title">Our Partners</h2>
+      <p class="partners-sub">
+        We collaborate with institutions and professionals to deliver high-quality engineering and water solutions.
+      </p>
+    </div>
 
-        <div class="partners-head">
-          <h2 class="partners-title">Our Partners</h2>
-          <p class="partners-sub">
-            We collaborate with institutions and professionals to deliver high-quality engineering and water solutions.
-          </p>
-        </div>
+    <div class="partners-carousel" id="partnersCarousel" aria-label="Our Partners Carousel">
 
-        <div class="partners-stage" id="partnersStage">
+      <button class="pc-btn pc-prev" type="button" aria-label="Previous partner">‹</button>
+
+      <div class="pc-viewport">
+        <div class="pc-track">
 
           <!-- Slide 1 -->
-          <article class="partner-slide is-active" data-side="left">
-            <div class="partner-cardx">
-              <div class="partner-top">
-                <div class="partner-icon">🏛️</div>
-                <div>
-                  <h3>Government & Agencies</h3>
-                  <p class="muted">Collaboration with public institutions to support infrastructure planning, compliance, and resilient design.</p>
+          <article class="pc-slide is-active" data-side="left">
+            <div class="pc-card">
+              <div class="pc-icon">🏛️</div>
+              <div class="pc-body">
+                <h3>Government & Agencies</h3>
+                <p>
+                  Collaboration with public institutions to support infrastructure planning, compliance, and resilient design.
+                </p>
+                <div class="pc-tags">
+                  <span>Planning</span><span>Compliance</span><span>Resilience</span>
                 </div>
-              </div>
-
-              <div class="partner-bar">
-                <span class="pill">Planning</span>
-                <span class="pill">Compliance</span>
-                <span class="pill">Resilience</span>
               </div>
             </div>
           </article>
 
           <!-- Slide 2 -->
-          <article class="partner-slide" data-side="right">
-            <div class="partner-cardx">
-              <div class="partner-top">
-                <div class="partner-icon">🏢</div>
-                <div>
-                  <h3>Private Sector</h3>
-                  <p class="muted">Working with contractors, developers, and utilities to deliver practical engineering solutions on time.</p>
+          <article class="pc-slide" data-side="right">
+            <div class="pc-card">
+              <div class="pc-icon">🏢</div>
+              <div class="pc-body">
+                <h3>Private Sector</h3>
+                <p>
+                  Working with contractors, developers, and utilities to deliver practical engineering solutions on time.
+                </p>
+                <div class="pc-tags">
+                  <span>Delivery</span><span>Quality</span><span>Efficiency</span>
                 </div>
-              </div>
-
-              <div class="partner-bar">
-                <span class="pill">Delivery</span>
-                <span class="pill">Quality</span>
-                <span class="pill">Efficiency</span>
               </div>
             </div>
           </article>
 
           <!-- Slide 3 -->
-          <article class="partner-slide" data-side="left">
-            <div class="partner-cardx">
-              <div class="partner-top">
-                <div class="partner-icon">🎓</div>
-                <div>
-                  <h3>Academia & Experts</h3>
-                  <p class="muted">Research and expert partnerships to strengthen analysis, modelling, and evidence-based decision-making.</p>
+          <article class="pc-slide" data-side="left">
+            <div class="pc-card">
+              <div class="pc-icon">🎓</div>
+              <div class="pc-body">
+                <h3>Academia & Experts</h3>
+                <p>
+                  Research and expert partnerships to strengthen analysis, modelling, and evidence-based decision-making.
+                </p>
+                <div class="pc-tags">
+                  <span>Research</span><span>Modelling</span><span>Evidence</span>
                 </div>
-              </div>
-
-              <div class="partner-bar">
-                <span class="pill">Research</span>
-                <span class="pill">Modelling</span>
-                <span class="pill">Evidence</span>
               </div>
             </div>
           </article>
 
-          <!-- Dots -->
-          <div class="partners-dots" aria-label="Partner carousel controls">
-            <button class="dot is-on" aria-label="Partner 1"></button>
-            <button class="dot" aria-label="Partner 2"></button>
-            <button class="dot" aria-label="Partner 3"></button>
-          </div>
-
         </div>
       </div>
-    </section>
+
+      <button class="pc-btn pc-next" type="button" aria-label="Next partner">›</button>
+
+      <div class="pc-dots" aria-label="Carousel dots">
+        <button class="pc-dot is-on" type="button" aria-label="Slide 1"></button>
+        <button class="pc-dot" type="button" aria-label="Slide 2"></button>
+        <button class="pc-dot" type="button" aria-label="Slide 3"></button>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- CONTACT STRIP (below partners) -->
     <section class="home-contact-strip">
@@ -539,3 +536,4 @@
 
 </body>
 </html>
+
