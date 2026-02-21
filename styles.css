@@ -638,4 +638,140 @@ a{text-decoration:none;color:inherit}
 }
 .footer-links{display:flex; gap:18px; margin-left:auto}
 .footer a:hover{color:#bff2dc}
+/* =========================
+   BLUERENSI PARTNERS (bp-*) — ISOLATED SLIDER
+   ========================= */
+.bp{
+  padding: 64px 0;
+  background: linear-gradient(180deg, #ffffff, #eef6ff);
+  border-top: 1px solid rgba(15,23,42,.06);
+}
+
+.bp-head{margin-bottom:16px}
+.bp-title{margin:0;font-size:34px;font-weight:950;color:#0b2545}
+.bp-sub{margin:10px 0 0;max-width:820px;color:#475569;line-height:1.65}
+
+.bp-shell{
+  position:relative;
+  margin-top:18px;
+  padding:22px;
+  border-radius:26px;
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(15,23,42,.10);
+  box-shadow: 0 18px 48px rgba(15,23,42,.12);
+  overflow:hidden;
+}
+
+.bp-viewport{
+  overflow:hidden;
+  border-radius:22px;
+}
+
+/* IMPORTANT: Only one slide visible */
+.bp-track{
+  position:relative;
+  min-height:220px;
+}
+
+.bp-slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  pointer-events:none;
+  transform: translateX(0);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+/* active slide */
+.bp-slide.is-active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* enter directions */
+.bp-slide.enter-left{ transform: translateX(-46px); }
+.bp-slide.enter-right{ transform: translateX(46px); }
+.bp-slide.is-active{ transform: translateX(0); }
+
+/* card */
+.bp-card{
+  background:#fff;
+  border:1px solid rgba(15,23,42,.12);
+  border-radius:22px;
+  padding:22px;
+  box-shadow: 0 14px 34px rgba(15,23,42,.10);
+  display:grid;
+  grid-template-columns:72px 1fr;
+  gap:16px;
+  align-items:start;
+}
+
+.bp-ico{
+  width:64px;height:64px;
+  border-radius:18px;
+  display:grid;place-items:center;
+  font-size:28px;
+  background: rgba(43,109,232,.10);
+  border: 1px solid rgba(43,109,232,.18);
+}
+
+.bp-body h3{margin:0 0 6px;font-size:22px;color:#0b2545}
+.bp-body p{margin:0;color:#475569;line-height:1.7}
+
+/* pills (fix your "PlanningComplianceResilience") */
+.bp-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.bp-pill{
+  display:inline-block;
+  font-size:12px;
+  font-weight:950;
+  padding:7px 10px;
+  border-radius:999px;
+  background: rgba(43,109,232,.08);
+  border: 1px solid rgba(43,109,232,.16);
+  color:#0b2545;
+}
+
+/* arrows */
+.bp-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:44px;height:44px;
+  border-radius:14px;
+  border:1px solid rgba(15,23,42,.12);
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 12px 26px rgba(15,23,42,.10);
+  font-size:28px;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  z-index:5;
+}
+.bp-btn:hover{transform:translateY(-50%) scale(1.04)}
+.bp-prev{left:14px}
+.bp-next{right:14px}
+
+/* dots */
+.bp-dots{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:16px;
+}
+.bp-dot{
+  width:10px;height:10px;
+  border-radius:999px;
+  background:#fff;
+  border:1px solid rgba(11,37,69,.22);
+  cursor:pointer;
+}
+.bp-dot.is-on{
+  background:#2b6de8;
+  border-color: rgba(43,109,232,.55);
+}
+
+@media(max-width:720px){
+  .bp-card{grid-template-columns:1fr}
+  .bp-btn{display:none}
+}
 
