@@ -68,21 +68,6 @@
           <a href="#services" class="btn btn-primary" data-route="services">Explore our services</a>
           <a href="#projects" class="btn btn-ghost" data-route="projects">View projects</a>
         </div>
-
-        <div class="hero-stats">
-          <div class="stat">
-            <div class="stat-num">Civil</div>
-            <div class="stat-sub">Infrastructure support</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">Hydrology</div>
-            <div class="stat-sub">Flood & water planning</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">GIS</div>
-            <div class="stat-sub">Mapping & decision support</div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -123,78 +108,123 @@
       </div>
     </section>
 
-  <!-- OUR PARTNERS (cards) -->
-<section class="home-partners">
-  <div class="container">
-    <div class="partners-head">
-      <h2 class="partners-title">Our Partners</h2>
-      <p class="partners-sub">
-        We collaborate with institutions and professionals to deliver high-quality engineering and water solutions.
-      </p>
-    </div>
+    <!-- ✅ OUR PARTNERS (MOVING + ALTERNATING) -->
+    <section class="partners">
+      <div class="container">
 
-    <div class="partners-grid">
-      <article class="partner-card">
-        <div class="partner-ico" aria-hidden="true">🤝</div>
-        <h3>Government & Agencies</h3>
-        <p class="muted">
-          Collaboration with public institutions to support infrastructure planning, compliance, and resilient design.
-        </p>
-      </article>
+        <div class="partners-head">
+          <h2 class="partners-title">Our Partners</h2>
+          <p class="partners-sub">
+            We collaborate with institutions and professionals to deliver high-quality engineering and water solutions.
+          </p>
+        </div>
 
-      <article class="partner-card">
-        <div class="partner-ico" aria-hidden="true">🏢</div>
-        <h3>Private Sector</h3>
-        <p class="muted">
-          Working with contractors, developers, and utilities to deliver practical engineering solutions on time.
-        </p>
-      </article>
+        <div class="partners-stage" id="partnersStage">
 
-      <article class="partner-card">
-        <div class="partner-ico" aria-hidden="true">🎓</div>
-        <h3>Academia & Experts</h3>
-        <p class="muted">
-          Research and expert partnerships to strengthen analysis, modelling, and evidence-based decision-making.
-        </p>
-      </article>
-    </div>
-  </div>
-</section>
+          <!-- Slide 1 -->
+          <article class="partner-slide is-active" data-side="left">
+            <div class="partner-cardx">
+              <div class="partner-top">
+                <div class="partner-icon">🏛️</div>
+                <div>
+                  <h3>Government & Agencies</h3>
+                  <p class="muted">Collaboration with public institutions to support infrastructure planning, compliance, and resilient design.</p>
+                </div>
+              </div>
 
-<!-- CONTACT STRIP (now below partners) -->
-<section class="home-contact-strip">
-  <div class="container contact-strip-inner">
+              <div class="partner-bar">
+                <span class="pill">Planning</span>
+                <span class="pill">Compliance</span>
+                <span class="pill">Resilience</span>
+              </div>
+            </div>
+          </article>
 
-    <div class="contact-item">
-      <span class="ci-ico" aria-hidden="true">✉️</span>
-      <div>
-        <div class="ci-label">Email</div>
-        <a href="mailto:info@bluerensi.com">info@bluerensi.com</a>
+          <!-- Slide 2 -->
+          <article class="partner-slide" data-side="right">
+            <div class="partner-cardx">
+              <div class="partner-top">
+                <div class="partner-icon">🏢</div>
+                <div>
+                  <h3>Private Sector</h3>
+                  <p class="muted">Working with contractors, developers, and utilities to deliver practical engineering solutions on time.</p>
+                </div>
+              </div>
+
+              <div class="partner-bar">
+                <span class="pill">Delivery</span>
+                <span class="pill">Quality</span>
+                <span class="pill">Efficiency</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 3 -->
+          <article class="partner-slide" data-side="left">
+            <div class="partner-cardx">
+              <div class="partner-top">
+                <div class="partner-icon">🎓</div>
+                <div>
+                  <h3>Academia & Experts</h3>
+                  <p class="muted">Research and expert partnerships to strengthen analysis, modelling, and evidence-based decision-making.</p>
+                </div>
+              </div>
+
+              <div class="partner-bar">
+                <span class="pill">Research</span>
+                <span class="pill">Modelling</span>
+                <span class="pill">Evidence</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Dots -->
+          <div class="partners-dots" aria-label="Partner carousel controls">
+            <button class="dot is-on" aria-label="Partner 1"></button>
+            <button class="dot" aria-label="Partner 2"></button>
+            <button class="dot" aria-label="Partner 3"></button>
+          </div>
+
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="contact-item">
-      <span class="ci-ico" aria-hidden="true">📞</span>
-      <div>
-        <div class="ci-label">Phone</div>
-        <a href="tel:+250788333074">+250 788 333 074</a>
+    <!-- CONTACT STRIP (below partners) -->
+    <section class="home-contact-strip">
+      <div class="container contact-strip-inner">
+
+        <div class="contact-item">
+          <span class="ci-ico" aria-hidden="true">✉️</span>
+          <div>
+            <div class="ci-label">Email</div>
+            <a href="mailto:info@bluerensi.com">info@bluerensi.com</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <span class="ci-ico" aria-hidden="true">📞</span>
+          <div>
+            <div class="ci-label">Phone</div>
+            <a href="tel:+250788333074">+250 788 333 074</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <span class="ci-ico" aria-hidden="true">📍</span>
+          <div>
+            <div class="ci-label">Location</div>
+            <div>Rwanda</div>
+          </div>
+        </div>
+
+        <div class="contact-cta">
+          <a href="#contact" data-route="contact" class="btn btn-primary">Contact us</a>
+        </div>
+
       </div>
-    </div>
+    </section>
 
-    <div class="contact-item">
-      <span class="ci-ico" aria-hidden="true">📍</span>
-      <div>
-        <div class="ci-label">Location</div>
-        <div>Rwanda</div>
-      </div>
-    </div>
-
-    <div class="contact-cta">
-      <a href="#contact" data-route="contact" class="btn btn-primary">Contact us</a>
-    </div>
-
-  </div>
-</section>
+  </main>
 
   <!-- ================= SERVICES ================= -->
   <section id="services" class="route">
@@ -325,34 +355,26 @@
     <section class="section">
       <div class="container">
         <div class="projects-grid">
-
           <article class="project-card">
             <div class="tag">Civil</div>
             <h3>Stormwater Management Plan</h3>
             <p class="muted">Design and assessment of drainage systems, culverts, and mitigation solutions.</p>
-            <div class="project-meta">
-              <span>Deliverable: Report + drawings</span>
-            </div>
+            <div class="project-meta"><span>Deliverable: Report + drawings</span></div>
           </article>
 
           <article class="project-card">
             <div class="tag">Hydrology</div>
             <h3>Flood Risk Studies</h3>
             <p class="muted">Hydrologic/hydraulic analysis to support planning and risk reduction.</p>
-            <div class="project-meta">
-              <span>Deliverable: Maps + analysis</span>
-            </div>
+            <div class="project-meta"><span>Deliverable: Maps + analysis</span></div>
           </article>
 
           <article class="project-card">
             <div class="tag">WASH</div>
             <h3>Water Supply Support</h3>
             <p class="muted">Technical support to improve water supply reliability and planning.</p>
-            <div class="project-meta">
-              <span>Deliverable: Technical note</span>
-            </div>
+            <div class="project-meta"><span>Deliverable: Technical note</span></div>
           </article>
-
         </div>
       </div>
     </section>
@@ -370,7 +392,6 @@
     <section class="section">
       <div class="container">
         <div class="team-grid">
-
           <article class="team-card">
             <img src="jean-dusabimana.jpg" alt="Jean D’Amour Dusabimana">
             <div class="team-meta">
@@ -402,7 +423,6 @@
               <div class="role">Operations Director</div>
             </div>
           </article>
-
         </div>
       </div>
     </section>
@@ -465,20 +485,9 @@
         <form class="form card" id="contactForm">
           <h3>Send a message</h3>
 
-          <label>
-            Name
-            <input type="text" required>
-          </label>
-
-          <label>
-            Email
-            <input type="email" required>
-          </label>
-
-          <label>
-            Message
-            <textarea required></textarea>
-          </label>
+          <label>Name<input type="text" required></label>
+          <label>Email<input type="email" required></label>
+          <label>Message<textarea required></textarea></label>
 
           <button class="btn btn-primary" type="submit">Send</button>
           <div id="sentMsg" class="sent" hidden>✅ Message sent (demo)</div>
@@ -530,4 +539,3 @@
 
 </body>
 </html>
-
