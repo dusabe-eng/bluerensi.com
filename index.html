@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>BLUERENSI Consult</title>
 
-  <link rel="stylesheet" href="styles.css?v=2026-02-21-2">
-  <script src="jsmain.js?v=2026-02-21-2" defer></script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="jsmain.js" defer></script>
 </head>
 
-<body id="top">
-
+<body>
   <!-- TOP BAR -->
   <div class="topbar">
     <div class="container topbar-inner">
@@ -22,7 +21,7 @@
     </div>
   </div>
 
-  <!-- HEADER -->
+  <!-- HEADER / NAV -->
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="#home" data-route="home">
@@ -35,8 +34,8 @@
 
       <button class="nav-toggle" aria-label="menu" aria-expanded="false">☰</button>
 
-      <nav class="menu">
-        <a href="#home" class="nav-link active" data-route="home">Home</a>
+      <nav class="menu" aria-label="Main navigation">
+        <a href="#home" class="nav-link" data-route="home">Home</a>
         <a href="#services" class="nav-link" data-route="services">Services</a>
         <a href="#projects" class="nav-link" data-route="projects">Projects</a>
         <a href="#about" class="nav-link" data-route="about">About us</a>
@@ -48,13 +47,11 @@
     </div>
   </header>
 
-  <!-- ================= HOME (ONLY up to Our Partners + info strip) ================= -->
-  <main id="home" class="sec sec-home">
-
-    <!-- HERO WITH MOVING IMAGE1/IMAGE2 -->
+  <!-- ================= HOME ONLY ================= -->
+  <main id="home" class="route route-active">
+    <!-- HERO -->
     <section class="hero">
       <div class="hero-overlay"></div>
-
       <div class="container hero-content">
         <h1>Resilient civil &amp; water engineering solutions</h1>
         <p>
@@ -72,33 +69,35 @@
     <section class="mv2">
       <div class="mv2-row">
 
-        <article class="mv2-panel mv2-side mv2-card" data-mv="mission">
+        <article class="mv2-panel mv2-side mv2-mission mv2-card" data-mv="mission">
           <div class="mv2-inner">
             <h2>OUR MISSION</h2>
             <p>
               To deliver resilient, science-based civil and water engineering solutions
-              that support sustainable infrastructure, environmental protection, and climate adaptation.
+              that support sustainable infrastructure, environmental protection, and
+              climate adaptation.
             </p>
           </div>
         </article>
 
-        <article class="mv2-panel mv2-center mv2-card" data-mv="about">
+        <article class="mv2-panel mv2-center mv2-card is-active" data-mv="about">
           <div class="mv2-inner">
             <h2>ABOUT US</h2>
             <p>
-              BLUERENSI Consult provides practical, science-driven engineering and hydrology expertise to support climate-resilient
-              infrastructure, water resources management, and risk reduction.
+              BLUERENSI Consult provides practical, science-driven engineering and
+              hydrology expertise to support climate-resilient infrastructure,
+              water resources management, and risk reduction.
             </p>
             <a href="#about" data-route="about" class="mv2-link">Learn more →</a>
           </div>
         </article>
 
-        <article class="mv2-panel mv2-side mv2-card" data-mv="vision">
+        <article class="mv2-panel mv2-side mv2-vision mv2-card" data-mv="vision">
           <div class="mv2-inner">
             <h2>OUR VISION</h2>
             <p>
-              To be a trusted engineering consultancy driving innovation and resilience in water, infrastructure,
-              and environmental systems across the region.
+              To be a trusted engineering consultancy driving innovation and resilience
+              in water, infrastructure, and environmental systems across the region.
             </p>
           </div>
         </article>
@@ -107,211 +106,362 @@
     </section>
 
     <!-- OUR PARTNERS (SLIDER) -->
-    <section class="bp" id="partners">
+    <section class="sec sec-partners" aria-label="Our Partners">
       <div class="container">
-        <div class="bp-head">
-          <h2 class="bp-title">Our Partners</h2>
-          <p class="bp-sub">
-            We collaborate with institutions and professionals to deliver high-quality engineering and water solutions.
-          </p>
+        <div class="sec-head">
+          <div>
+            <h2 class="sec-title">Our Partners</h2>
+            <p class="sec-sub">
+              We collaborate with institutions and professionals to deliver high-quality engineering and water solutions.
+            </p>
+          </div>
         </div>
 
-        <div class="bp-shell" id="bpShell">
-          <button class="bp-btn bp-prev" type="button" aria-label="Previous">‹</button>
+        <div class="partners-shell">
+          <button class="pnav pprev" type="button" aria-label="Previous partner">‹</button>
 
-          <div class="bp-viewport">
-            <div class="bp-track">
-
-              <article class="bp-slide is-active" data-dir="left">
-                <div class="bp-card">
-                  <div class="bp-ico">🏛️</div>
-                  <div class="bp-body">
-                    <h3>Government & Agencies</h3>
-                    <p>Collaboration with public institutions to support infrastructure planning, compliance, and resilient design.</p>
-                    <div class="bp-tags">
-                      <span class="bp-pill">Planning</span>
-                      <span class="bp-pill">Compliance</span>
-                      <span class="bp-pill">Resilience</span>
-                    </div>
+          <div class="partners-viewport" role="region" aria-roledescription="carousel" aria-label="Partners carousel">
+            <div class="partners-track">
+              <!-- Slide 1 -->
+              <article class="partner-card">
+                <div class="partner-ico" aria-hidden="true">🏛️</div>
+                <div class="partner-body">
+                  <h3>Government &amp; Agencies</h3>
+                  <p>Collaboration with public institutions to support infrastructure planning, compliance, and resilient design.</p>
+                  <div class="tags">
+                    <span class="tag">Planning</span>
+                    <span class="tag">Compliance</span>
+                    <span class="tag">Resilience</span>
                   </div>
                 </div>
               </article>
 
-              <article class="bp-slide" data-dir="right">
-                <div class="bp-card">
-                  <div class="bp-ico">🏢</div>
-                  <div class="bp-body">
-                    <h3>Private Sector</h3>
-                    <p>Working with contractors, developers, and utilities to deliver practical engineering solutions on time.</p>
-                    <div class="bp-tags">
-                      <span class="bp-pill">Delivery</span>
-                      <span class="bp-pill">Quality</span>
-                      <span class="bp-pill">Efficiency</span>
-                    </div>
+              <!-- Slide 2 -->
+              <article class="partner-card">
+                <div class="partner-ico" aria-hidden="true">🏢</div>
+                <div class="partner-body">
+                  <h3>Private Sector</h3>
+                  <p>Working with contractors, developers, and utilities to deliver practical engineering solutions on time.</p>
+                  <div class="tags">
+                    <span class="tag">Delivery</span>
+                    <span class="tag">Quality</span>
+                    <span class="tag">Efficiency</span>
                   </div>
                 </div>
               </article>
 
-              <article class="bp-slide" data-dir="left">
-                <div class="bp-card">
-                  <div class="bp-ico">🎓</div>
-                  <div class="bp-body">
-                    <h3>Academia & Experts</h3>
-                    <p>Research and expert partnerships to strengthen analysis, modelling, and evidence-based decision-making.</p>
-                    <div class="bp-tags">
-                      <span class="bp-pill">Research</span>
-                      <span class="bp-pill">Modelling</span>
-                      <span class="bp-pill">Evidence</span>
-                    </div>
+              <!-- Slide 3 -->
+              <article class="partner-card">
+                <div class="partner-ico" aria-hidden="true">🎓</div>
+                <div class="partner-body">
+                  <h3>Academia &amp; Experts</h3>
+                  <p>Research and expert partnerships to strengthen analysis, modelling, and evidence-based decision-making.</p>
+                  <div class="tags">
+                    <span class="tag">Research</span>
+                    <span class="tag">Modelling</span>
+                    <span class="tag">Evidence</span>
                   </div>
                 </div>
               </article>
-
             </div>
           </div>
 
-          <button class="bp-btn bp-next" type="button" aria-label="Next">›</button>
+          <button class="pnav pnext" type="button" aria-label="Next partner">›</button>
 
-          <div class="bp-dots" aria-label="Dots">
-            <button class="bp-dot is-on" type="button" aria-label="Slide 1"></button>
-            <button class="bp-dot" type="button" aria-label="Slide 2"></button>
-            <button class="bp-dot" type="button" aria-label="Slide 3"></button>
-          </div>
+          <div class="pdots" aria-label="Carousel pagination"></div>
         </div>
       </div>
     </section>
 
-    <!-- ✅ INFO STRIP (MUST BE BELOW OUR PARTNERS) -->
-    <section class="info-strip" id="home-contact">
-      <div class="container info-inner">
-        <div class="info-item">
-          <span class="info-ico">✉️</span>
+    <!-- ✅ CONTACT STRIP (MUST BE LAST ON HOME BEFORE FOOTER) -->
+    <section class="home-contact-strip">
+      <div class="container strip-inner">
+        <div class="strip-item">
+          <span class="strip-ico" aria-hidden="true">✉️</span>
           <div>
-            <div class="info-title">EMAIL</div>
-            <div class="info-value">info@bluerensi.com</div>
+            <div class="strip-k">EMAIL</div>
+            <div class="strip-v"><a href="mailto:info@bluerensi.com">info@bluerensi.com</a></div>
           </div>
         </div>
 
-        <div class="info-item">
-          <span class="info-ico">📞</span>
+        <div class="strip-item">
+          <span class="strip-ico" aria-hidden="true">📞</span>
           <div>
-            <div class="info-title">PHONE</div>
-            <div class="info-value">+250 788 333 074</div>
+            <div class="strip-k">PHONE</div>
+            <div class="strip-v"><a href="tel:+250788333074">+250 788 333 074</a></div>
           </div>
         </div>
 
-        <div class="info-item">
-          <span class="info-ico">📍</span>
+        <div class="strip-item">
+          <span class="strip-ico" aria-hidden="true">📍</span>
           <div>
-            <div class="info-title">LOCATION</div>
-            <div class="info-value">Rwanda</div>
+            <div class="strip-k">LOCATION</div>
+            <div class="strip-v">Rwanda</div>
           </div>
         </div>
 
-        <a class="btn btn-primary info-btn" href="#contact" data-route="contact">Contact us</a>
+        <a class="btn btn-primary strip-btn" href="#contact" data-route="contact">Contact us</a>
       </div>
     </section>
-
   </main>
 
-  <!-- ================= OTHER SECTIONS (NOT IN HOME) ================= -->
+  <!-- ================= SERVICES (ONLY WHEN CLICKED) ================= -->
+  <section id="services" class="route">
+    <section class="page-hero page-hero-services">
+      <div class="container">
+        <h1 class="page-title">Services</h1>
+        <p class="page-subtitle">Our core expertise across engineering, hydrology, environment, and GIS.</p>
+      </div>
+    </section>
 
-  <section id="services" class="sec sec-services">
-    <div class="container">
-      <h2 class="sec-title">Our Services</h2>
-      <p class="sec-sub">
-        We deliver practical engineering and science-based analysis across civil infrastructure, hydrology, environment, WASH, GIS, and advisory.
-      </p>
+    <section class="section">
+      <div class="container">
+        <div class="service-filters">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="civil">Civil</button>
+          <button class="chip" data-filter="hydro">Hydrology</button>
+          <button class="chip" data-filter="env">Environment</button>
+          <button class="chip" data-filter="wash">WASH</button>
+          <button class="chip" data-filter="gis">GIS</button>
+          <button class="chip" data-filter="advisory">Advisory</button>
+        </div>
 
-      <div class="services-grid">
-        <div class="card">
-          <h3>Civil & Structural</h3>
-          <p class="muted">Drainage, road & site engineering support.</p>
-        </div>
-        <div class="card">
-          <h3>Hydrology & Hydraulics</h3>
-          <p class="muted">Catchment assessment and flood risk studies.</p>
-        </div>
-        <div class="card">
-          <h3>Environment & Climate</h3>
-          <p class="muted">Assessment, compliance and mitigation support.</p>
-        </div>
-        <div class="card">
-          <h3>WASH</h3>
-          <p class="muted">Water supply planning and WASH program support.</p>
-        </div>
-        <div class="card">
-          <h3>Modelling & GIS</h3>
-          <p class="muted">Mapping, modelling and decision support.</p>
-        </div>
-        <div class="card">
-          <h3>Advisory</h3>
-          <p class="muted">Peer review and technical guidance.</p>
+        <div class="services-grid">
+          <div class="service-item" data-cat="civil">
+            <details class="service-details" open>
+              <summary class="service-summary">
+                <span class="service-icon">🏗️</span>
+                <div>
+                  <h3>Civil & Structural</h3>
+                  <p class="service-mini">Drainage, road and site engineering support.</p>
+                </div>
+                <span class="chev">▾</span>
+              </summary>
+              <ul class="service-list">
+                <li>Drainage & stormwater design</li>
+                <li>Road & site engineering</li>
+                <li>Small structures and technical support</li>
+              </ul>
+            </details>
+          </div>
+
+          <div class="service-item" data-cat="hydro">
+            <details class="service-details">
+              <summary class="service-summary">
+                <span class="service-icon">💧</span>
+                <div>
+                  <h3>Hydrology & Hydraulics</h3>
+                  <p class="service-mini">Catchment assessment and flood risk studies.</p>
+                </div>
+                <span class="chev">▾</span>
+              </summary>
+              <ul class="service-list">
+                <li>Catchment assessment</li>
+                <li>Flood frequency / risk analysis</li>
+                <li>Water balance and planning support</li>
+              </ul>
+            </details>
+          </div>
+
+          <div class="service-item" data-cat="env">
+            <details class="service-details">
+              <summary class="service-summary">
+                <span class="service-icon">🌿</span>
+                <div>
+                  <h3>Environmental & Climate</h3>
+                  <p class="service-mini">Assessment support, compliance and mitigation.</p>
+                </div>
+                <span class="chev">▾</span>
+              </summary>
+              <ul class="service-list">
+                <li>Environmental assessment support</li>
+                <li>Sustainable solutions and compliance</li>
+                <li>Mitigation and monitoring guidance</li>
+              </ul>
+            </details>
+          </div>
+
+          <div class="service-item" data-cat="wash">
+            <details class="service-details">
+              <summary class="service-summary">
+                <span class="service-icon">🚰</span>
+                <div>
+                  <h3>Water Supply & WASH</h3>
+                  <p class="service-mini">Water supply planning and WASH program support.</p>
+                </div>
+                <span class="chev">▾</span>
+              </summary>
+              <ul class="service-list">
+                <li>Water supply planning support</li>
+                <li>WASH program support</li>
+                <li>Technical reporting</li>
+              </ul>
+            </details>
+          </div>
+
+          <div class="service-item" data-cat="gis">
+            <details class="service-details">
+              <summary class="service-summary">
+                <span class="service-icon">🗺️</span>
+                <div>
+                  <h3>Modelling & GIS</h3>
+                  <p class="service-mini">Modelling, mapping and decision support.</p>
+                </div>
+                <span class="chev">▾</span>
+              </summary>
+              <ul class="service-list">
+                <li>Hydrological modelling</li>
+                <li>Spatial analysis and mapping</li>
+                <li>Dashboards and indicators</li>
+              </ul>
+            </details>
+          </div>
+
+          <div class="service-item" data-cat="advisory">
+            <details class="service-details">
+              <summary class="service-summary">
+                <span class="service-icon">✅</span>
+                <div>
+                  <h3>Advisory & Review</h3>
+                  <p class="service-mini">Peer review and project technical guidance.</p>
+                </div>
+                <span class="chev">▾</span>
+              </summary>
+              <ul class="service-list">
+                <li>Peer review and advisory</li>
+                <li>Feasibility support</li>
+                <li>Project technical guidance</li>
+              </ul>
+            </details>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   </section>
 
-  <section id="projects" class="sec sec-projects">
-    <div class="container">
-      <h2 class="sec-title">Projects</h2>
-      <p class="sec-sub">Examples of work types we deliver.</p>
+  <!-- ================= PROJECTS (ONLY WHEN CLICKED) ================= -->
+  <main id="projects" class="route">
+    <section class="page-hero page-hero-projects">
+      <div class="container">
+        <h1 class="page-title">Projects</h1>
+        <p class="page-subtitle">Examples of work types we deliver.</p>
+      </div>
+    </section>
 
-      <div class="auto-grid">
-        <div class="card">
-          <h3>Stormwater Management Plan</h3>
-          <p class="muted">Drainage systems and mitigation solutions.</p>
-        </div>
-        <div class="card">
-          <h3>Flood Risk Studies</h3>
-          <p class="muted">Hydrologic/hydraulic analysis to support planning.</p>
-        </div>
-        <div class="card">
-          <h3>Water Supply Support</h3>
-          <p class="muted">Technical support for reliable water services.</p>
+    <section class="section">
+      <div class="container">
+        <div class="auto-grid">
+          <div class="card">
+            <h3>Stormwater Management Plan</h3>
+            <p class="muted">Design and assessment of drainage systems, culverts, and mitigation solutions.</p>
+          </div>
+          <div class="card">
+            <h3>Flood Risk Studies</h3>
+            <p class="muted">Hydrologic/hydraulic analysis to support planning and risk reduction.</p>
+          </div>
+          <div class="card">
+            <h3>Water Supply Support</h3>
+            <p class="muted">Technical support to improve water supply reliability and planning.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <section id="about" class="sec sec-about">
-    <div class="container">
-      <h2 class="sec-title">About us</h2>
-      <p class="sec-sub">
-        BLUERENSI Consult delivers practical, science-based engineering solutions across civil infrastructure,
-        hydrology, water resources, and environmental systems.
-      </p>
-    </div>
-  </section>
+  <!-- ================= ABOUT (ONLY WHEN CLICKED) ================= -->
+  <main id="about" class="route">
+    <section class="page-hero page-hero-about">
+      <div class="container">
+        <h1 class="page-title">About us</h1>
+        <p class="page-subtitle">
+          BLUERENSI Consult delivers practical, science-based engineering solutions across civil infrastructure,
+          hydrology, water resources, and environmental systems.
+        </p>
+      </div>
+    </section>
 
-  <section id="careers" class="sec sec-careers">
-    <div class="container">
-      <h2 class="sec-title">Careers</h2>
-      <p class="sec-sub">Join us to deliver science-based, climate-resilient solutions.</p>
+    <section class="section">
+      <div class="container">
+        <h2 class="title">Meet the Team</h2>
+        <p class="subtitle">A multidisciplinary team delivering quality, practical engineering and science-based support.</p>
 
-      <div class="auto-grid">
-        <div class="card">
-          <h3>Get in Touch</h3>
-          <p class="muted">Send your CV to <b>info@bluerensi.com</b></p>
-        </div>
-        <div class="card">
-          <h3>Profiles</h3>
-          <p class="muted">Civil engineers, hydrologists, GIS analysts, interns.</p>
-        </div>
-        <div class="card">
-          <h3>Why BLUERENSI</h3>
-          <p class="muted">Growth, impact, and real projects.</p>
+        <div class="team-grid">
+          <article class="team-card">
+            <img src="./jean-dusabimana.jpg" alt="Jean D’Amour Dusabimana">
+            <div class="team-meta">
+              <div class="name">Jean D’Amour Dusabimana</div>
+              <div class="role">Managing Director</div>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <img src="./pascal-sibomana.jpg" alt="Pascal Sibomana">
+            <div class="team-meta">
+              <div class="name">Pascal Sibomana</div>
+              <div class="role">Technical Director</div>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <img src="./pierre-gapfizi.jpeg" alt="Pierre Gapfizi">
+            <div class="team-meta">
+              <div class="name">Pierre Gapfizi</div>
+              <div class="role">Civil Engineer</div>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <img src="./rugaba-blaise.jpg" alt="Blaise Rugaba">
+            <div class="team-meta">
+              <div class="name">Blaise Rugaba</div>
+              <div class="role">Operations Director</div>
+            </div>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <section id="contact" class="sec sec-contact">
-    <div class="container">
-      <h2 class="sec-title">Contact</h2>
-      <p class="sec-sub">Tell us about your project. We’ll respond quickly.</p>
+  <!-- ================= CAREERS (ONLY WHEN CLICKED) ================= -->
+  <main id="careers" class="route">
+    <section class="page-hero page-hero-careers">
+      <div class="container">
+        <h1 class="page-title">Careers</h1>
+        <p class="page-subtitle">Join us to deliver science-based, climate-resilient solutions.</p>
+      </div>
+    </section>
 
-      <div class="contact-wrap">
+    <section class="section">
+      <div class="container">
+        <div class="auto-grid">
+          <div class="card">
+            <h3>Get in Touch</h3>
+            <p class="muted">Send your CV and short motivation to <b>info@bluerensi.com</b></p>
+          </div>
+          <div class="card">
+            <h3>Profiles</h3>
+            <p class="muted">Civil engineers, hydrologists, GIS analysts, interns.</p>
+          </div>
+          <div class="card">
+            <h3>Why BLUERENSI</h3>
+            <p class="muted">Growth, impact, and real projects.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= CONTACT (ONLY WHEN CLICKED) ================= -->
+  <main id="contact" class="route">
+    <section class="page-hero page-hero-contact">
+      <div class="container">
+        <h1 class="page-title">Contact</h1>
+        <p class="page-subtitle">Tell us about your project. We’ll respond quickly.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-wrap">
         <form class="form" id="contactForm">
           <label>Name<input type="text" required></label>
           <label>Email<input type="email" required></label>
@@ -323,16 +473,22 @@
         <div class="contact-cards">
           <div class="card">
             <h3>BLUERENSI Consult</h3>
-            <p class="muted">Email: info@bluerensi.com</p>
+            <p class="muted">Email: <b>info@bluerensi.com</b></p>
             <p class="muted">Phone: <a href="tel:+250788333074">+250 788 333 074</a></p>
             <p class="muted">Location: Rwanda</p>
           </div>
+
+          <div class="card">
+            <h3>Working Hours</h3>
+            <p class="muted">Monday – Friday</p>
+            <p class="muted">08:00 AM – 05:00 PM</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (GLOBAL, LAST) -->
   <footer class="footer">
     <div class="container footer-inner">
       <div>© 2026 BLUERENSI Consult. All rights reserved.</div>
@@ -345,5 +501,18 @@
     </div>
   </footer>
 
+  <!-- TAWK.TO (keep your code as is) -->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),
+  s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/6996f4a1a934eb1c3b586b09/1jhqqn6jl';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
 </body>
 </html>
