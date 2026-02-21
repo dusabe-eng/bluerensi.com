@@ -39,6 +39,7 @@
     });
   }
 
+  // Contact form demo message
   const form = document.getElementById("contactForm");
   const sentMsg = document.getElementById("sentMsg");
   if (form && sentMsg) {
@@ -48,6 +49,43 @@
       setTimeout(() => (sentMsg.hidden = true), 2500);
       form.reset();
     });
+  }
+
+  // ✅ Partners auto slider (moving + dots + pause on hover)
+  const stage = document.getElementById("partnersStage");
+  if (stage) {
+    const slides = Array.from(stage.querySelectorAll(".partner-slide"));
+    const dots = Array.from(stage.querySelectorAll(".dot"));
+    let index = 0;
+    let timer = null;
+    let paused = false;
+
+    const setActive = (i) => {
+      index = (i + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle("is-active", k === index));
+      dots.forEach((d, k) => d.classList.toggle("is-on", k === index));
+    };
+
+    const start = () => {
+      if (timer) clearInterval(timer);
+      timer = setInterval(() => {
+        if (!paused) setActive(index + 1);
+      }, 2800);
+    };
+
+    // dot clicks
+    dots.forEach((d, k) => {
+      d.addEventListener("click", () => {
+        setActive(k);
+      });
+    });
+
+    // pause on hover
+    stage.addEventListener("mouseenter", () => { paused = true; });
+    stage.addEventListener("mouseleave", () => { paused = false; });
+
+    setActive(0);
+    start();
   }
 
   window.addEventListener("popstate", routeFromHash);
