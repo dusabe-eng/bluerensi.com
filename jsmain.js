@@ -12,7 +12,6 @@
       if (a.classList.contains("nav-link")) a.classList.toggle("active", isActive);
     });
 
-    // Close mobile menu after navigation
     if (menu) menu.classList.remove("open");
     if (toggle) toggle.setAttribute("aria-expanded", "false");
   }
@@ -23,7 +22,6 @@
     showRoute(exists ? id : "home");
   }
 
-  // Navigation clicks
   navLinks.forEach(a => {
     a.addEventListener("click", (e) => {
       const id = a.getAttribute("data-route");
@@ -34,7 +32,6 @@
     });
   });
 
-  // Mobile menu toggle
   if (toggle && menu) {
     toggle.addEventListener("click", () => {
       const open = menu.classList.toggle("open");
@@ -42,7 +39,6 @@
     });
   }
 
-  // Contact form demo
   const form = document.getElementById("contactForm");
   const sentMsg = document.getElementById("sentMsg");
   if (form && sentMsg) {
@@ -57,6 +53,5 @@
   window.addEventListener("popstate", routeFromHash);
   window.addEventListener("hashchange", routeFromHash);
 
-  // Initial load
   routeFromHash();
 })();
