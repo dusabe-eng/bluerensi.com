@@ -2,150 +2,108 @@
   --blue:#2b6de8;
   --dark:#13222a;
   --sky:#e9f4ff;
+  --sky2:#d7ecff;
 }
 
 *{box-sizing:border-box}
 body{
   margin:0;
-  font-family:system-ui,Arial,sans-serif;
+  font-family:system-ui, Arial, sans-serif;
   color:#0b2545;
 }
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,92%);margin:auto}
 
-.container{width:min(1100px,92%);margin:auto}
+/* TOP BAR */
+.topbar{background:#0b2f56;color:#fff;font-size:13px}
+.topbar-inner{display:flex;justify-content:flex-end;gap:16px;padding:6px 0}
 
-/* ===== TOP BAR ===== */
-.topbar{
-  background:#0b2f56;
-  color:#fff;
-  font-size:13px;
-}
-.topbar-inner{
-  display:flex;
-  justify-content:flex-end;
-  padding:6px 0;
-  gap:18px;
-}
-
-/* ===== NAV ===== */
-.nav{
-  background:var(--sky);
-  border-bottom:1px solid #ccc;
-}
-.nav-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:12px 0;
-}
-.menu a{
-  margin:0 10px;
-  font-weight:700;
-}
-
-/* ===== HERO ===== */
-.hero{
-  position:relative;
-  min-height:70vh;
-  background:url(image1.jpg) center/cover no-repeat;
-}
-.hero-overlay{
-  position:absolute;inset:0;
-  background:rgba(0,0,0,.55);
-}
-.hero-content{
-  position:relative;
-  color:#fff;
-  padding:100px 0;
-}
-.hero-actions{margin-top:20px}
-
-/* ===== BUTTONS ===== */
-.btn{
-  padding:12px 18px;
-  border-radius:999px;
-  font-weight:800;
-  display:inline-block;
-}
+/* NAV */
+.nav{background:var(--sky);border-bottom:1px solid #cbd5e1}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.menu a{margin:0 10px;font-weight:700}
+.btn{padding:12px 18px;border-radius:999px;font-weight:800}
 .btn-primary{background:var(--blue);color:#fff}
 .btn-ghost{border:1px solid #fff;color:#fff}
 
-/* ===== MISSION / ABOUT / VISION ===== */
-.mv2{
-  padding:70px 0;
-}
-.mv2-row{
-  display:flex;
-}
-.mv2-panel{
-  flex:1;
-  padding:40px;
-}
+/* HERO */
+.hero{position:relative;min-height:70vh;background:url(image1.jpg) center/cover no-repeat}
+.hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+.hero-content{position:relative;color:#fff;padding:100px 0;max-width:760px}
+.hero-actions{margin-top:20px}
+
+/* MISSION / ABOUT / VISION */
+.mv2{padding:70px 0}
+.mv2-row{display:flex;align-items:stretch}
+.mv2-panel{flex:1;padding:40px}
 .mv2-side{background:var(--dark);color:#fff}
 .mv2-center{
-  background:#d7ecff;
+  background:var(--sky2);
   transform:translateY(-40px);
+  box-shadow:0 20px 50px rgba(0,0,0,.2)
 }
+.mv2-link{font-weight:800}
 
-/* ===== CONTACT STRIP ===== */
+/* CONTACT STRIP */
 .home-contact-strip{
-  background:#fff;
-  border-top:1px solid #ddd;
-  border-bottom:1px solid #ddd;
-  padding:22px 0;
+  border-top:1px solid #e5e7eb;
+  border-bottom:1px solid #e5e7eb;
+  padding:24px 0;
 }
 .contact-strip-inner{
   display:grid;
   grid-template-columns:repeat(3,auto) 1fr;
-  align-items:center;
   gap:24px;
+  align-items:center;
 }
-.contact-item{
-  display:flex;
-  gap:12px;
-  font-weight:700;
-}
-.contact-item small{
-  display:block;
-  font-size:11px;
-  opacity:.7;
-}
+.contact-item{display:flex;gap:12px;font-weight:700}
+.contact-item small{display:block;font-size:11px;opacity:.7}
 .contact-cta{text-align:right}
 
-/* ===== SECTIONS ===== */
+/* SECTIONS */
 .section{padding:80px 0}
-.subtitle{max-width:700px;color:#475569}
+.subtitle{max-width:760px;color:#475569}
 
-/* ===== SERVICES ===== */
+/* SERVICES */
 .services-grid{
+  margin-top:30px;
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:20px;
-  margin-top:30px;
 }
 .card{
-  padding:24px;
-  border:1px solid #ddd;
-  border-radius:16px;
-  background:#fff;
+  padding:26px;
+  border-radius:18px;
+  border:1px solid #e5e7eb;
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
 }
 
-/* ===== TEAM ===== */
+/* TEAM */
 .team-grid{
+  margin-top:32px;
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:24px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:28px;
+}
+.team-card{
+  background:#fff;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 16px 40px rgba(0,0,0,.12);
 }
 .team-card img{
   width:100%;
-  height:240px;
+  height:280px;
   object-fit:cover;
-  border-radius:12px;
 }
+.team-info{text-align:center;padding:16px}
+.team-name{font-weight:900}
+.team-role{font-size:13px;color:#475569}
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 .footer{
   background:#1f4f46;
   color:#fff;
-  padding:16px 0;
   text-align:center;
+  padding:16px 0;
 }
