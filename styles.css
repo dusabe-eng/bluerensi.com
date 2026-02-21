@@ -21,20 +21,40 @@ a{text-decoration:none;color:inherit}
 /* NAV */
 .nav{background:var(--sky);border-bottom:1px solid #cbd5e1}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:44px;height:44px;object-fit:contain}
+.brand-name{font-weight:900}
+.brand-sub{font-size:12px;opacity:.75}
 .menu a{margin:0 10px;font-weight:700}
-.btn{padding:12px 18px;border-radius:999px;font-weight:800}
+.btn{padding:12px 18px;border-radius:999px;font-weight:800;display:inline-block}
 .btn-primary{background:var(--blue);color:#fff}
 .btn-ghost{border:1px solid #fff;color:#fff}
 
-/* HERO */
-.hero{position:relative;min-height:70vh;background:url(image1.jpg) center/cover no-repeat}
-.hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55)}
-.hero-content{position:relative;color:#fff;padding:100px 0;max-width:760px}
-.hero-actions{margin-top:20px}
+/* ROUTES */
+.route{display:none}
+.route-active{display:block}
+
+/* HERO (uses your real file name: image1.jpg) */
+.hero{
+  position:relative;
+  min-height:70vh;
+  background:url("image1.jpg") center/cover no-repeat;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,.55)
+}
+.hero-content{
+  position:relative;
+  color:#fff;
+  padding:100px 0;
+  max-width:760px;
+}
+.hero-actions{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
 
 /* MISSION / ABOUT / VISION */
 .mv2{padding:70px 0}
-.mv2-row{display:flex;align-items:stretch}
+.mv2-row{display:flex;align-items:stretch;gap:0}
 .mv2-panel{flex:1;padding:40px}
 .mv2-side{background:var(--dark);color:#fff}
 .mv2-center{
@@ -42,7 +62,7 @@ a{text-decoration:none;color:inherit}
   transform:translateY(-40px);
   box-shadow:0 20px 50px rgba(0,0,0,.2)
 }
-.mv2-link{font-weight:800}
+.mv2-link{display:inline-block;margin-top:14px;font-weight:800}
 
 /* CONTACT STRIP */
 .home-contact-strip{
@@ -64,7 +84,7 @@ a{text-decoration:none;color:inherit}
 .section{padding:80px 0}
 .subtitle{max-width:760px;color:#475569}
 
-/* SERVICES */
+/* SERVICES GRID */
 .services-grid{
   margin-top:30px;
   display:grid;
@@ -76,6 +96,7 @@ a{text-decoration:none;color:inherit}
   border-radius:18px;
   border:1px solid #e5e7eb;
   box-shadow:0 12px 30px rgba(0,0,0,.08);
+  background:#fff;
 }
 
 /* TEAM */
@@ -95,10 +116,21 @@ a{text-decoration:none;color:inherit}
   width:100%;
   height:280px;
   object-fit:cover;
+  display:block;
 }
 .team-info{text-align:center;padding:16px}
 .team-name{font-weight:900}
 .team-role{font-size:13px;color:#475569}
+
+/* CONTACT BOX */
+.contact-box{
+  margin-top:18px;
+  padding:24px;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
+  background:#fff;
+}
 
 /* FOOTER */
 .footer{
@@ -106,4 +138,14 @@ a{text-decoration:none;color:inherit}
   color:#fff;
   text-align:center;
   padding:16px 0;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .menu{display:none}
+  .mv2-row{flex-direction:column}
+  .mv2-center{transform:none}
+  .contact-strip-inner{grid-template-columns:1fr}
+  .contact-cta{text-align:left}
+  .services-grid{grid-template-columns:1fr}
 }
