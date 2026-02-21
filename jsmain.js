@@ -1,74 +1,192 @@
 (() => {
-  const headerOffset = 120;
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  // Mobile menu
-  const menu = document.querySelector(".menu");
-  const toggle = document.querySelector(".nav-toggle");
+  // --------- Mobile menu ----------
+  const menu = $(".menu");
+  const toggle = $(".nav-toggle");
 
   if (toggle && menu) {
     toggle.addEventListener("click", () => {
-      menu.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", menu.classList.contains("open") ? "true" : "false");
+      const open = menu.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+
+    // close menu on link click (mobile)
+    $$(".menu a").forEach(a => {
+      a.addEventListener("click", () => {
+        menu.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
     });
   }
 
-  function scrollToSection(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-    window.scrollTo({ top: y, behavior: "smooth" });
+  // --------- Route switching (hash router) ----------
+  const routes = $$(".route");
+  const navLinks = $$("[data-route]");
+
+  function setActiveRoute(routeId) {
+    const id = routeId || "home";
+
+    routes.forEach(r => r.classList.remove("route-active"));
+    const target = document.getElementById(id);
+    if (target) target.classList.add("route-active");
+    else $("#home")?.classList.add("route-active");
+
+    // active pill in nav
+    $$(".nav-link").forEach(a => a.classList.remove("active"));
+    $$(".nav-link").forEach(a => {
+      if (a.getAttribute("data-route") === id) a.classList.add("active");
+    });
+
+    // scroll to top when switching pages (except home)
+    if (id !== "home") window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  // Nav click
-  document.querySelectorAll("[data-route], .nav-link").forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const id = link.getAttribute("data-route") || (link.getAttribute("href") || "").replace("#", "");
-      if (!id || !document.getElementById(id)) return;
+  function getHashRoute() {
+    const h = (location.hash || "#home").replace("#", "").trim();
+    return h || "home";
+  }
 
-      e.preventDefault();
-      history.pushState(null, "", `#${id}`);
-      scrollToSection(id);
+  window.addEventListener("hashchange", () => setActiveRoute(getHashRoute()));
+  window.addEventListener("load", () => setActiveRoute(getHashRoute()));
 
-      menu?.classList.remove("open");
-      toggle?.setAttribute("aria-expanded", "false");
+  // also handle clicks on elements with data-route (buttons)
+  navLinks.forEach(el => {
+    el.addEventListener("click", (e) => {
+      const route = el.getAttribute("data-route");
+      if (!route) return;
+      // allow normal anchor change, but ensure our handler runs
+      // (no preventDefault needed)
     });
   });
 
-  // Active nav on scroll
-  const sectionIds = ["home","services","projects","about","careers","contact"];
-  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
-
-  function setActiveNav(id) {
-    document.querySelectorAll(".nav-link").forEach((a) => {
-      a.classList.toggle("active", a.getAttribute("data-route") === id);
+  // --------- MV2 click active ----------
+  const mvCards = $$(".mv2-card");
+  if (mvCards.length) {
+    mvCards.forEach(card => {
+      card.addEventListener("click", () => {
+        mvCards.forEach(c => c.classList.remove("is-active"));
+        card.classList.add("is-active");
+      });
     });
   }
 
-  function onScroll() {
-    const y = window.scrollY + headerOffset + 30;
-    let current = "home";
-    for (const sec of sections) {
-      if (sec.offsetTop <= y) current = sec.id;
+  // --------- Services filter ----------
+  const chips = $$(".chip");
+  const serviceItems = $$(".service-item");
+
+  function applyFilter(filter) {
+    chips.forEach(c => c.classList.toggle("active", c.dataset.filter === filter));
+    serviceItems.forEach(it => {
+      const cat = it.dataset.cat;
+      const show = filter === "all" || cat === filter;
+      it.style.display = show ? "" : "none";
+    });
+  }
+
+  if (chips.length && serviceItems.length) {
+    chips.forEach(chip => {
+      chip.addEventListener("click", () => applyFilter(chip.dataset.filter || "all"));
+    });
+  }
+
+  // --------- Partners slider (autoplay + dots + buttons + swipe) ----------
+  const track = $(".partners-track");
+  const viewport = $(".partners-viewport");
+  const prevBtn = $(".pprev");
+  const nextBtn = $(".pnext");
+  const dotsWrap = $(".pdots");
+
+  if (track && viewport && dotsWrap) {
+    const slides = $$(".partner-card", track);
+    let index = 0;
+    let timer = null;
+    const AUTOPLAY_MS = 4500;
+
+    // build dots
+    dotsWrap.innerHTML = "";
+    slides.forEach((_, i) => {
+      const b = document.createElement("button");
+      b.className = "pdot" + (i === 0 ? " active" : "");
+      b.type = "button";
+      b.setAttribute("aria-label", `Go to slide ${i + 1}`);
+      b.addEventListener("click", () => goTo(i, true));
+      dotsWrap.appendChild(b);
+    });
+
+    const dots = $$(".pdot", dotsWrap);
+
+    function update() {
+      track.style.transform = `translateX(${-index * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle("active", i === index));
     }
-    setActiveNav(current);
+
+    function goTo(i, userAction = false) {
+      index = (i + slides.length) % slides.length;
+      update();
+      if (userAction) restartAutoplay();
+    }
+
+    function next(userAction = false) { goTo(index + 1, userAction); }
+    function prev(userAction = false) { goTo(index - 1, userAction); }
+
+    prevBtn?.addEventListener("click", () => prev(true));
+    nextBtn?.addEventListener("click", () => next(true));
+
+    function startAutoplay() {
+      stopAutoplay();
+      timer = setInterval(() => next(false), AUTOPLAY_MS);
+    }
+    function stopAutoplay() {
+      if (timer) clearInterval(timer);
+      timer = null;
+    }
+    function restartAutoplay() {
+      stopAutoplay();
+      startAutoplay();
+    }
+
+    // pause on hover/focus (desktop)
+    viewport.addEventListener("mouseenter", stopAutoplay);
+    viewport.addEventListener("mouseleave", startAutoplay);
+    viewport.addEventListener("focusin", stopAutoplay);
+    viewport.addEventListener("focusout", startAutoplay);
+
+    // swipe (mobile)
+    let startX = 0;
+    let dx = 0;
+    let touching = false;
+
+    viewport.addEventListener("touchstart", (e) => {
+      touching = true;
+      startX = e.touches[0].clientX;
+      dx = 0;
+      stopAutoplay();
+    }, { passive: true });
+
+    viewport.addEventListener("touchmove", (e) => {
+      if (!touching) return;
+      dx = e.touches[0].clientX - startX;
+    }, { passive: true });
+
+    viewport.addEventListener("touchend", () => {
+      touching = false;
+      if (Math.abs(dx) > 40) {
+        dx < 0 ? next(true) : prev(true);
+      } else {
+        startAutoplay();
+      }
+    });
+
+    // start
+    update();
+    startAutoplay();
   }
 
-  window.addEventListener("scroll", onScroll, { passive: true });
-
-  window.addEventListener("load", () => {
-    const id = (location.hash || "#home").replace("#", "");
-    if (document.getElementById(id)) setTimeout(() => scrollToSection(id), 50);
-    onScroll();
-  });
-
-  window.addEventListener("popstate", () => {
-    const id = (location.hash || "#home").replace("#", "");
-    scrollToSection(id);
-  });
-
-  // Contact form demo
-  const form = document.getElementById("contactForm");
-  const sentMsg = document.getElementById("sentMsg");
+  // --------- Contact form demo ----------
+  const form = $("#contactForm");
+  const sentMsg = $("#sentMsg");
   if (form && sentMsg) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -76,54 +194,5 @@
       setTimeout(() => (sentMsg.hidden = true), 2500);
       form.reset();
     });
-  }
-
-  // Partners slider
-  const shell = document.getElementById("bpShell");
-  if (shell) {
-    const slides = Array.from(shell.querySelectorAll(".bp-slide"));
-    const dots = Array.from(shell.querySelectorAll(".bp-dot"));
-    const prev = shell.querySelector(".bp-prev");
-    const next = shell.querySelector(".bp-next");
-
-    let i = 0;
-    let timer = null;
-    let paused = false;
-    let dir = "left";
-
-    const clearEnter = (s) => s.classList.remove("enter-left","enter-right");
-
-    const show = (idx) => {
-      i = (idx + slides.length) % slides.length;
-
-      slides.forEach((s, k) => {
-        s.classList.remove("is-active");
-        clearEnter(s);
-        if (k === i) {
-          dir = dir === "left" ? "right" : "left";
-          s.classList.add(dir === "left" ? "enter-left" : "enter-right");
-          void s.offsetWidth;
-          s.classList.add("is-active");
-        }
-      });
-
-      dots.forEach((d, k) => d.classList.toggle("is-on", k === i));
-    };
-
-    const start = () => {
-      if (timer) clearInterval(timer);
-      timer = setInterval(() => {
-        if (!paused) show(i + 1);
-      }, 3000);
-    };
-
-    next?.addEventListener("click", () => show(i + 1));
-    prev?.addEventListener("click", () => show(i - 1));
-    dots.forEach((d, k) => d.addEventListener("click", () => show(k)));
-
-    shell.addEventListener("mouseenter", () => paused = true);
-    shell.addEventListener("mouseleave", () => paused = false);
-
-    start();
   }
 })();
